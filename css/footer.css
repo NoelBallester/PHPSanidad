@@ -1,0 +1,142 @@
+/* Footer */
+.footer {
+  margin-top: 2rem;
+  padding-top: 0.75rem;
+  background: #f0f9fd;
+  font-style: italic;
+}
+
+.footer-container {
+  display: flex;
+  font-size: 0.8rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.footer__box {
+  width: 20%;
+}
+
+.footer__box--big {
+  width: 40%;
+}
+
+.column__item {
+  list-style-type: none;
+}
+
+.column__link {
+  display: block;
+  text-decoration: none;
+  color: #444;
+  margin: 0.25rem 0 0.25rem 0.75rem;
+}
+
+.column__link:hover {
+  color: var(--title-color);
+  text-decoration: underline;
+}
+
+.footer__input {
+  border: 0.1rem solid var(--title-color);
+  border-radius: 0.2rem;
+  width: 225px;
+  outline: none;
+  padding: 0.3rem 0.2rem 0.15rem;
+  color: var(--title-color);
+  font-style: italic;
+}
+
+.footer__input::placeholder {
+  color: var(--title-color);
+  font-style: italic;
+}
+
+.footer__img {
+ 
+  width: 30px;
+  height: 30px;
+}
+.footer__logo {
+  margin-top:0.75rem;
+  width: 125px;
+  height: 15px;
+}
+
+.footer__container {
+
+  margin: 0;
+  padding: 0;
+  margin-top:0.5rem;
+  display:flex;
+}
+
+.footer__btn {
+  border-radius: 0.2rem;
+  border: 0.1rem solid var(--title-color);
+  background: var(--title-color);
+  color: #f0f9fd;
+  cursor: pointer;
+  padding: 0.2rem 0.5rem 0.1rem;
+  width: 125px;
+  transition: background-color 0.25s;
+}
+
+.footer__btn:hover {
+  background-color: var(--title-color);
+}
+
+.footer__social {
+  color: var(--title-color);
+  font-size: 2rem;
+  text-decoration: none;
+  margin-right: 0.25rem;
+  transition: color 0.25s;
+  margin: 0 auto;
+}
+
+.footer__social-container {
+  margin-left: 0.75rem;
+}
+
+.footer__social:hover {
+  color: var(--title-color);
+}
+
+hr {
+  border: none;
+  border-top: 0.001rem solid var(--title-color);
+}
+
+.footer h3 {
+  color: var(--title-color);
+  border-bottom: 0.001rem solid var(--title-color);
+  font-size: 1rem;
+  margin-right: 1rem;
+}
+
+.footer__footer {
+  text-align: center;
+  color: var(--title-color);
+  padding-right: 2rem;
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-bottom: 4rem;
+  padding-bottom: 1rem;
+}
+
+.footer__financiado {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+}
+
+.financiado__europa-pie {
+  width: 275px;
+
+}
+
+.financiado__generation-pie {
+  width: 275px;
+}

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet" />
+
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-icon" />
+
+    <!-- Fontawesome -->
+    <link rel="stylesheet" href="css/all.css" />
+
+    <!-- Estilos css -->
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/forms.css" />
+    <link rel="stylesheet" href="css/index.css" />
+
+    <title>Sanitaria Ribera...</title>
+
+    <link rel="stylesheet" href="./css/loginregistro.css">
+
+    <!-- Boxicons CSS -->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <div class="container">
+        <!-- header -->
+        <header class="header">
+            <!-- Imagenes financiación página -->
+
+            <section class="logotipo">
+                <a class="nav-link nav__link active" aria-current="page" href="./index.html"><img
+                        src="./assets/images/logo.png" alt="" class="logotipo"></a>
+
+            </section>
+
+            <section class="financiado">
+                <img src="./assets/images/MinHap.gif" alt="" class="financiado__europa">
+                <img src="./assets/images/logo-next-generation.svg" alt="" class="financiado__generation">
+            </section>
+        </header>
+
+        <nav class="nav navbar navbar-expand-lg px-5">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon ">
+                        <i class="fa-solid fa-bars header__icon"></i>
+                    </span>
+                </button>
+
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav__list">
+                        <li class="nav-item nav__item">
+                            <a class="nav-link nav__link active" aria-current="page" href="./index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item nav__item">
+                            <a class="nav-link nav__link" href="./proyecto.html">Publicidad</a>
+                        </li>
+                        <!--     <li class="nav-item nav__item">
+                            <a class="nav-link nav__link active" aria-current="page"
+                                href="./laboratorio.html">Laboratorio</a>
+                        </li> -->
+
+
+                        <li class="nav-item nav__item nav-item dropdown">
+                            <a class="nav-link nav__link dropdown-toggle text-center" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">Laboratorio</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" target="_blank" href="./laboratorio.html">Gafas Virtuales
+                                        OSNA </a></li>
+                                <li><a class="dropdown-item" href="./tecnicas.html">Técnicas Laboratorio</a></li>
+
+                                <li><a class="dropdown-item" href="./material.html">Material Laboratorio</a></li>
+                            </ul>
+                        </li>
+
+
+                        <li class="nav-item nav__item">
+                            <a class="nav-link nav__link" href="./autopsias.html">Necropsia</a>
+                        </li>
+                        <!--  <li class="nav-item nav__item">
+                            <a class="nav-link nav__link" target="_blank"
+                                href="http://microvirtual.ibonanova.cat/">Microscopio</a>
+                        </li> -->
+                        <!--      <li class="nav-item nav__item">
+                            <a class="nav-link nav__link" target="_blank"
+                                href="./recursos.html">Recursos</a>
+                        </li> -->
+                        <li class="nav-item nav__item nav-item dropdown">
+                            <a class="nav-link nav__link dropdown-toggle text-center" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">Microscopio Virtual</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" target="_blank"
+                                        href="https://microvirtual.ibonanova.cat/webclient/login/?url=/bonanova/private/dashboard">Microscopio</a></li>
+                                <!--   <li><a class="dropdown-item" href="./tecnicas.html">Técnicas Laboratorio</a></li>
+
+                                <li><a class="dropdown-item" href="./material.html">Material Laboratorio</a></li> -->
+
+                                <li><a class="dropdown-item" href="./actividades.html">Actividades Microscopio
+                                        Virtual</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item nav__item nav-item dropdown">
+                            <a class="nav-link nav__link dropdown-toggle" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">Formación</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="./jornadasbarcelona.html">Barcelona</a></li>
+
+                                <li><a class="dropdown-item" href="./biologiamolecular.html">Biología Molecular</a></li>
+
+                                <li><a class="dropdown-item" href="jornadasdigitalizacion.html">1ª Jornadas
+                                        Digitalización CLM</a></li>
+                            </ul>
+                        </li>
+                        <!--  <li class="nav-item nav__item">
+                            <a class="nav-link nav__link" href="./ejercicios/ejercicios.html">Ejercicios</a>
+                        </li> -->
+                        <li class="nav-item nav__item">
+                            <a class="nav-link nav__link" href="./registro.html">Gestión&nbsp;Muestras</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+        <main id="form_container" class="main forms">
+            <!-- Formualario de Login -->
+            <section id="login" class="formcontainer login mt-3">
+
+                <form id="form_login" action="#" autocomplete="nope">
+                    <p class="header">Login</p>
+                    <div class="field">
+                        <input id="inputlogin_email" type="email" value="jorgesanchez@riberadeltajo.es"
+                            placeholder="Correo" required class="input">
+                    </div>
+
+                    <!--  <div class="field">
+                    <input id="inputlogin_password" type="password" placeholder="Contraseña" required class="password"
+                    value="1234">
+                    <i class='bx bx-hide eye-icon'></i>
+                </div> -->
+                    <div class="field">
+                        <input id="inputlogin_password" type="password" value="Aa_123456" placeholder="Contraseña"
+                            required class="password" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$"
+                            autocomplete>
+                        <i class='bx bx-hide eye-icon'></i>
+                    </div>
+                    <p class="text__pass">8-16 caracteres, mayúsculas, minúsculas, números y símbolos.</p>
+
+                    <p id="login__error" class="login__error"> Correo o Contraseña Incorrectos</p>
+
+                    <div class="form-link">
+                        <a id="forgot_password" href="#" class="forgot-pass"> Olvidaste tu contraseña...</a>
+                    </div>
+
+                    <div class="field button-field">
+                        <button type="submit" id="btn_login">Login</button>
+                    </div>
+                </form>
+
+                <div class="form-link">
+                    <span>Si no tienes cuenta... <a href="#" class="link signup-link">Registro</a></span>
+                </div>
+            </section>
+
+            <!-- Formulario de registro -->
+            <section class="formcontainer signup mt-3">
+
+                <form id="form_register" action="#" autocomplete="nope" class="mt-3">
+                    <p class="header">Registro</p>
+                    <div class="field">
+                        <input type="text" placeholder="Nombre" required class="input" id="input_name">
+                    </div>
+
+                    <div class="field">
+                        <input type="text" placeholder="Apellidos" required class="input" id="input_lastname">
+                    </div>
+
+                    <div class="field">
+                        <select class="input select" placeholder="Centro" id="input_center">
+                            <option class="option" value="Centro">Centro</option>
+                            <option class="input" value="Instituto Bonanova Formación Profesional Sanitaria">Instituto
+                                Bonanova Formación Profesional Sanitaria</option>
+                            <option value="IES Ramón y Cajal">IES Ramón y Cajal</option>
+                            <option value="IES Carlos Castilla Del Pino">IES Carlos Castilla Del Pino</option>
+                            <option value="IES Ribera del Tajo">IES Ribera del Tajo</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <input type="email" placeholder="Email" required class="input" id="input_email">
+                    </div>
+
+                    <!--  <div class="field">
+                    <input type="password" required placeholder="Nueva Contraseña" class="password" id="input_password">
+                </div> -->
+                    <div class="field">
+                        <input type="password" required placeholder="Contraseña" class="password" id="input_password"
+                            pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$" autocomplete>
+                    </div>
+                    <p class="text__pass">8-16 caracteres, mayúsculas, minúsculas, números y símbolos.</p>
+
+                    <!--   <div class="field">
+                    <input type="password" required placeholder="Repetir Contraseña" class="password"
+                        id="input_password2">
+                    <i class='bx bx-hide eye-icon'></i>
+                </div> -->
+                    <div class="field">
+                        <input type="password" required placeholder="Repetir Contraseña" class="password"
+                            id="input_password2" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$" autocomplete>
+                        <i class='bx bx-hide eye-icon'></i>
+                    </div>
+                    <p class="text__pass">8-16 caracteres, mayúsculas, minúsculas, números y símbolos.</p>
+
+                    <p id="register__error" class="register__error"> Las contraseñas no son iguales</p>
+
+                    <div class="field button-field">
+                        <button type="submit" id="btn_register">Registro</button>
+                    </div>
+                </form>
+
+                <div class="form-link">
+                    <span>Si ya te has registrado anteriormente <a href="#" class="link login-link">Login</a></span>
+                </div>
+
+            </section>
+
+
+            <!-- Formulario nueva Contraseña -->
+            <section id="form_password" class="formcontainer formpassword mt-3">
+
+                <form action="#" id="form_sendpassword" autocomplete="none">
+                    <p class="header">Solicitar Contraseña</p>
+                    <div class="field">
+                        <input id="inputpassword_email" type="email" placeholder="Correo" required class="input">
+                    </div>
+
+                    <p id="email__error" class="login__error"> No existe un usuario con este correo</p>
+
+                    <div class="field button-field">
+                        <button type="submit" id="btn_password">Solicitar Contraseña</button>
+                    </div>
+                    <div class="form-link">
+                        <span>Volver a <a href="./registro.html" class="login-link">Login</a></span>
+                    </div>
+                </form>
+            </section>
+
+        </main>
+    </div>
+    <!-- JavaScript -->
+    <!-- Bootstrap y Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="./js/loginregistro.js"></script>
+</body>
+
+</html>

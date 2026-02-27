@@ -109,6 +109,11 @@ body {
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+.visor__actions {
+  display: flex;
+  gap: 3rem !important;
+}
+
 .visor__btn {
   font-size: 1.1rem;
   font-weight: 600;

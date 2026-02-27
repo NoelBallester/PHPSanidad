@@ -39,31 +39,21 @@
     <a href="#"><img class="subir" src="./assets/images/prueba.png" alt="">
     </a>
 
-    <div class="container">
-        <!-- header -->
-        <header class="header">
-            <!-- Imagenes financiación página -->
-
-            <section class="logotipo">
-                <a class="nav-link nav__link active" aria-current="page" href="./index.html"><img
-                        src="./assets/images/logo.png" alt="" class="logotipo"></a>
-
-            </section>
-
-            <section class="financiado">
-                <img src="./assets/images/MinHap.gif" alt="" class="financiado__europa">
-                <img src="./assets/images/logo-next-generation.svg" alt="" class="financiado__generation">
-            </section>
-        </header>
-
+    <div class="container-fluid margin p-0">
+        <!-- Menú de Navegación Integrado -->
         <nav class="nav navbar navbar-expand-lg px-5">
-            <div class="container">
+            <div class="container header__container-nav">
 
+                <a class="header__logo d-flex align-items-center" href="./index.html">
+                    <i class="fa-solid fa-microscope me-2" style="color: var(--accent-color);"></i>
+                    <span style="font-weight: 800; letter-spacing: -0.5px;"><span
+                            style="font-weight: 300;">Sanidad</span></span>
+                </a>
 
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon ">
+                    <span class="navbar-toggler-icon">
                         <i class="fa-solid fa-bars header__icon"></i>
                     </span>
                 </button>
@@ -72,70 +62,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav__list">
                         <li class="nav-item nav__item">
-                            <a class="nav-link nav__link active" aria-current="page" href="./index.html">Inicio</a>
+                            <a class="nav-link nav__link" href="./autopsias.html">Anatomía Patológica</a>
                         </li>
-                        <li class="nav-item nav__item">
-                            <a class="nav-link nav__link" href="./proyecto.html">Publicidad</a>
-                        </li>
-                        <!--     <li class="nav-item nav__item">
-                            <a class="nav-link nav__link active" aria-current="page"
-                                href="./laboratorio.html">Laboratorio</a>
-                        </li> -->
-
-
-                        <li class="nav-item nav__item nav-item dropdown">
-                            <a class="nav-link nav__link dropdown-toggle text-center" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">Laboratorio</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" target="_blank" href="./laboratorio.html">Gafas Virtuales
-                                        OSNA </a></li>
-                                <li><a class="dropdown-item" href="./tecnicas.html">Técnicas Laboratorio</a></li>
-
-                                <li><a class="dropdown-item" href="./material.html">Material Laboratorio</a></li>
-                            </ul>
-                        </li>
-
-
-                        <li class="nav-item nav__item">
-                            <a class="nav-link nav__link" href="./autopsias.html">Necropsia</a>
-                        </li>
-                        <!--  <li class="nav-item nav__item">
-                            <a class="nav-link nav__link" target="_blank"
-                                href="http://microvirtual.ibonanova.cat/">Microscopio</a>
-                        </li> -->
-                        <!--      <li class="nav-item nav__item">
-                            <a class="nav-link nav__link" target="_blank"
-                                href="./recursos.html">Recursos</a>
-                        </li> -->
-                        <li class="nav-item nav__item nav-item dropdown">
-                            <a class="nav-link nav__link dropdown-toggle text-center" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">Microscopio Virtual</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" target="_blank"
-                                        href="https://microvirtual.ibonanova.cat/webclient/login/?url=/bonanova/private/dashboard">Microscopio</a></li>
-                                <!--   <li><a class="dropdown-item" href="./tecnicas.html">Técnicas Laboratorio</a></li>
-
-                                <li><a class="dropdown-item" href="./material.html">Material Laboratorio</a></li> -->
-
-                                <li><a class="dropdown-item" href="./actividades.html">Actividades Microscopio
-                                        Virtual</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item nav__item nav-item dropdown">
-                            <a class="nav-link nav__link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">Formación</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="./jornadasbarcelona.html">Barcelona</a></li>
-
-                                <li><a class="dropdown-item" href="./biologiamolecular.html">Biología Molecular</a></li>
-
-                                <li><a class="dropdown-item" href="jornadasdigitalizacion.html">1ª Jornadas
-                                        Digitalización CLM</a></li>
-                            </ul>
-                        </li>
-                        <!--  <li class="nav-item nav__item">
-                            <a class="nav-link nav__link" href="./ejercicios/ejercicios.html">Ejercicios</a>
-                        </li> -->
                         <li class="nav-item nav__item">
                             <a class="nav-link nav__link" href="./registro.html">Gestión&nbsp;Muestras</a>
                         </li>
@@ -145,19 +73,38 @@
             </div>
         </nav>
 
-        <!-- Visor -->
+
+        <!-- Visor Hero -->
         <section class="visor">
-            <div class="visor__content">
-                <h3 class="visor__title">Integración de herramientas de Realidad Aumentada y Realidad Virtual en el
-                    laboratorio y sala de autopsias de Anatomía Patológica</h3>
-                <!-- <p class="visor__text">
-                                Todo empieza Aquí!!!!
-                              </p> -->
-                <!-- <button class="visor__btn">Empezamos...</button> -->
+            <div class="visor__content text-center">
+                <h1 class="visor__title mb-4">Gestión <span style="color: var(--accent-color);">Inteligente</span>
+                    de<br>Anatomía Patológica</h1>
+                <p class="visor__text mb-5">
+                    Integración de herramientas de Realidad Aumentada y Realidad Virtual en el laboratorio y sala de
+                    autopsias. Selecciona tu área de trabajo.
+                </p>
+                <div class="visor__actions d-flex justify-content-center flex-wrap gap-4 mt-2">
+                    <a href="./autopsias.html" class="visor__btn visor__btn--primary">
+                        <i class="fa-solid fa-user-doctor me-2"></i> Anatomía Patológica
+                    </a>
+                    <a href="./registro.html" class="visor__btn visor__btn--outline">
+                        <i class="fa-solid fa-vial-virus me-2"></i> Gestión de Muestras
+                    </a>
+                </div>
+            </div>
+
+            <!-- Shape Divider Ondulado -->
+            <div class="custom-shape-divider-bottom-1688640158">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                    preserveAspectRatio="none">
+                    <path
+                        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0C73.81,42.56,150.38,82.02,224.27,91.8,258.82,96.38,291.56,86.84,321.39,56.44Z"
+                        class="shape-fill"></path>
+                </svg>
             </div>
         </section>
 
-        <!-- Centros -->
+        <!-- Centros Colaboradores -->
         <section class="subject-container">
 
             <div id="centros" class="subject-container__content">
@@ -168,15 +115,10 @@
 
                 <section class="subjects">
                     <article class="subject">
-                        <a href="http://www.institutbonanova.cat/" target="_blank">
-                            <img class="subject__img" src="./assets/images/logo-bonanova.svg" alt="IES Bonanova" />
-                        </a>
-                    </article>
-
-                    <article class="subject">
-                        <a href="http://www.iescarloscastilla.com/" target="_blank">
-                            <img class="subject__img" src="./assets/images/logo_carlos_castilla_pino.jpg"
-                                alt="IES Carlos Castilla Pino" />
+                        <a href="https://www.iesbohio.es/web/" target="_blank">
+                            <img class="subject__img"
+                                src="https://imgs.search.brave.com/6INjgoka3GsFzXDevI6FsH9YKHQqvyV7X3188qqWMxA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9wcmVz/dXB1ZXN0b3NwYXJ0/aWNpcGF0aXZvcy5j/YXJ0YWdlbmEuZXMv/Z2VzdGlvbi9pbWFn/ZXMvMC8yMzE0OTgu/anBn"
+                                alt="IES El Bohío" />
                         </a>
                     </article>
 
@@ -186,34 +128,6 @@
                                 alt="IES Ramón y Cajal" />
                         </a>
                     </article>
-
-                    <article class="subject">
-                        <a href="http://riberadeltajo.es/nuevaweb/" target="_blank">
-                            <img class="subject__img" src="./assets/images/logo_ribera.png" alt="IES Ribera del Tajo" />
-                        </a>
-
-                    </article>
-                </section>
-            </div>
-        </section>
-
-
-        <!-- Empresas -->
-        <section class="subject-container">
-
-            <div id="empresas" class="subject-container__content">
-
-                <h2 class="subject__title-header">
-                    Empresa Colaboradora
-                </h2>
-
-                <section class="subjects">
-                    <article class="subject">
-                        <a href="https://innoarea.com/" target="_blank">
-                            <img class="subject__img" src="./assets/images/logoempresainnoarea.png" alt="" />
-                        </a>
-                    </article>
-
                 </section>
             </div>
         </section>
@@ -222,54 +136,15 @@
     <!-- Footer -->
     <footer class="footer">
         <section class="footer-container">
-            <div class="footer__box footer__box--big">
-                <h3 class="footer__title">
-                    Entidades
-                </h3>
-                <section class="footer__financiado">
-                    <img src="./assets/images/MinHap.png" alt="" class="financiado__europa-pie">
-                    <img src="./assets/images/logo-next-generation.svg" alt="" class="financiado__generation-pie">
-                </section>
-            </div>
 
             <div class="footer__box footer__menu">
                 <h3 class="footer__title">Centros&nbsp;Colaboradores</h3>
                 <section class="links">
+                    <a href="#" class="column__link">IES El Bohío</a>
                     <a href="https://www.iesryc.org/" target="_blank" class="column__link">IES Ramón y Cajal</a>
-                    <a href="http://www.iescarloscastilla.com/" target="_blank" class="column__link">IES Carlos
-                        Castilla del Pino</a>
-                    <a href="http://www.institutbonanova.cat/" target="_blank" class="column__link">IES Institut
-                        Bonanova</a>
-                    <a href="http://riberadeltajo.es/nuevaweb/" target="_blank" class="column__link">IES Ribera del
-                        Tajo</a>
-                    <h3 class="footer__title">Empresa Colaboradora</h3>
-                    <a class="footer__container" href="https://innoarea.com/" target="_blank">
-                        <img class="footer__img" src="./assets/images/logo-innoarea-pie.svg" alt="">
-                        <img class="footer__logo" src="./assets/images/innoarea-logo-footer.png" alt="">
-                        <!-- <a href=href="https://innoarea.com/" target="_blank" class="column__link">Innoarea</a> -->
-                    </a>
-
                 </section>
             </div>
 
-            <div class="footer__box">
-                <h3 class="footer__title">Redes Sociales</h3>
-                <!--  <p>Suscribete para recibir noticias</p>
-                    <form action="">
-                        <input type="email" name="" placeholder="Introduce tu correo" class="footer__input" />
-                        <input class="footer__btn" type="submit" value="Suscipción" class="btn" />
-                    </form> -->
-
-                <div class="footer__social-container">
-                    <a href="https://instagram.com/proyecto_nacional_sanidad?igshid=YmMyMTA2M2Y=" target="_blank"
-                        class="footer__social fa-brands fa-instagram-square"></a>
-                    <a href="https://www.youtube.com/" class="footer__social fa-brands fa-youtube-square"></a>
-                    <!-- <a href="https://www.facebook.com/ies.riberadeltajo"
-                           class="footer__social fa-brands fa-facebook-square"></a> -->
-                    <a href="https://twitter.com/IESRiberaTajo" class="footer__social fa-brands fa-twitter-square"></a>
-                    <a href="#" class="footer__social fa-brands fa-linkedin"></a>
-                </div>
-            </div>
         </section>
         <hr />
         <p class="footer__footer">

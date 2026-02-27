@@ -40,106 +40,38 @@
 </head>
 
 <body>
-    <div class="container">
-        <!-- header -->
-        <header class="header">
-            <!-- Imagenes financiación página -->
-
-            <section class="logotipo">
-                <a class="nav-link nav__link active" aria-current="page" href="./index.html"><img
-                        src="./assets/images/logo.png" alt="" class="logotipo"></a>
-
-            </section>
-
-            <section class="financiado">
-                <img src="./assets/images/MinHap.gif" alt="" class="financiado__europa">
-                <img src="./assets/images/logo-next-generation.svg" alt="" class="financiado__generation">
-            </section>
-        </header>
-
+    <div class="container-fluid margin p-0">
+        <!-- Menú de Navegación Integrado -->
         <nav class="nav navbar navbar-expand-lg px-5">
-            <div class="container">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            <div class="container header__container-nav">
+
+                <a class="header__logo d-flex align-items-center" href="./index.html">
+                    <i class="fa-solid fa-microscope me-2" style="color: var(--accent-color);"></i>
+                    <span style="font-weight: 800; letter-spacing: -0.5px;">PHH <span
+                            style="font-weight: 300;">Sanidad</span></span>
+                </a>
+
+                <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon ">
+                    <span class="navbar-toggler-icon">
                         <i class="fa-solid fa-bars header__icon"></i>
                     </span>
                 </button>
 
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav__list">
                         <li class="nav-item nav__item">
-                            <a class="nav-link nav__link active" aria-current="page" href="./index.html">Inicio</a>
+                            <a class="nav-link nav__link" href="./index.html">Inicio</a>
                         </li>
                         <li class="nav-item nav__item">
-                            <a class="nav-link nav__link" href="./proyecto.html">Publicidad</a>
+                            <a class="nav-link nav__link" href="./autopsias.html">Anatomía Patológica</a>
                         </li>
-                        <!--     <li class="nav-item nav__item">
-                            <a class="nav-link nav__link active" aria-current="page"
-                                href="./laboratorio.html">Laboratorio</a>
-                        </li> -->
-
-
-                        <li class="nav-item nav__item nav-item dropdown">
-                            <a class="nav-link nav__link dropdown-toggle text-center" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">Laboratorio</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" target="_blank" href="./laboratorio.html">Gafas Virtuales
-                                        OSNA </a></li>
-                                <li><a class="dropdown-item" href="./tecnicas.html">Técnicas Laboratorio</a></li>
-
-                                <li><a class="dropdown-item" href="./material.html">Material Laboratorio</a></li>
-                            </ul>
-                        </li>
-
-
                         <li class="nav-item nav__item">
-                            <a class="nav-link nav__link" href="./autopsias.html">Necropsia</a>
-                        </li>
-                        <!--  <li class="nav-item nav__item">
-                            <a class="nav-link nav__link" target="_blank"
-                                href="http://microvirtual.ibonanova.cat/">Microscopio</a>
-                        </li> -->
-                        <!--      <li class="nav-item nav__item">
-                            <a class="nav-link nav__link" target="_blank"
-                                href="./recursos.html">Recursos</a>
-                        </li> -->
-                        <li class="nav-item nav__item nav-item dropdown">
-                            <a class="nav-link nav__link dropdown-toggle text-center" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">Microscopio Virtual</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" target="_blank"
-                                        href="https://microvirtual.ibonanova.cat/webclient/login/?url=/bonanova/private/dashboard">Microscopio</a></li>
-                                <!--   <li><a class="dropdown-item" href="./tecnicas.html">Técnicas Laboratorio</a></li>
-
-                                <li><a class="dropdown-item" href="./material.html">Material Laboratorio</a></li> -->
-
-                                <li><a class="dropdown-item" href="./actividades.html">Actividades Microscopio
-                                        Virtual</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item nav__item nav-item dropdown">
-                            <a class="nav-link nav__link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">Formación</a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="./jornadasbarcelona.html">Barcelona</a></li>
-
-                                <li><a class="dropdown-item" href="./biologiamolecular.html">Biología Molecular</a></li>
-
-                                <li><a class="dropdown-item" href="jornadasdigitalizacion.html">1ª Jornadas
-                                        Digitalización CLM</a></li>
-                            </ul>
-                        </li>
-                        <!--  <li class="nav-item nav__item">
-                            <a class="nav-link nav__link" href="./ejercicios/ejercicios.html">Ejercicios</a>
-                        </li> -->
-                        <li class="nav-item nav__item">
-                            <a class="nav-link nav__link" href="./registro.html">Gestión&nbsp;Muestras</a>
+                            <a class="nav-link nav__link active" aria-current="page" href="./registro.html">Gestión
+                                Muestras</a>
                         </li>
                     </ul>
-
                 </div>
             </div>
         </nav>
@@ -151,17 +83,15 @@
                 <form id="form_login" action="#" autocomplete="nope">
                     <p class="header">Login</p>
                     <div class="field">
-                        <input id="inputlogin_email" type="email" value="jorgesanchez@riberadeltajo.es"
-                            placeholder="Correo" required class="input">
+                        <input id="inputlogin_id" type="text" placeholder="ID de Usuario" required class="input">
                     </div>
 
                     <!--  <div class="field">
                     <input id="inputlogin_password" type="password" placeholder="Contraseña" required class="password"
                     value="1234">
-                    <i class='bx bx-hide eye-icon'></i>
                 </div> -->
                     <div class="field">
-                        <input id="inputlogin_password" type="password" value="Aa_123456" placeholder="Contraseña"
+                        <input id="inputlogin_password" type="password" value="contraseña" placeholder="Contraseña"
                             required class="password" pattern="^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$"
                             autocomplete>
                         <i class='bx bx-hide eye-icon'></i>
@@ -209,7 +139,7 @@
                     </div>
 
                     <div class="field">
-                        <input type="email" placeholder="Email" required class="input" id="input_email">
+                        <input type="text" placeholder="ID de Usuario" required class="input" id="input_id">
                     </div>
 
                     <!--  <div class="field">
@@ -253,7 +183,7 @@
                 <form action="#" id="form_sendpassword" autocomplete="none">
                     <p class="header">Solicitar Contraseña</p>
                     <div class="field">
-                        <input id="inputpassword_email" type="email" placeholder="Correo" required class="input">
+                        <input id="inputpassword_id" type="text" placeholder="ID de Usuario" required class="input">
                     </div>
 
                     <p id="email__error" class="login__error"> No existe un usuario con este correo</p>
@@ -268,6 +198,21 @@
             </section>
 
         </main>
+        <footer class="footer">
+            <section class="footer__container">
+                <div class="footer__box">
+                    <h3 class="footer__title">Centros Colaboradores</h3>
+                    <a class="footer__link" href="https://www.ieselbohio.es/web/" target="_blank">IES El Bohío</a>
+                    <a class="footer__link" href="http://www.iesramonycajal.org/" target="_blank">IES Ramón y Cajal</a>
+                </div>
+            </section>
+            <hr />
+            <p class="footer__footer">
+                Integración de herramientas de Realidad Aumentada y Realidad Virtual en el Laboratorio y Sala de
+                Autopsias
+                de Anatomía Patológica
+            </p>
+        </footer>
     </div>
     <!-- JavaScript -->
     <!-- Bootstrap y Popper -->

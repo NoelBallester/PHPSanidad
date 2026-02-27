@@ -10,7 +10,7 @@ const input_name = document.getElementById("input_name");
 const input_lastname = document.getElementById("input_lastname");
 const input_center = document.getElementById("input_center");
 const input_course = document.getElementById("input_course");
-const input_email = document.getElementById("input_email");
+const input_id = document.getElementById("input_id");
 const input_password = document.getElementById("input_password");
 const input_password2 = document.getElementById("input_password2");
 const register__error = document.getElementById("register__error");
@@ -20,7 +20,7 @@ const email__error = document.getElementById("email__error");
 const login = document.getElementById("login");
 const form_login = document.getElementById("form_login");
 const btn_login = document.getElementById("btn_login");
-const inputlogin_email = document.getElementById("inputlogin_email");
+const inputlogin_id = document.getElementById("inputlogin_id");
 const inputlogin_password = document.getElementById("inputlogin_password");
 const login__error = document.getElementById("login__error");
 
@@ -28,7 +28,7 @@ const login__error = document.getElementById("login__error");
 const forgot_password = document.getElementById("forgot_password");
 
 // Datos email
-const inputpassword_email = document.getElementById("inputpassword_email");
+const inputpassword_id = document.getElementById("inputpassword_id");
 
 // Login
 const userLogin = (event) => {
@@ -42,7 +42,7 @@ const userLogin = (event) => {
     },
     body: JSON.stringify({
       accion: "login",
-      email: inputlogin_email.value,
+      email: inputlogin_id.value,
       password: inputlogin_password.value,
     }),
   })
@@ -58,7 +58,7 @@ const userLogin = (event) => {
         // Si lo hacemos con submit tenemos que darle los valores a method y action, ya
         // que no los toma del formulario, debería hacerlo, PERO NO LO HACE.
         form_login.method = "POST";
-        sessionStorage.setItem("method","")
+        sessionStorage.setItem("method", "")
         form_login.action = "./cassettes.html";
         form_login.submit();
       }
@@ -83,7 +83,7 @@ const userRegister = (event) => {
 
         nombre: input_name.value,
         apellidos: input_lastname.value,
-        email: input_email.value,
+        email: input_id.value,
         centro: input_center.value,
         password: input_password.value,
       }),
@@ -113,7 +113,7 @@ const getNewPassword = (event) => {
     },
     body: JSON.stringify({
       accion: "solicitacontrasena",
-      email: inputpassword_email.value,
+      email: inputpassword_id.value,
     }),
   }) //  Aqui acaba el fetch
     .then((response) => response.json())
@@ -133,7 +133,7 @@ form_container.addEventListener("click", (event) => {
     register__error.style.display = "none";
   }
 });
-inputpassword_email.addEventListener("click", () => {
+inputpassword_id.addEventListener("click", () => {
   email__error.style.display = "none";
 });
 

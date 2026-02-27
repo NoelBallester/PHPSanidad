@@ -530,8 +530,8 @@ const imprimirQR = (elemento) => {
   let printWindow = window.open("", "Imprimir imagen");
   printWindow.document.write(
     "<html><head><title>Imprimir imagen</title></head><body><img src='" +
-      qrimprimir +
-      "'></body></html>"
+    qrimprimir +
+    "'></body></html>"
   );
   printWindow.print();
   printWindow.close();
@@ -1049,26 +1049,16 @@ btnformcerrarmodificarUser.addEventListener("click", () => {
   }
 });
 
-const accessControl = () => {
-  if (sessionStorage.getItem("method") == "") return true;
-  else return false;
-};
-
 // Consulta Cassettes Recientes
 document.addEventListener("DOMContentLoaded", async () => {
-  // Para comprobar si ha accedido con usuario y contraseña
-  if (!accessControl()) {
-    location.href = "./registro.html";
-  } else {
-    body.style.display="block";
-    const respuesta = await cargarCassettesIndex();
-    imprimirCasettes(respuesta);
-    let fechaActual = new Date().toISOString().split("T")[0];
-    // Para que no se pueda seleccionar una fecha anterior a la actual
-    inputFecha.setAttribute("min", fechaActual);
-    inputFechaUpdate.setAttribute("min", fechaActual);
-    inputFechaMuestra.setAttribute("min", fechaActual);
-  }
+  body.style.display = "block";
+  const respuesta = await cargarCassettesIndex();
+  imprimirCasettes(respuesta);
+  let fechaActual = new Date().toISOString().split("T")[0];
+  // Para que no se pueda seleccionar una fecha anterior a la actual
+  inputFecha.setAttribute("min", fechaActual);
+  inputFechaUpdate.setAttribute("min", fechaActual);
+  inputFechaMuestra.setAttribute("min", fechaActual);
 });
 
 // Consulta por Organo

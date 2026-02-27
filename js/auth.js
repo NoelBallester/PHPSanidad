@@ -23,5 +23,6 @@
 function logout() {
     sessionStorage.removeItem('isLoggedIn');
     sessionStorage.removeItem('userId');
+    sessionStorage.removeItem('method');
     window.location.href = './registro.html';
 }

@@ -1034,20 +1034,24 @@ const cargarUserUpdateModal = async (event) => {
 // Eventos
 
 // Modificar Usuario
-btnformmodificarUser.addEventListener("click", () => {
-  cargarUserUpdateModal();
-  if (!modalupdateUser.classList.contains("showmodal")) {
-    modalupdateUser.classList.add("showmodal");
-    modalupdateUser.classList.remove("hidemodal");
-  }
-});
+if (btnformmodificarUser) {
+  btnformmodificarUser.addEventListener("click", () => {
+    cargarUserUpdateModal();
+    if (!modalupdateUser.classList.contains("showmodal")) {
+      modalupdateUser.classList.add("showmodal");
+      modalupdateUser.classList.remove("hidemodal");
+    }
+  });
+}
 
-btnformcerrarmodificarUser.addEventListener("click", () => {
-  if (!modalupdateUser.classList.contains("hidemodal")) {
-    modalupdateUser.classList.add("hidemodal");
-    modalupdateUser.classList.remove("showmodal");
-  }
-});
+if (btnformcerrarmodificarUser) {
+  btnformcerrarmodificarUser.addEventListener("click", () => {
+    if (!modalupdateUser.classList.contains("hidemodal")) {
+      modalupdateUser.classList.add("hidemodal");
+      modalupdateUser.classList.remove("showmodal");
+    }
+  });
+}
 
 // Consulta Cassettes Recientes
 document.addEventListener("DOMContentLoaded", async () => {

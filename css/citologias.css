@@ -8,16 +8,25 @@
   src: url(../assets/fonts/PROMESHMesh-Regular.ttf);
 }
 
-html {
-  overflow-x: hidden;
+:root {
+  --title-color: #1D4ED8;
+  --accent-color: #06B6D4;
+  --accent-secondary: #10B981;
+  --bg-light: #F0F9FF;
+  --text-main: #0F172A;
+  --text-muted: #475569;
+  --card-bg: #FFFFFF;
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.3);
 }
 
-/* /Estilo general de la página/ */
+/* Estilo general de la página */
 body {
-  color: rgb(35, 35, 35);
-  margin: 0 auto;
-  width: 100%;
-  display:none;
+  margin: 0;
+  font-family: "Inter", "Nunito", sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-main);
+  display: none; /* Show when JS loads */
 }
 
 a {
@@ -30,35 +39,38 @@ li {
 }
 
 .fondo {
-  background-color: #4ca0cc !important;
-  /* background-color: #0171d3 !important; */
+  background: linear-gradient(135deg, var(--accent-color), var(--title-color)) !important;
   color: white !important;
-  font-size: 1.3rem;
-  font-variant: small-caps;
-  letter-spacing: 0.03rem;
-  border: 2px solid transparent !important;
-  transition: transform 0.2s;
+  font-weight: 600;
+  border-radius: 0.5rem !important;
+  border: none !important;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .fondo:hover {
-  background-color: #0116d356 !important;
-  border: 2px solid white !important;
-  transform: scale(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+  filter: brightness(1.1);
 }
 
 .barra_org {
-  background-color: rgba(255, 0, 0, 0.137);
-  border-bottom: 1px solid #4ca0cc;
-  display: flex;
-  justify-content: center;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .caja_org {
-  width: 1200px;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto !important;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin: 0.4rem !important;
+  gap: 1rem;
 }
 
 .caja_fech {
@@ -73,39 +85,24 @@ li {
   text-align: center;
 }
 
-.container__table {
-  height: 400px;
-  border-radius: 0.35rem;
-  border: 2px solid #4ca0cc;
-  background-color: rgba(231, 236, 240, 0.203);
-  font-variant: small-caps;
-  scrollbar-width: thin;
-
+.container__table, .container__muestra, .cassette {
+  background: var(--card-bg);
+  border-radius: 1rem;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  transition: all 0.3s ease;
 }
 
-.container__muestra {
-  border-radius: 0.35rem;
-  border: 2px solid #4ca0cc;
-  background-color: rgba(231, 236, 240, 0.203);
-  font-variant: small-caps;
-  scrollbar-width: thin;
-  margin-left: 0.25rem;
+.container__table:hover, .container__muestra:hover, .cassette:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
-.cassette {
-  height: 400px;
-  border-radius: 0.35rem;
-  border: 2px solid #4ca0cc;
-  background-color: rgba(231, 236, 240, 0.203);
-  font-variant: small-caps;
-}
-
-.cassette__title,
-.cassette__icon {
-  color: #4ca0cc;
-  font-size: 1.35rem;
-  margin: 0 !important;
-  padding: 0 !important;
+.cassette__title {
+  color: var(--title-color);
+  font-weight: 700;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem !important;
 }
 
 .cassette__text {

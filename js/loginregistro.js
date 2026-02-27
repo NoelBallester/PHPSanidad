@@ -89,19 +89,20 @@ const userRegister = (event) => {
         if (response.user) {
           form_register.reset();
           register__error.textContent = "¡Registro exitoso! Tu identificador es: " + response.id_tecnico;
-          register__error.classList.remove('error-msg'); // Asumiendo que hay una clase para errores que queremos quitar
-          register__error.style.color = "#2ecc71"; // Verde éxito
+          register__error.classList.add('success-msg');
           register__error.style.display = "block";
 
           // Opcional: Redirigir al login tras unos segundos
           setTimeout(() => {
             forms.classList.remove("show-signup");
             register__error.style.display = "none";
-          }, 5000);
+            register__error.classList.remove('success-msg');
+          }, 8000);
         } else {
+          register__error.classList.remove('success-msg');
           register__error.textContent = response.error;
-          register__error.style.color = "#e74c3c"; // Rojo error
           register__error.style.display = "block";
+          register__error.style.color = ""; // Limpiar cualquier color inline previo
         }
       })
       .catch((error) => console.log("Esto falla " + error));

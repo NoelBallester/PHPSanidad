@@ -160,7 +160,8 @@ body {
 }
 
 .login__error,
-.register__error {
+.register__error,
+.success-msg {
     text-align: center;
     color: #fff;
     margin-top: 1rem;
@@ -168,9 +169,31 @@ body {
     border-radius: 0.75rem;
     font-size: 0.9rem;
     font-weight: 600;
-    background-color: #EF4444;
     display: none;
+}
+
+.login__error,
+.register__error {
+    background-color: #EF4444;
     animation: shake 0.5s ease-in-out;
+}
+
+.success-msg {
+    background: var(--success-gradient);
+    animation: fadeIn 0.5s ease-in-out;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes shake {

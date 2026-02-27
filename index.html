@@ -42,29 +42,34 @@
 
     <div class="container-fluid margin p-0">
         <!-- Menú de Navegación Integrado -->
-        <nav class="nav navbar navbar-expand-lg px-5">
-            <div class="container header__container-nav">
+        <nav class="nav px-5"
+            style="display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); z-index: 1000; border-bottom: 1px solid rgba(226, 232, 240, 0.8); padding: 1rem 5%;">
+            <!-- Logo izquierda -->
+            <a class="header__logo d-flex align-items-center" href="./index.html" style="flex: 1;">
+                <i class="fa-solid fa-microscope me-2" style="color: var(--accent-color);"></i>
+                <span style="font-weight: 800; letter-spacing: -0.5px;"><span
+                        style="font-weight: 300;">Sanidad</span></span>
+            </a>
 
-                <a class="header__logo d-flex align-items-center" href="./index.html">
-                    <i class="fa-solid fa-microscope me-2" style="color: var(--accent-color);"></i>
-                    <span style="font-weight: 800; letter-spacing: -0.5px;"><span
-                            style="font-weight: 300;">Sanidad</span></span>
-                </a>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav__list">
-                        <li class="nav-item nav__item">
-                            <a class="nav-link nav__link" href="./anatomia.html">Anatomía Patológica</a>
-                        </li>
-                        <li class="nav-item nav__item">
-                            <a class="nav-link nav__link" href="./gestion_muestras.html">Gestión&nbsp;Muestras</a>
-                        </li>
-                        <li class="nav-item nav__item">
-                            <a class="nav-link nav__link" href="#" onclick="logout(); return false;">Cerrar Sesión</a>
-                        </li>
-                    </ul>
+            <!-- Links centro -->
+            <ul class="navbar-nav d-flex flex-row nav__list"
+                style="flex: 2; justify-content: center; margin: 0; list-style: none; gap: 0.5rem;">
+                <li class="nav-item nav__item">
+                    <a class="nav-link nav__link" href="./anatomia.html">Anatomía Patológica</a>
+                </li>
+                <li class="nav-item nav__item">
+                    <a class="nav-link nav__link" href="./gestion_muestras.html">Gestión&nbsp;Muestras</a>
+                </li>
+            </ul>
 
-                </div>
-            </div>
+            <!-- Cerrar sesión derecha -->
+            <ul class="navbar-nav d-flex flex-row"
+                style="flex: 1; justify-content: flex-end; margin: 0; list-style: none;">
+                <li class="nav-item nav__item">
+                    <a class="nav-link nav__link" style="margin-right: 0 !important;" href="#"
+                        onclick="logout(); return false;">Cerrar Sesión</a>
+                </li>
+            </ul>
         </nav>
 
 

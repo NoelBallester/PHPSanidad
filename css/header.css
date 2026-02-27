@@ -60,7 +60,8 @@
 }
 
 .nav__link {
-  display: block;
+  display: inline-block;
+  margin-right: 4rem !important;
   font-size: 1.1rem;
   font-weight: 500;
   text-transform: capitalize;
@@ -68,14 +69,6 @@
   text-decoration: none;
   transition: color 0.3s ease;
   position: relative;
-  padding: 0.5rem 0;
-}
-
-@media (min-width: 992px) {
-  .nav__link {
-    margin-right: 4rem !important;
-    display: inline-block;
-  }
 }
 
 .nav__link::after {

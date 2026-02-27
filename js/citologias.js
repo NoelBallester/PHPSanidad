@@ -389,10 +389,12 @@ const consultaFechaFin = async () => {
 };
 
 // Muestra los datos de las citologías por pantalla
-const imprimirCitologias = (respuesta) => {
+const imprimirCitologias = (respuesta, rebuildDropdown = true) => {
   citologias.innerHTML = "";
-  numCitologia.innerHTML =
-    "<option disabled selected>Número Citología</option>";
+  if (rebuildDropdown) {
+    numCitologia.innerHTML =
+      "<option disabled selected>Número Citología</option>";
+  }
 
   let fragmento = document.createDocumentFragment();
   let fragmentselect = document.createDocumentFragment();
@@ -458,7 +460,9 @@ const imprimirCitologias = (respuesta) => {
   }
 
   citologias.appendChild(fragmento);
-  numCitologia.appendChild(fragmentselect);
+  if (rebuildDropdown) {
+    numCitologia.appendChild(fragmentselect);
+  }
 };
 
 //Peticiones de citología y Muestras al seleccionar un citología y llama a
@@ -1063,7 +1067,8 @@ organos.addEventListener("change", async () => {
 // Consulta por número de Citologia
 numCitologia.addEventListener("change", async () => {
   const respuesta = await cargarPorNumero();
-  imprimirCitologias(respuesta);
+  // Solicitud del usuario: filtrar la tabla pero NO el desplegable de arriba
+  imprimirCitologias(respuesta, false);
 });
 
 // Consulta Detalle Citologías y Muestras

@@ -26,7 +26,8 @@ body {
   font-family: "Inter", "Nunito", sans-serif;
   background-color: var(--bg-light);
   color: var(--text-main);
-  display: none; /* Show when JS loads */
+  display: none;
+  /* Show when JS loads */
 }
 
 a {
@@ -85,7 +86,9 @@ li {
   text-align: center;
 }
 
-.container__table, .container__muestra, .cassette {
+.container__table,
+.container__muestra,
+.cassette {
   background: var(--card-bg);
   border-radius: 1rem;
   border: 1px solid rgba(226, 232, 240, 0.8);
@@ -94,7 +97,9 @@ li {
   transition: all 0.3s ease;
 }
 
-.container__table:hover, .container__muestra:hover, .cassette:hover {
+.container__table:hover,
+.container__muestra:hover,
+.cassette:hover {
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
@@ -287,6 +292,7 @@ td {
   background-color: #006dad4e;
   border-radius: 0.25rem;
 }
+
 .muestradescripcion__text::-webkit-scrollbar {
   width: 0.5rem;
 }
@@ -420,6 +426,7 @@ td {
   height: 300px;
   object-fit: cover;
 }
+
 .front {
   z-index: 5;
 }
@@ -429,6 +436,7 @@ td {
   text-align: right;
   color: #0171d3;
 }
+
 .login__error,
 .register__error {
   text-align: center;

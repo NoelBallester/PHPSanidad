@@ -387,9 +387,11 @@ const consultaFechaFin = async () => {
 };
 
 // Muestra los datos de los cassettes por pantalla
-const imprimirCasettes = (respuesta) => {
+const imprimirCasettes = (respuesta, rebuildDropdown = true) => {
   casettes.innerHTML = "";
-  numCassette.innerHTML = "<option disabled selected>Número Cassette</option>";
+  if (rebuildDropdown) {
+    numCassette.innerHTML = "<option disabled selected>Número Cassette</option>";
+  }
 
   let fragmento = document.createDocumentFragment();
   let fragmentselect = document.createDocumentFragment();
@@ -455,7 +457,9 @@ const imprimirCasettes = (respuesta) => {
   }
 
   casettes.appendChild(fragmento);
-  numCassette.appendChild(fragmentselect);
+  if (rebuildDropdown) {
+    numCassette.appendChild(fragmentselect);
+  }
 };
 
 //Peticiones de Cassette y Muestras al seleccionar un Cassette y llama a
@@ -1074,7 +1078,8 @@ organos.addEventListener("change", async () => {
 // Consulta por Número de Cassette
 numCassette.addEventListener("change", async () => {
   const respuesta = await cargarPorNumero();
-  imprimirCasettes(respuesta);
+  // Solicitud del usuario: filtrar la tabla pero NO el desplegable de arriba
+  imprimirCasettes(respuesta, false);
 });
 
 // Consulta Detalle Cassete y Muestras

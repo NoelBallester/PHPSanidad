@@ -49,18 +49,15 @@ const userLogin = (event) => {
     .then((response) => response.json())
     .then((response) => {
       if (response.error) {
+        login__error.textContent = response.error;
         login__error.style.display = "block";
       } else {
+        // Store session data
+        sessionStorage.setItem("isLoggedIn", "true");
+        sessionStorage.setItem("userId", response['user.id_tecnico']);
+
         form_login.reset();
-
-        // Podemos hacer un location.href= "./cassettes.html";
-
-        // Si lo hacemos con submit tenemos que darle los valores a method y action, ya
-        // que no los toma del formulario, debería hacerlo, PERO NO LO HACE.
-        form_login.method = "POST";
-        sessionStorage.setItem("method", "")
-        form_login.action = "./cassettes.html";
-        form_login.submit();
+        window.location.href = "./index.html";
       }
     })
     .catch((error) => console.log(error));

@@ -15,41 +15,49 @@ class Tecnicos extends Basedatos
     public function insertar($data)
     {
         if ($this->conexion == null) {
-            return -1; // "ERROR BASE DE DATOS. SIN CONEXIÓN";
+            return "Error de conexión: " . $this->getMensajeError();
         }
+
         try {
-            $sql = "SELECT * FROM $this->table  WHERE email = :useremail";
+            // 1. Validar políticas de seguridad de la contraseña en el backend
+            $password = $data['password'];
+            if (!preg_match('/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/', $password)) {
+                return -3; // La contraseña no cumple las políticas de seguridad
+            }
+
+            // 2. Comprobar si el ID de usuario ya existe
+            $sql = "SELECT id_tecnico FROM $this->table WHERE email = :userId";
             $statement = $this->conexion->prepare($sql);
-            $statement->bindParam(':useremail', $data["email"], PDO::PARAM_STR);
+            $userId = $data['email'];
+            $statement->bindParam(':userId', $userId, PDO::PARAM_STR);
             $statement->execute();
 
-            if ($statement->rowCount() == 1) {
-                return -2;  //"EL USUARIO YA EXISTE"
-            } else {
-                $email = $data['email'];
-                $password = $data['password'];
-                $clave = password_hash($password, PASSWORD_DEFAULT);
-                $nombre = $data['nombre'];
-                $apellidos = $data['apellidos'];
-                $centro = $data['centro'];
-
-                $sql = "insert into $this->table (nombre, apellidos, email, password,centro) values ( ?,?,?,?,?)";
-                $sentencia = $this->conexion->prepare($sql);
-
-                // extraemos los parámetros de la variable post
-                $sentencia->bindParam(1, $nombre);
-                $sentencia->bindParam(2, $apellidos);
-                $sentencia->bindParam(3, $email);
-                $sentencia->bindParam(4, $clave);
-                $sentencia->bindParam(5, $centro);
-
-                $sentencia->execute();
-                //devuelvo el id
-                return $this->conexion->lastInsertId();
+            if ($statement->rowCount() > 0) {
+                return -2; // Usuario ya existe
             }
-        } catch (PDOException $e) {
-            // return -3;
-            return "Error al actualizar.<br>" . $e->getMessage();
+
+            // 3. Insertar nuevo usuario
+            $clave = password_hash($password, PASSWORD_DEFAULT);
+            $nombre = $data['nombre'];
+            $apellidos = $data['apellidos'];
+            $centro = $data['centro'];
+
+            $sql = "INSERT INTO $this->table (nombre, apellidos, email, password, centro) VALUES (:nombre, :apellidos, :email, :password, :centro)";
+            $sentencia = $this->conexion->prepare($sql);
+
+            $sentencia->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+            $sentencia->bindParam(':apellidos', $apellidos, PDO::PARAM_STR);
+            $sentencia->bindParam(':email', $userId, PDO::PARAM_STR);
+            $sentencia->bindParam(':password', $clave, PDO::PARAM_STR);
+            $sentencia->bindParam(':centro', $centro, PDO::PARAM_STR);
+
+            $sentencia->execute();
+            return $this->conexion->lastInsertId();
+
+        }
+        catch (PDOException $e) {
+            error_log("Error en registro: " . $e->getMessage());
+            return -4; // Error genérico de BD
         }
     }
 
@@ -59,9 +67,9 @@ class Tecnicos extends Basedatos
             return -4; //"ERROR BASE DE DATOS. SIN CONEXIÓN";
         }
         try {
-            $sql = "SELECT * FROM $this->table  WHERE email = :email";
+            $sql = "SELECT * FROM $this->table  WHERE email = :userId";
             $statement = $this->conexion->prepare($sql);
-            $statement->bindParam(':email', $email, PDO::PARAM_STR);
+            $statement->bindParam(':userId', $email, PDO::PARAM_STR);
             $statement->execute();
 
             if ($statement->rowCount() == 1) //si devuelve una fila existe
@@ -70,14 +78,17 @@ class Tecnicos extends Basedatos
 
                 if (password_verify($clave, $row['password'])) {
                     return $row['id_tecnico']; //"Validado. Clave correcta.";
-                } else {
+                }
+                else {
                     return -2; //"Clave incorrecta.";
                 }
-            } else
+            }
+            else
                 return -3; //"Usuario inexistente.";
 
 
-        } catch (PDOException $e) {
+        }
+        catch (PDOException $e) {
             return -4; //"ERROR AL CONSULTAR.<br>" . $e->getMessage();
         }
     } // fin consulta

@@ -364,7 +364,7 @@ const consultaFechaInicio = async () => {
       );
     }
   }
-  imprimirCitologias(respuesta);
+  imprimirCitologias(respuesta, false);
 };
 
 // Consulta citologias entre dos fechas
@@ -383,7 +383,7 @@ const consultaFechaFin = async () => {
         fechainicio.value,
         fechafin.value
       );
-      imprimirCitologias(respuesta);
+      imprimirCitologias(respuesta, false);
     }
   }
 };
@@ -1061,7 +1061,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 // Consulta por Organo
 organos.addEventListener("change", async () => {
   const respuesta = await cargarPorOrgano();
-  imprimirCitologias(respuesta);
+  imprimirCitologias(respuesta, false);
 });
 
 // Consulta por número de Citologia

@@ -362,7 +362,7 @@ const consultaFechaInicio = async () => {
       );
     }
   }
-  imprimirCasettes(respuesta);
+  imprimirCasettes(respuesta, false);
 };
 
 // Consulta cassettes entre dos fechas
@@ -381,7 +381,7 @@ const consultaFechaFin = async () => {
         fechainicio.value,
         fechafin.value
       );
-      imprimirCasettes(respuesta);
+      imprimirCasettes(respuesta, false);
     }
   }
 };
@@ -1072,7 +1072,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 // Consulta por Organo
 organos.addEventListener("change", async () => {
   const respuesta = await cargarPorOrgano();
-  imprimirCasettes(respuesta);
+  imprimirCasettes(respuesta, false);
 });
 
 // Consulta por Número de Cassette

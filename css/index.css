@@ -35,9 +35,8 @@ body {
   width: 60px;
 }
 
-.container {
+.container-custom {
   max-width: 1200px;
-  min-width: 600px;
   width: 100%;
   display: flex;
   justify-content: center;

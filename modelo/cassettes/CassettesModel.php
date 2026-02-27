@@ -22,8 +22,9 @@ class CassettesModel extends Basedatos
             // Retorna el array de registros
 
             return $cassettes;
-            //  return json_encode($cassettes);
-        } catch (PDOException $e) {
+        //  return json_encode($cassettes);
+        }
+        catch (PDOException $e) {
             return "ERROR AL CARGAR LOS 10 CASSETES MÁS RECIENTES" . $e->getMessage();
         }
     }
@@ -36,6 +37,8 @@ class CassettesModel extends Basedatos
         }
         try {
             $qr = "--c--" . substr(uniqid() . mt_rand(), 0, 12);
+            $temp_cassette = "temp_" . uniqid();
+
             $sql = "insert into $this->table 
             (cassette, fecha, descripcion, caracteristicas, 
             observaciones, qr_casette, organo, tecnicoIdTecnico) 
@@ -43,7 +46,7 @@ class CassettesModel extends Basedatos
             $sentencia = $this->conexion->prepare($sql);
 
             // extraemos los parámetros de la variable post
-            $sentencia->bindParam(1, $data["cassette"]);
+            $sentencia->bindParam(1, $temp_cassette);
             $sentencia->bindParam(2, $data["fecha"]);
             $sentencia->bindParam(3, $data["descripcion"]);
             $sentencia->bindParam(4, $data["caracteristicas"]);
@@ -54,8 +57,15 @@ class CassettesModel extends Basedatos
 
             $sentencia->execute();
             //devuelvo el id
-            return $this->conexion->lastInsertId();
-        } catch (PDOException $e) {
+            $id = $this->conexion->lastInsertId();
+
+            $sql2 = "UPDATE $this->table SET cassette = :id WHERE id_casette = :id";
+            $stmt2 = $this->conexion->prepare($sql2);
+            $stmt2->execute(['id' => $id]);
+
+            return $id;
+        }
+        catch (PDOException $e) {
             return "ERROR AL CREAR UN CASSETTE" . $e->getMessage();
         }
     }
@@ -71,8 +81,9 @@ class CassettesModel extends Basedatos
             // Retorna el array de registros
 
             return $cassettes;
-            //  return json_encode($cassettes);
-        } catch (PDOException $e) {
+        //  return json_encode($cassettes);
+        }
+        catch (PDOException $e) {
             return "ERROR AL CARGAR TODO LOS CASSETTES" . $e->getMessage();
         }
     }
@@ -89,7 +100,8 @@ class CassettesModel extends Basedatos
             $cassette = $statement->fetch(PDO::FETCH_ASSOC);
 
             return $cassette;
-        } catch (PDOException $e) {
+        }
+        catch (PDOException $e) {
             return "ERROR AL CARGAR CASSETTE POR ID" . $e->getMessage();
         }
     }
@@ -106,7 +118,8 @@ class CassettesModel extends Basedatos
             $cassettes = $statement->fetchAll(PDO::FETCH_ASSOC);
 
             return $cassettes;
-        } catch (PDOException $e) {
+        }
+        catch (PDOException $e) {
             return "ERROR AL CARGAR CASSETTES POR ORGANO" . $e->getMessage();
         }
     }
@@ -123,7 +136,8 @@ class CassettesModel extends Basedatos
             $cassettes = $statement->fetchAll(PDO::FETCH_ASSOC);
 
             return $cassettes;
-        } catch (PDOException $e) {
+        }
+        catch (PDOException $e) {
             return "ERROR AL CARGAR CASSETTES POR ORGANO" . $e->getMessage();
         }
     }
@@ -140,7 +154,8 @@ class CassettesModel extends Basedatos
             $cassettes = $statement->fetchAll(PDO::FETCH_ASSOC);
 
             return $cassettes;
-        } catch (PDOException $e) {
+        }
+        catch (PDOException $e) {
             return "ERROR AL CARGAR CASSETTE POR FECHA" . $e->getMessage();
         }
     }
@@ -160,7 +175,8 @@ class CassettesModel extends Basedatos
             $cassettes = $statement->fetchAll(PDO::FETCH_ASSOC);
 
             return $cassettes;
-        } catch (PDOException $e) {
+        }
+        catch (PDOException $e) {
             return "ERROR AL CARGAR CASSETTES POR FECHAS" . $e->getMessage();
         }
     }
@@ -174,10 +190,11 @@ class CassettesModel extends Basedatos
             $statement->bindParam(':id', $id, PDO::PARAM_INT);
             $statement->execute();
             if ($statement->rowCount() == 0)
-                return  -1;
+                return -1;
             else
                 return "CASSETTE ELIMINADO: " . $id;
-        } catch (PDOException $e) {
+        }
+        catch (PDOException $e) {
             return "ERROR AL BORRAR UN CASSETTE" . $e->getMessage();
         }
     }
@@ -203,7 +220,8 @@ class CassettesModel extends Basedatos
                 return "Registro NO actualizado, o no existe o no hay cambios: " . $data["cassetteId"];
             else
                 return "Registro actualizado: " . $data["cassetteId"];
-        } catch (PDOException $e) {
+        }
+        catch (PDOException $e) {
             return "ERROR AL ACTUALIZAR UN CASSETTE" . $e->getMessage();
         }
     }
@@ -221,107 +239,108 @@ class CassettesModel extends Basedatos
             $cassette = $statement->fetchAll(PDO::FETCH_ASSOC);
 
             return $cassette;
-        } catch (PDOException $e) {
+        }
+        catch (PDOException $e) {
             return "ERROR AL CARGAR CASSETTES POR QR" . $e->getMessage();
         }
     }
 
-    // public function loginusuario($email, $clave)
-    // {
-    //     if ($this->conexion == null) {
-    //         return -4; //"ERROR BASE DE DATOS. SIN CONEXIÓN";
-    //     }
-    //     try {
-    //         $sql = "SELECT * FROM $this->table  WHERE email = :email";
-    //         $statement = $this->conexion->prepare($sql);
-    //         $statement->bindParam(':email', $email, PDO::PARAM_STR);
-    //         $statement->execute();
+// public function loginusuario($email, $clave)
+// {
+//     if ($this->conexion == null) {
+//         return -4; //"ERROR BASE DE DATOS. SIN CONEXIÓN";
+//     }
+//     try {
+//         $sql = "SELECT * FROM $this->table  WHERE email = :email";
+//         $statement = $this->conexion->prepare($sql);
+//         $statement->bindParam(':email', $email, PDO::PARAM_STR);
+//         $statement->execute();
 
-    //         if ($statement->rowCount() == 1) //si devuelve una fila existe
-    //         {
-    //             $row = $statement->fetch();
+//         if ($statement->rowCount() == 1) //si devuelve una fila existe
+//         {
+//             $row = $statement->fetch();
 
-    //             if (password_verify($clave, $row['password'])) {
-    //                 return $row['id_tecnico']; //"Validado. Clave correcta.";
-    //             } else {
-    //                 return -2; //"Clave incorrecta.";
-    //             }
-    //         } else
-    //             return -3; //"Usuario inexistente.";
-
-
-    //     } catch (PDOException $e) {
-    //         return -4; //"ERROR AL CONSULTAR.<br>" . $e->getMessage();
-    //     }
-    // } // fin consulta
+//             if (password_verify($clave, $row['password'])) {
+//                 return $row['id_tecnico']; //"Validado. Clave correcta.";
+//             } else {
+//                 return -2; //"Clave incorrecta.";
+//             }
+//         } else
+//             return -3; //"Usuario inexistente.";
 
 
-    // public function actualiza($post)
-    // {
-    //     try {
-    //         $sql = "update $this->table set dnombre=?, loc=? where dept_no = ?";
-    //         $sentencia = $this->conexion->prepare($sql);
-    //         // extraemos los parámetros de la variable $post
-    //         // suponemos que se llaman igual
-    //         $sentencia->bindParam(3, $post['dept_no']);
-    //         $sentencia->bindParam(1, $post['dnombre']);
-    //         $sentencia->bindParam(2, $post['loc']);
-    //         $num = $sentencia->execute();
-    //         if ($sentencia->rowCount() == 0)
-    //             return "Registro NO actualizado, o no existe o no hay cambios: " . $post['dept_no'];
-    //         else
-    //             return "Registro actualizado: " . $post['dept_no'];
-    //     } catch (PDOException $e) {
-    //         return "Error al actualizar.<br>" . $e->getMessage();
-    //     }
-    // }
+//     } catch (PDOException $e) {
+//         return -4; //"ERROR AL CONSULTAR.<br>" . $e->getMessage();
+//     }
+// } // fin consulta
 
-    // // Devuelve un array departamento
-    // public function getUnDepartamento($nudep)
-    // {
-    //     try {
-    //         $sql = "SELECT * FROM $this->table WHERE dept_no=?";
-    //         $sentencia = $this->conexion->prepare($sql);
-    //         $sentencia->bindParam(1, $nudep);
-    //         $sentencia->execute();
-    //         $row = $sentencia->fetch(PDO::FETCH_ASSOC);
-    //         if ($row) {
-    //             return $row;
-    //         }
-    //         return "SIN DATOS";
-    //     } catch (PDOException $e) {
-    //         return "ERROR AL CARGAR.<br>" . $e->getMessage();
-    //     }
-    // }
 
-    // public function getAll()
-    // {
-    //     $objetosdep = array();
-    //     try {
-    //         $sql = "select * from $this->table";
-    //         $statement = $this->conexion->query($sql);
-    //         $registros = $statement->fetchAll(PDO::FETCH_ASSOC);
-    //         $statement = null;
-    //         // Retorna el array de registros
-    //         return $registros;
-    //     } catch (PDOException $e) {
-    //         return "ERROR AL CARGAR.<br>" . $e->getMessage();
-    //     }
-    // }
+// public function actualiza($post)
+// {
+//     try {
+//         $sql = "update $this->table set dnombre=?, loc=? where dept_no = ?";
+//         $sentencia = $this->conexion->prepare($sql);
+//         // extraemos los parámetros de la variable $post
+//         // suponemos que se llaman igual
+//         $sentencia->bindParam(3, $post['dept_no']);
+//         $sentencia->bindParam(1, $post['dnombre']);
+//         $sentencia->bindParam(2, $post['loc']);
+//         $num = $sentencia->execute();
+//         if ($sentencia->rowCount() == 0)
+//             return "Registro NO actualizado, o no existe o no hay cambios: " . $post['dept_no'];
+//         else
+//             return "Registro actualizado: " . $post['dept_no'];
+//     } catch (PDOException $e) {
+//         return "Error al actualizar.<br>" . $e->getMessage();
+//     }
+// }
 
-    // public function borrar($depno)
-    // {
-    //     try {
-    //         $sql = "delete from $this->table where dept_no= ? ";
-    //         $sentencia = $this->conexion->prepare($sql);
-    //         $sentencia->bindParam(1, $depno);
-    //         $num = $sentencia->execute();
-    //         if ($sentencia->rowCount() == 0)
-    //             return "Registro NO Borrado, no se localiza: " . $depno;
-    //         else
-    //             return "Registro Borrado: " . $depno;
-    //     } catch (PDOException $e) {
-    //         return "ERROR AL BORRAR.<br>" . $e->getMessage();
-    //     }
-    // }
+// // Devuelve un array departamento
+// public function getUnDepartamento($nudep)
+// {
+//     try {
+//         $sql = "SELECT * FROM $this->table WHERE dept_no=?";
+//         $sentencia = $this->conexion->prepare($sql);
+//         $sentencia->bindParam(1, $nudep);
+//         $sentencia->execute();
+//         $row = $sentencia->fetch(PDO::FETCH_ASSOC);
+//         if ($row) {
+//             return $row;
+//         }
+//         return "SIN DATOS";
+//     } catch (PDOException $e) {
+//         return "ERROR AL CARGAR.<br>" . $e->getMessage();
+//     }
+// }
+
+// public function getAll()
+// {
+//     $objetosdep = array();
+//     try {
+//         $sql = "select * from $this->table";
+//         $statement = $this->conexion->query($sql);
+//         $registros = $statement->fetchAll(PDO::FETCH_ASSOC);
+//         $statement = null;
+//         // Retorna el array de registros
+//         return $registros;
+//     } catch (PDOException $e) {
+//         return "ERROR AL CARGAR.<br>" . $e->getMessage();
+//     }
+// }
+
+// public function borrar($depno)
+// {
+//     try {
+//         $sql = "delete from $this->table where dept_no= ? ";
+//         $sentencia = $this->conexion->prepare($sql);
+//         $sentencia->bindParam(1, $depno);
+//         $num = $sentencia->execute();
+//         if ($sentencia->rowCount() == 0)
+//             return "Registro NO Borrado, no se localiza: " . $depno;
+//         else
+//             return "Registro Borrado: " . $depno;
+//     } catch (PDOException $e) {
+//         return "ERROR AL BORRAR.<br>" . $e->getMessage();
+//     }
+// }
 }

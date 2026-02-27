@@ -221,7 +221,6 @@ const crearCassette = (event) => {
 
       fecha: inputFecha.value,
       descripcion: inputDescripcion.value,
-      cassette: inputNumCassette.value,
       caracteristicas: inputCaracteristicas.value,
       observaciones: inputObservaciones.value,
       // TODO: No lo guardo en el localStorage al acceder el usuario
@@ -399,7 +398,7 @@ const imprimirCasettes = (respuesta, rebuildDropdown = true) => {
     respuesta.map((casete) => {
       // Para cargar los números de cassette
       let option = document.createElement("OPTION");
-      option.textContent = casete.cassette;
+      option.textContent = casete.id_casette;
       fragmentselect.appendChild(option);
 
       // Para mostrar los cassettes
@@ -408,7 +407,7 @@ const imprimirCasettes = (respuesta, rebuildDropdown = true) => {
 
       // Número de Cassette
       let ncassette = document.createElement("td");
-      ncassette.textContent = casete.cassette;
+      ncassette.textContent = casete.id_casette;
 
       let fecha = document.createElement("td");
       nuevafecha = casete.fecha;
@@ -549,7 +548,7 @@ const cargarCassetteUpdateModal = async (event) => {
   } else {
     let cassette = await cargarCassette(cassetteId);
     inputDescripcionUpdate.value = cassette.descripcion;
-    inputCassetteUpdate.value = cassette.cassette;
+    inputCassetteUpdate.value = cassette.id_casette;
     inputFechaUpdate.value = cassette.fecha;
     inputCaracteristicasUpdate.value = cassette.caracteristicas;
     inputObservacionesUpdate.value = cassette.observaciones;

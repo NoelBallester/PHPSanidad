@@ -222,7 +222,6 @@ const crearCitologia = (event) => {
       accion: "crearCitologia",
 
       fecha: inputFecha.value,
-      citologia: inputNumCitologia.value,
       tipo_citologia: inputTipoCitologia.value,
       descripcion: inputDescripcion.value,
       caracteristicas: inputCaracteristicas.value,
@@ -402,7 +401,7 @@ const imprimirCitologias = (respuesta, rebuildDropdown = true) => {
     respuesta.map((citologia) => {
       // Para cargar los números de citología
       let option = document.createElement("OPTION");
-      option.textContent = citologia.citologia;
+      option.textContent = citologia.id_citologia;
       fragmentselect.appendChild(option);
 
       // Para mostrar citologías
@@ -411,7 +410,7 @@ const imprimirCitologias = (respuesta, rebuildDropdown = true) => {
 
       // Número de citologia
       let ncitologia = document.createElement("td");
-      ncitologia.textContent = citologia.citologia;
+      ncitologia.textContent = citologia.id_citologia;
 
       let fecha = document.createElement("td");
       nuevafecha = citologia.fecha;
@@ -554,7 +553,7 @@ const cargarCitologiaUpdateModal = async (event) => {
   } else {
     let citologia = await cargarCitologia(citologiaId);
     inputDescripcionUpdate.value = citologia.descripcion;
-    inputCitologiaUpdate.value = citologia.citologia;
+    inputCitologiaUpdate.value = citologia.id_citologia;
     inputTipoUpdate.value = citologia.tipo_citologia;
     inputFechaUpdate.value = citologia.fecha;
     inputCaracteristicasUpdate.value = citologia.caracteristicas;

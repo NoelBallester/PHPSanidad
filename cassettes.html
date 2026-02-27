@@ -29,7 +29,7 @@
 
     <!-- Menú de Navegación Integrado -->
     <nav class="nav navbar navbar-expand-lg px-5 shadow-sm">
-        <div class="container header__container-nav">
+        <div class="container-fluid header__container-nav px-5">
             <a class="header__logo d-flex align-items-center" href="./index.html">
                 <i class="fa-solid fa-microscope me-2" style="color: var(--accent-color);"></i>
                 <span style="font-weight: 800; letter-spacing: -0.5px;"><span
@@ -63,92 +63,132 @@
         </div>
     </nav>
 
-    <header class="barra_org container-fluid">
-        <div class="container caja_org px-0">
-            <div class="row w-100 g-3 align-items-center">
-                <!-- Select Número Cassette -->
-                <div class="col-md-2">
-                    <select class="form-select border__color" id="numCassette">
-                        <option selected disabled>Nº Cassette</option>
-                    </select>
+    <header class="barra_org container-fluid px-5">
+        <div class="container-fluid caja_org px-0">
+            <div class="row align-items-center w-100 m-0">
+                <!-- Area Izquierda (Espaciador para equilibrar el centrado) -->
+                <div class="col p-0"></div>
+
+                <!-- Area Central (Filtros Absolutamente Centrados) -->
+                <div class="col-auto d-flex align-items-center justify-content-center gap-2 p-0">
+                    <!-- Select Número Cassette -->
+                    <div style="min-width: 140px;">
+                        <select class="form-select border__color unified-filter-height" id="numCassette"
+                            style="font-size: 0.85rem;">
+                            <option selected disabled>Nº Cassette</option>
+                        </select>
+                    </div>
+
+                    <!-- Select Organos -->
+                    <div style="min-width: 140px;">
+                        <select class="form-select border__color unified-filter-height" id="organos"
+                            style="font-size: 0.85rem;">
+                            <option disabled selected>Órgano</option>
+                            <option value="*">Todos</option>
+                            <optgroup label="Sistema Nervioso">
+                                <option>Encéfalo</option>
+                                <option>Médula Espinal</option>
+                                <option>Nervio</option>
+                                <option>Ganglio Nervios</option>
+                            </optgroup>
+                            <optgroup label="Tegumento">
+                                <option>Piel</option>
+                                <option>Uña</option>
+                                <option>Pelo</option>
+                            </optgroup>
+                            <optgroup label="Cardiovascular">
+                                <option>Corazón</option>
+                                <option>Venas</option>
+                                <option>Arteria</option>
+                            </optgroup>
+                            <optgroup label="Linfático">
+                                <option>Ganglio Linfático</option>
+                                <option>Vaso Linfático</option>
+                                <option>Bazo</option>
+                            </optgroup>
+                            <optgroup label="Endocrino">
+                                <option>Hipófisis</option>
+                                <option>Glándula Tiroides</option>
+                                <option>Glándulas Paratiroides</option>
+                                <option>Glándulas Suprarrenales</option>
+                                <option>Páncreas</option>
+                            </optgroup>
+                            <optgroup label="Respiratorio">
+                                <option>Fosa Nasal</option>
+                                <option>Faringe</option>
+                                <option>Laringe</option>
+                                <option>Tráquea</option>
+                                <option>Bronquio</option>
+                                <option>Pulmón</option>
+                            </optgroup>
+                            <optgroup label="Digestivo">
+                                <option>Boca</option>
+                                <option>Lengua</option>
+                                <option>Glándula Salival</option>
+                                <option>Faringe</option>
+                                <option>Esófago</option>
+                                <option>Estómago</option>
+                                <option>Hígado</option>
+                                <option>Vesícula Biliar</option>
+                                <option>Páncreas</option>
+                                <option>Idn. Delgado</option>
+                                <option>Idn. Grueso</option>
+                                <option>Ciego</option>
+                                <option>Apéndice</option>
+                                <option>Recto</option>
+                                <option>Ano</option>
+                            </optgroup>
+                            <optgroup label="Excretor Uriznario">
+                                <option>Riñón</option>
+                                <option>Pelvis Renal</option>
+                                <option>Uréter</option>
+                                <option>Vejiga Urinaria</option>
+                                <option>Uretra</option>
+                            </optgroup>
+                            <optgroup label="Reproductor Masculino">
+                                <option>Testículo</option>
+                            </optgroup>
+                            <optgroup label="Reproductor Femenino">
+                                <option>Ovario</option>
+                                <option>Trompa de Falopio</option>
+                                <option>Útero</option>
+                                <option>Vagina</option>
+                                <option>Vulva</option>
+                            </optgroup>
+                            <optgroup label="Locomotor">
+                                <option>Hueso</option>
+                                <option>Musculo Esquelético</option>
+                            </optgroup>
+                            <option>Otros</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <button data-bs-toggle="modal" id="btn__consultarqr" data-bs-target="#qrConsultaModal"
+                            class="btn fondo px-3 unified-filter-height" title="Escanear QR">
+                            <i class="fa-solid fa-qrcode"></i>
+                        </button>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <input type="date" id="fechainicio"
+                            class="form-control border__color unified-filter-height px-2">
+                        <input type="date" id="fechafin" class="form-control border__color unified-filter-height px-2">
+                    </div>
+
+                    <div>
+                        <a href="./citologias.html"
+                            class="btn btn-switch-module rounded-pill px-4 unified-filter-height fw-bold shadow-sm">
+                            <i class="fa-solid fa-vial me-2"></i> Ir a Citologías
+                        </a>
+                    </div>
                 </div>
 
-                <!-- Select Organos -->
-                <div class="col-md-2">
-                    <select class="form-select border__color" id="organos">
-                        <option disabled selected>Órgano</option>
-                        <option value="*">Todos</option>
-                        <optgroup label="Sistema Nervioso">
-                            <option>Encéfalo</option>
-                            <option>Médula Espinal</option>
-                            <option>Nervio</option>
-                            <option>Ganglio Nervios</option>
-                        </optgroup>
-                        <!-- ... rest of options ... -->
-                        <optgroup label="Tegumento">
-                            <option>Piel</option>
-                            <option>Uña</option>
-                            <option>Pelo</option>
-                        </optgroup>
-                        <optgroup label="Cardiovascular">
-                            <option>Corazón</option>
-                            <option>Venas</option>
-                            <option>Arteria</option>
-                        </optgroup>
-                        <optgroup label="Linfático">
-                            <option>Ganglio Linfático</option>
-                            <option>Timo</option>
-                            <option>Bazo</option>
-                        </optgroup>
-                        <optgroup label="Sistema Digestivo">
-                            <option>Lengua</option>
-                            <option>Esófago</option>
-                            <option>Estómago</option>
-                            <option>Intestino Delgado</option>
-                            <option>Intestino Grueso</option>
-                            <option>Diente</option>
-                            <option>Glándula Salivar</option>
-                            <option>Páncrea</option>
-                            <option>Hígado</option>
-                        </optgroup>
-                        <optgroup label="Aparato Excretor">
-                            <option>Riñón</option>
-                            <option>Vejiga</option>
-                        </optgroup>
-                        <optgroup label="Respiratorio">
-                            <option>Tránquea</option>
-                            <option>Bronquios</option>
-                            <option>Tejido Respiratorio</option>
-                        </optgroup>
-                        <optgroup label="Endocrino">
-                            <option>Tiroides</option>
-                            <option>Parótidas</option>
-                            <option>Suprarrenales</option>
-                            <option>Ovario</option>
-                            <option>Testículo</option>
-                        </optgroup>
-                        <optgroup label="Locomotor">
-                            <option>Hueso</option>
-                            <option>Musculo Esquelético</option>
-                        </optgroup>
-                        <option>Otros</option>
-                    </select>
-                </div>
-
-                <div class="col-md-4">
-                    <button data-bs-toggle="modal" id="btn__consultarqr" data-bs-target="#qrConsultaModal"
-                        class="btn w-100 fondo flex-grow-1"><i class="fa-solid fa-qrcode me-2"></i> Escanear QR</button>
-                </div>
-
-                <div class="col-md-3 d-flex gap-3">
-                    <input type="date" id="fechainicio" class="form-control border__color date">
-                    <input type="date" id="fechafin" class="form-control border__color date">
-                </div>
-
-                <div class="col-md-1 d-flex justify-content-end">
+                <!-- Area Derecha (Botón Volver alineado a la derecha) -->
+                <div class="col d-flex justify-content-end p-0">
                     <a href="./gestion_muestras.html"
-                        class="btn btn-outline-primary border__color rounded-circle p-2 d-flex align-items-center justify-content-center"
-                        style="width: 40px; height: 40px; background: var(--bg-light);">
+                        class="btn btn-outline-primary border__color rounded-circle d-flex align-items-center justify-content-center unified-filter-height p-0"
+                        style="width: 42px; background: var(--bg-light);" title="Volver">
                         <i class="bi bi-arrow-left-short fs-4 blue__color"></i>
                     </a>
                 </div>
@@ -166,7 +206,7 @@
         <span class=" fs-4"> Seleccione un Cassette</span>
     </div>
 
-    <main class="container pt-3">
+    <main class="container-fluid pt-3 px-5">
         <!-- Cassettes -->
         <section class="d-flex gap-2">
             <!-- Consultas cassettes -->

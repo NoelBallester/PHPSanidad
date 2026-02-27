@@ -25,18 +25,11 @@ class Tecnicos extends Basedatos
                 return -3; // La contraseña no cumple las políticas de seguridad
             }
 
-            // 2. Comprobar si el ID de usuario ya existe
-            $sql = "SELECT id_tecnico FROM $this->table WHERE email = :userId";
-            $statement = $this->conexion->prepare($sql);
-            $userId = $data['email'];
-            $statement->bindParam(':userId', $userId, PDO::PARAM_STR);
-            $statement->execute();
+            // En este modelo, el ID es autoincremental en la base de datos.
+            // Omitimos la comprobación de existencia por ID ya que lo genera la DB.
+            // Si existiera una comprobación por correo, se haría aquí.
 
-            if ($statement->rowCount() > 0) {
-                return -2; // Usuario ya existe
-            }
-
-            // 3. Insertar nuevo usuario
+            // 2. Insertar nuevo usuario (id_tecnico se genera solo)
             $clave = password_hash($password, PASSWORD_DEFAULT);
             $nombre = $data['nombre'];
             $apellidos = $data['apellidos'];
@@ -47,7 +40,8 @@ class Tecnicos extends Basedatos
 
             $sentencia->bindParam(':nombre', $nombre, PDO::PARAM_STR);
             $sentencia->bindParam(':apellidos', $apellidos, PDO::PARAM_STR);
-            $sentencia->bindParam(':email', $userId, PDO::PARAM_STR);
+            $email_placeholder = "";
+            $sentencia->bindParam(':email', $email_placeholder, PDO::PARAM_STR);
             $sentencia->bindParam(':password', $clave, PDO::PARAM_STR);
             $sentencia->bindParam(':centro', $centro, PDO::PARAM_STR);
 
@@ -61,15 +55,15 @@ class Tecnicos extends Basedatos
         }
     }
 
-    public function loginusuario($email, $clave)
+    public function loginusuario($userId, $clave)
     {
         if ($this->conexion == null) {
             return -4; //"ERROR BASE DE DATOS. SIN CONEXIÓN";
         }
         try {
-            $sql = "SELECT * FROM $this->table  WHERE email = :userId";
+            $sql = "SELECT * FROM $this->table  WHERE id_tecnico = :userId";
             $statement = $this->conexion->prepare($sql);
-            $statement->bindParam(':userId', $email, PDO::PARAM_STR);
+            $statement->bindParam(':userId', $userId, PDO::PARAM_INT);
             $statement->execute();
 
             if ($statement->rowCount() == 1) //si devuelve una fila existe
@@ -91,6 +85,23 @@ class Tecnicos extends Basedatos
         catch (PDOException $e) {
             return -4; //"ERROR AL CONSULTAR.<br>" . $e->getMessage();
         }
-    } // fin consulta
+    }
+    public function solicitacontrasena($userId)
+    {
+        if ($this->conexion == null) {
+            return -4;
+        }
+        try {
+            $sql = "SELECT id_tecnico FROM $this->table WHERE id_tecnico = :userId";
+            $statement = $this->conexion->prepare($sql);
+            $statement->bindParam(':userId', $userId, PDO::PARAM_INT);
+            $statement->execute();
+
+            return $statement->rowCount() > 0;
+        }
+        catch (PDOException $e) {
+            return -4;
+        }
+    } // fin solicitacontrasena
 
 }

@@ -7,14 +7,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    $resul = [];
    $data = json_decode(file_get_contents('php://input'), true);
    $accion = $data['accion'];
-
+   $identificador = $data['identificador'] ?? null;
+   $password = $data['password'] ?? null;
 
 
    if ($accion == 'login') {
-      $email = $data['email'];
-      $password = $data['password'];
-
-      $res = $tec->loginusuario($email, $password);
+      $res = $tec->loginusuario($identificador, $password);
 
       if ($res == -2) {
          $resul['error'] = "Credenciales incorrectas.";
@@ -37,10 +35,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    }
 
    if ($accion == 'registro') {
-
+      // If 'identificador' is provided and 'email' is not, use 'identificador' as 'email' for the model
+      if (isset($data['identificador']) && !isset($data['email'])) {
+         $data['email'] = $data['identificador'];
+      }
       $res = $tec->insertar($data);
-      if (is_string($res) && !is_numeric($res)) {
-         $resul['error'] = $res;
+      if (is_numeric($res) && $res > 0) {
+         $resul['user'] = true;
+         $resul['id_tecnico'] = $res;
+      }
+      else if (is_string($res)) {
+         $resul['error'] = $res; // Assuming $res string contains the error message
       }
       else if ($res == -1) {
          $resul['error'] = "Error en la conexión con la base de datos.";
@@ -66,8 +71,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
    // TODO
    if ($accion == 'solicitacontrasena') {
-      echo $data['email'];
-      $para = $data['email'];
+      $res = $tec->solicitacontrasena($identificador);
+      $para = $identificador; // Use identificador as the recipient
       $asunto = "Solicita cambio contraseña";
       $mensaje = "Este es el cuerpo del correo.";
 

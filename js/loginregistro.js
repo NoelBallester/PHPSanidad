@@ -42,7 +42,7 @@ const userLogin = (event) => {
     },
     body: JSON.stringify({
       accion: "login",
-      email: inputlogin_id.value,
+      identificador: inputlogin_id.value,
       password: inputlogin_password.value,
     }),
   })
@@ -80,7 +80,6 @@ const userRegister = (event) => {
 
         nombre: input_name.value,
         apellidos: input_lastname.value,
-        email: input_id.value,
         centro: input_center.value,
         password: input_password.value,
       }),
@@ -89,9 +88,19 @@ const userRegister = (event) => {
       .then((response) => {
         if (response.user) {
           form_register.reset();
-          location.href = "./registro.html";
+          register__error.textContent = "¡Registro exitoso! Tu identificador es: " + response.id_tecnico;
+          register__error.classList.remove('error-msg'); // Asumiendo que hay una clase para errores que queremos quitar
+          register__error.style.color = "#2ecc71"; // Verde éxito
+          register__error.style.display = "block";
+
+          // Opcional: Redirigir al login tras unos segundos
+          setTimeout(() => {
+            forms.classList.remove("show-signup");
+            register__error.style.display = "none";
+          }, 5000);
         } else {
           register__error.textContent = response.error;
+          register__error.style.color = "#e74c3c"; // Rojo error
           register__error.style.display = "block";
         }
       })
@@ -110,7 +119,7 @@ const getNewPassword = (event) => {
     },
     body: JSON.stringify({
       accion: "solicitacontrasena",
-      email: inputpassword_id.value,
+      identificador: inputpassword_id.value,
     }),
   }) //  Aqui acaba el fetch
     .then((response) => response.json())

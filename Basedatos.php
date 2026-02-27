@@ -4,8 +4,8 @@ abstract class Basedatos
 {
     private $servername = "192.168.35.124:3306";
     private $database = "sanidadPHP";
-    private $username = "sanidadPHP";
-    private $password = "sanidadPHP";
+    private $username = "sanidadphp";
+    private $password = "1234";
     private $conexion;
     private $mensajeerror = "";
     public function getConexion()

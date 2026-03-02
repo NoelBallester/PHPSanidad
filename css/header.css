@@ -77,17 +77,16 @@
 .nav {
   position: sticky;
   top: 0;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: var(--card-bg);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   padding: 0.75rem 5%;
   z-index: 1000;
-  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.2);
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+  transition: background-color 0.3s ease;
 }
 
 .nav__list {

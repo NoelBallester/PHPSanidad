@@ -8,9 +8,31 @@
   --card-bg: #FFFFFF;
 }
 
+body.dark-theme {
+  --title-color: #60A5FA;
+  --accent-color: #22D3EE;
+  --accent-secondary: #34D399;
+  --bg-light: #0F172A;
+  --text-main: #F8FAFC;
+  --text-muted: #CBD5E1;
+  --card-bg: #1E293B;
+}
+
 * {
   box-sizing: border-box;
   font-family: "Inter", "Nunito", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 70px;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-light);
+  color: var(--text-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 html {

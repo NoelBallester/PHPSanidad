@@ -27,6 +27,9 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/index.css">
+
+    <!-- Dark Mode Logic -->
+    <script src="./js/darkmode.js" defer></script>
     <link rel="stylesheet" href="css/forms.css">
 
     <title>Sanitaria Ribera...</title>
@@ -72,6 +75,12 @@
                         </li>
                         <li class="nav-item nav__item">
                             <a class="nav-link nav__link" href="#" onclick="logout(); return false;">Cerrar Sesión</a>
+                        </li>
+                        <li class="nav-item nav__item d-flex align-items-center">
+                            <a href="#" id="darkModeToggle" class="nav-link nav__link ms-lg-3"
+                                aria-label="Toggle Dark Mode">
+                                <i class='bx bx-moon fs-4'></i>
+                            </a>
                         </li>
                     </ul>
                 </div>

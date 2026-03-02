@@ -73,13 +73,15 @@ const todasCitologias = document.getElementById("todasCitologias");
 
 // Nueva Citologia
 const inputFecha = document.getElementById("inputFecha");
+const inputCitologia = document.getElementById("inputCitologia");
 const inputDescripcion = document.getElementById("inputDescripcion");
-const inputNumCitologia = document.getElementById("inputNumCitologia");
 const inputTipoCitologia = document.getElementById("inputTipoCitologia");
 const inputCaracteristicas = document.getElementById("inputCaracteristicas");
 const inputObservaciones = document.getElementById("inputObservaciones");
+const inputMicroscopia = document.getElementById("inputMicroscopia");
+const inputDiagnostico = document.getElementById("inputDiagnostico");
+const inputPatologo = document.getElementById("inputPatologo");
 const inputSelect = document.getElementById("inputSelect");
-const inputImagenes = document.getElementById("inputImagenes");
 
 // Modificar Citología
 const modalupdateCitologia = document.getElementById("modalupdateCitologia");
@@ -99,7 +101,6 @@ const inputCaracteristicasUpdate = document.getElementById(
 const inputObservacionesUpdate = document.getElementById(
   "inputObservacionesUpdate"
 );
-const inputClinicaUpdate = document.getElementById("inputClinicaUpdate");
 const inputMicroscopiaUpdate = document.getElementById("inputMicroscopiaUpdate");
 const inputDiagnosticoUpdate = document.getElementById("inputDiagnosticoUpdate");
 const inputPatologoUpdate = document.getElementById("inputPatologoUpdate");
@@ -232,17 +233,15 @@ const crearCitologia = (event) => {
 
     body: JSON.stringify({
       accion: "crearCitologia",
-
+      citologia: inputCitologia.value,
       fecha: inputFecha.value,
       tipo_citologia: inputTipoCitologia.value,
       descripcion: inputDescripcion.value,
       caracteristicas: inputCaracteristicas.value,
       observaciones: inputObservaciones.value,
-      clinica: inputClinica.value,
       microscopia: inputMicroscopia.value,
       diagnostico: inputDiagnostico.value,
       patologo: inputPatologo.value,
-      // TODO: No lo guardo en el localStorage al acceder el usuario
       tecnicoIdTecnico: sessionStorage.getItem("user"),
       organo: inputSelect.value,
     }),
@@ -575,13 +574,12 @@ const cargarCitologiaUpdateModal = async (event) => {
     alertcitologia.classList.remove("ocultar");
   } else {
     let citologia = await cargarCitologia(citologiaId);
+    inputCitologiaUpdate.value = citologia.citologia;
     inputDescripcionUpdate.value = citologia.descripcion;
-    inputCitologiaUpdate.value = citologia.id_citologia;
     inputTipoUpdate.value = citologia.tipo_citologia;
     inputFechaUpdate.value = citologia.fecha;
     inputCaracteristicasUpdate.value = citologia.caracteristicas;
     inputObservacionesUpdate.value = citologia.observaciones;
-    inputClinicaUpdate.value = citologia.informacion_clinica || "";
     inputMicroscopiaUpdate.value = citologia.descripcion_microscopica || "";
     inputDiagnosticoUpdate.value = citologia.diagnostico_final || "";
     inputPatologoUpdate.value = citologia.patologo_responsable || "";
@@ -598,16 +596,13 @@ const modificarCitologiaUpdate = async (event) => {
     },
     body: JSON.stringify({
       accion: "modificarCitologia",
-
       citologiaId: citologiaId,
-
+      citologia: inputCitologiaUpdate.value,
       fecha: inputFechaUpdate.value,
       descripcion: inputDescripcionUpdate.value,
-      citologia: inputCitologiaUpdate.value,
       tipo: inputTipoUpdate.value,
       caracteristicas: inputCaracteristicasUpdate.value,
       observaciones: inputObservacionesUpdate.value,
-      clinica: inputClinicaUpdate.value,
       microscopia: inputMicroscopiaUpdate.value,
       diagnostico: inputDiagnosticoUpdate.value,
       patologo: inputPatologoUpdate.value,

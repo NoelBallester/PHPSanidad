@@ -386,7 +386,7 @@
               <input type="date" id="citologia__informe_fecha" class="form-control blue__color bg-light">
             </div>
             <div class="mb-3">
-              <label for="citologia__informe_tincion" class="blue__color--negrita d-block">Tinción</label>
+              <label for="citologia__informe_tincion" class="blue__color--negrita d-block">Resultados</label>
               <select id="citologia__informe_tincion" class="form-select blue__color bg-light">
                 <option selected disabled value="">Seleccionar Tinción</option>
                 <option>Hematoxilina Eosina (HE)</option>
@@ -394,6 +394,11 @@
                 <option>Gram</option>
                 <option>Azul de Metileno</option>
                 <option>Papanicolau</option>
+                <option>Zienhl-Neelsen</option>
+                <option>Tricorómico</option>
+                <option>Orceína</option>
+                <option>P.A.S</option>
+                <option>Otros</option>
               </select>
             </div>
             <div class="mb-3">
@@ -402,7 +407,7 @@
                 rows="3"></textarea>
             </div>
             <div class="mb-3">
-              <label for="citologia__informe_imagen" class="blue__color--negrita d-block">Imagen</label>
+              <label for="citologia__informe_imagen" class="blue__color--negrita d-block">Formulario</label>
               <input type="file" id="citologia__informe_imagen" accept=".jpg,.jpeg,.png,.gif"
                 class="form-control blue__color bg-light">
             </div>
@@ -441,7 +446,7 @@
         </div>
 
         <div class="col-md-12 mt-3">
-          <label for="selectTincionMuestra" class="form-label blue__color">Tinción</label>
+          <label for="selectTincionMuestra" class="form-label blue__color">Tipo de tinción</label>
           <select class="form-select blue__color" id="selectTincionMuestra" required>
             <option selected disabled value="">Seleccionar Tinción</option>
             <option>Hematoxilina Eosina (HE)</option>
@@ -449,6 +454,11 @@
             <option>Gram</option>
             <option>Azul de Metileno</option>
             <option>Papanicolau</option>
+            <option>Zienhl-Neelsen</option>
+            <option>Tricorómico</option>
+            <option>Orceína</option>
+            <option>P.A.S</option>
+            <option>Otros</option>
 
           </select>
         </div>
@@ -459,7 +469,7 @@
         </div>
 
         <div class="col-md-12 mt-3">
-          <label for="inputImagenesMuestra" class="form-label blue__color">Imagen</label>
+          <label for="inputImagenesMuestra" class="form-label blue__color">Tinción</label>
           <input type="file" accept=".jpg,.jpeg,.png,.gif" class="form-control blue__color" id="inputImagenesMuestra">
         </div>
 
@@ -600,13 +610,13 @@
         <hr class="m-0">
 
         <div class="col-md-12 mt-4">
-          <label for="inputDescripcion" class="form-label blue__color">Detalle Citología / Nombre Paciente</label>
-          <input class="form-control blue__color" id="inputDescripcion" required>
+          <label for="inputCitologia" class="form-label blue__color">Número Citología</label>
+          <input class="form-control blue__color" id="inputCitologia" required>
         </div>
 
         <div class="col-md-12 mt-3">
-          <label for="inputClinica" class="form-label blue__color">Información Clínica / Antecedentes</label>
-          <textarea class="form-control blue__color textarea__text" id="inputClinica"></textarea>
+          <label for="inputDescripcion" class="form-label blue__color">Detalle Citología / Nombre Paciente</label>
+          <input class="form-control blue__color" id="inputDescripcion" required>
         </div>
 
         <div class="row col-md-12 mt-3">
@@ -723,12 +733,6 @@
           <input type="text" class="form-control blue__color" id="inputPatologo">
         </div>
 
-        <!-- <div class="col-md-12">
-          <label for="inputImagenes" class="form-label blue__color">Imagen</label>
-          <input type="file" accept=".jpg,.jpeg,.png,.gif" class="form-control blue__color" name="image"
-            id="inputImagenes">
-        </div> -->
-
         <div class="col-12">
           <button class="btn btn__modal blue__color" type="submit"> Crear Citología</button>
         </div>
@@ -748,21 +752,17 @@
         <hr>
 
         <div class="col-md-12 mt-0">
+          <label for="inputCitologiaUpdate" class="form-label blue__color">Número Citología</label>
+          <input class="form-control blue__color" id="inputCitologiaUpdate" required>
+        </div>
+
+        <div class="col-md-12 mt-3">
           <label for="inputDescripcionUpdate" class="form-label blue__color">Detalle Citología / Nombre Paciente</label>
           <input class="form-control blue__color" id="inputDescripcionUpdate" required>
         </div>
 
-        <div class="col-md-12 mt-3">
-          <label for="inputClinicaUpdate" class="form-label blue__color">Información Clínica / Antecedentes</label>
-          <textarea class="form-control blue__color textarea__text" id="inputClinicaUpdate"></textarea>
-        </div>
-
         <div class="row col-md-12">
-          <div class="col-md-6 mt-3">
-            <label for="inputDescripcion" class="form-label blue__color">Número Citología</label>
-            <input class="form-control blue__color" id="inputCitologiaUpdate" required>
-          </div>
-          <div class="col-md-6 mt-3">
+          <div class="col-md-12 mt-3">
             <label for="selectmodificartincionMuestra" class="form-label blue__color">Tipo Citología</label>
             <select class="form-select blue__color" id="inputTipoUpdate" required>
               <option selected disabled value="">Tipo Citología</option>

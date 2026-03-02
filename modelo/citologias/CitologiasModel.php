@@ -33,36 +33,34 @@ class CitologiasModel extends Basedatos
     public function crearCitologia($data)
     {
         if ($this->conexion == null) {
-            return -1; // "ERROR BASE DE DATOS. SIN CONEXIÓN";
+            return -1;
         }
         try {
             $qr = "--c--" . substr(uniqid() . mt_rand(), 0, 12);
-            $temp_citologia = "temp_" . uniqid();
+            $manual_citologia = $data["citologia"];
 
             $sql = "insert into $this->table 
             (citologia, fecha, tipo_citologia, descripcion, caracteristicas, 
-            observaciones, qr_citologia, organo, tecnicoIdTecnico) 
-            values (?,?,?,?,?,?,?,?,?)";
+            observaciones, descripcion_microscopica, diagnostico_final, patologo_responsable,
+            qr_citologia, organo, tecnicoIdTecnico) 
+            values (?,?,?,?,?,?,?,?,?,?,?,?)";
             $sentencia = $this->conexion->prepare($sql);
 
-            // extraemos los parámetros de la variable post
-            $sentencia->bindParam(1, $temp_citologia);
+            $sentencia->bindParam(1, $manual_citologia);
             $sentencia->bindParam(2, $data["fecha"]);
             $sentencia->bindParam(3, $data["tipo_citologia"]);
             $sentencia->bindParam(4, $data["descripcion"]);
             $sentencia->bindParam(5, $data["caracteristicas"]);
             $sentencia->bindParam(6, $data["observaciones"]);
-            $sentencia->bindParam(7, $qr);
-            $sentencia->bindParam(8, $data["organo"]);
-            $sentencia->bindParam(9, $data["tecnicoIdTecnico"]);
+            $sentencia->bindParam(7, $data["microscopia"]);
+            $sentencia->bindParam(8, $data["diagnostico"]);
+            $sentencia->bindParam(9, $data["patologo"]);
+            $sentencia->bindParam(10, $qr);
+            $sentencia->bindParam(11, $data["organo"]);
+            $sentencia->bindParam(12, $data["tecnicoIdTecnico"]);
 
             $sentencia->execute();
-            //devuelvo el id
             $id = $this->conexion->lastInsertId();
-
-            $sql2 = "UPDATE $this->table SET citologia = :id WHERE id_citologia = :id";
-            $stmt2 = $this->conexion->prepare($sql2);
-            $stmt2->execute(['id' => $id]);
 
             return $id;
         }
@@ -205,7 +203,8 @@ class CitologiasModel extends Basedatos
     {
         try {
             $sql = "update $this->table 
-                    set citologia=?, tipo_citologia=?, fecha=?, descripcion=?, caracteristicas=?, observaciones=?, organo=?
+                    set citologia=?, tipo_citologia=?, fecha=?, descripcion=?, caracteristicas=?,
+                    observaciones=?, descripcion_microscopica=?, diagnostico_final=?, patologo_responsable=?, organo=?
                     where id_citologia=?";
             $sentencia = $this->conexion->prepare($sql);
 
@@ -215,15 +214,17 @@ class CitologiasModel extends Basedatos
             $sentencia->bindParam(4, $data["descripcion"]);
             $sentencia->bindParam(5, $data["caracteristicas"]);
             $sentencia->bindParam(6, $data["observaciones"]);
-            $sentencia->bindParam(7, $data["organo"]);
-            $sentencia->bindParam(8, $data["citologiaId"]);
-
+            $sentencia->bindParam(7, $data["microscopia"]);
+            $sentencia->bindParam(8, $data["diagnostico"]);
+            $sentencia->bindParam(9, $data["patologo"]);
+            $sentencia->bindParam(10, $data["organo"]);
+            $sentencia->bindParam(11, $data["citologiaId"]);
 
             $sentencia->execute();
             if ($sentencia->rowCount() == 0)
-                return "Registro NO actualizado, o no existe o no hay cambios: " . $data["cassetteId"];
+                return "Registro NO actualizado, o no existe o no hay cambios: " . $data["citologiaId"];
             else
-                return "Registro actualizado: " . $data["cassetteId"];
+                return "Registro actualizado: " . $data["citologiaId"];
         }
         catch (PDOException $e) {
             return "ERROR AL ACTUALIZAR UNA CITOLOGÍA" . $e->getMessage();

@@ -15,6 +15,15 @@
         // Redirect to home if already logged in and trying to access the login page
         window.location.href = './index.html';
     }
+
+    // After DOM is loaded, check if we need to show the admin menu
+    document.addEventListener("DOMContentLoaded", () => {
+        const userRole = sessionStorage.getItem('rol');
+        const navUsuariosContainer = document.getElementById('nav-usuarios-container');
+        if (userRole === 'admin' && navUsuariosContainer) {
+            navUsuariosContainer.style.display = 'block';
+        }
+    });
 })();
 
 /**
@@ -24,5 +33,6 @@ function logout() {
     sessionStorage.removeItem('isLoggedIn');
     sessionStorage.removeItem('userId');
     sessionStorage.removeItem('method');
+    sessionStorage.removeItem('rol');
     window.location.href = './registro.html';
 }

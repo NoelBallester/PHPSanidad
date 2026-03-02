@@ -34,8 +34,9 @@ class Tecnicos extends Basedatos
             $nombre = $data['nombre'];
             $apellidos = $data['apellidos'];
             $centro = $data['centro'];
+            $rol = isset($data['rol']) ? $data['rol'] : 'patologia';
 
-            $sql = "INSERT INTO $this->table (nombre, apellidos, email, password, centro) VALUES (:nombre, :apellidos, :email, :password, :centro)";
+            $sql = "INSERT INTO $this->table (nombre, apellidos, email, password, centro, rol) VALUES (:nombre, :apellidos, :email, :password, :centro, :rol)";
             $sentencia = $this->conexion->prepare($sql);
 
             $sentencia->bindParam(':nombre', $nombre, PDO::PARAM_STR);
@@ -44,6 +45,7 @@ class Tecnicos extends Basedatos
             $sentencia->bindParam(':email', $email_placeholder, PDO::PARAM_STR);
             $sentencia->bindParam(':password', $clave, PDO::PARAM_STR);
             $sentencia->bindParam(':centro', $centro, PDO::PARAM_STR);
+            $sentencia->bindParam(':rol', $rol, PDO::PARAM_STR);
 
             $sentencia->execute();
             return $this->conexion->lastInsertId();
@@ -71,7 +73,11 @@ class Tecnicos extends Basedatos
                 $row = $statement->fetch();
 
                 if (password_verify($clave, $row['password'])) {
-                    return $row['id_tecnico']; //"Validado. Clave correcta.";
+                    // Retornamos también el rol para almacenarlo en frontend
+                    return [
+                        'id_tecnico' => $row['id_tecnico'],
+                        'rol' => $row['rol']
+                    ];
                 }
                 else {
                     return -2; //"Clave incorrecta.";
@@ -104,4 +110,78 @@ class Tecnicos extends Basedatos
         }
     } // fin solicitacontrasena
 
+    public function listarTecnicos()
+    {
+        if ($this->conexion == null) {
+            return false;
+        }
+        try {
+            $sql = "SELECT id_tecnico, nombre, apellidos, email, centro, rol FROM $this->table";
+            $statement = $this->conexion->prepare($sql);
+            $statement->execute();
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        }
+        catch (PDOException $e) {
+            error_log("Error listarTecnicos: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function modificarTecnico($data)
+    {
+        if ($this->conexion == null) {
+            return false;
+        }
+        try {
+            $id = $data['id_tecnico'];
+            $nombre = $data['nombre'];
+            $apellidos = $data['apellidos'];
+            $centro = $data['centro'];
+            $rol = $data['rol'];
+
+            if (!empty($data['password'])) {
+                $password = $data['password'];
+                if (!preg_match('/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/', $password)) {
+                    return -3; // Contraseña no cumple políticas
+                }
+                $clave = password_hash($password, PASSWORD_DEFAULT);
+                $sql = "UPDATE $this->table SET nombre = :nombre, apellidos = :apellidos, centro = :centro, rol = :rol, password = :password WHERE id_tecnico = :id";
+                $statement = $this->conexion->prepare($sql);
+                $statement->bindParam(':password', $clave, PDO::PARAM_STR);
+            }
+            else {
+                $sql = "UPDATE $this->table SET nombre = :nombre, apellidos = :apellidos, centro = :centro, rol = :rol WHERE id_tecnico = :id";
+                $statement = $this->conexion->prepare($sql);
+            }
+
+            $statement->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+            $statement->bindParam(':apellidos', $apellidos, PDO::PARAM_STR);
+            $statement->bindParam(':centro', $centro, PDO::PARAM_STR);
+            $statement->bindParam(':rol', $rol, PDO::PARAM_STR);
+            $statement->bindParam(':id', $id, PDO::PARAM_INT);
+
+            return $statement->execute();
+        }
+        catch (PDOException $e) {
+            error_log("Error modificarTecnico: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function eliminarTecnico($id)
+    {
+        if ($this->conexion == null) {
+            return false;
+        }
+        try {
+            $sql = "DELETE FROM $this->table WHERE id_tecnico = :id";
+            $statement = $this->conexion->prepare($sql);
+            $statement->bindParam(':id', $id, PDO::PARAM_INT);
+            return $statement->execute();
+        }
+        catch (PDOException $e) {
+            error_log("Error eliminarTecnico: " . $e->getMessage());
+            return false;
+        }
+    }
 }

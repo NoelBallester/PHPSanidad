@@ -27,7 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             else {
                $resul['error'] = "";
-               $resul['user.id_tecnico'] = $res;
+               $resul['user.id_tecnico'] = $res['id_tecnico'];
+               $resul['rol'] = $res['rol'];
             }
 
       echo json_encode($resul);
@@ -90,5 +91,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       exit();
    }
 
-// TODO: Falta la modificación de los datos de una usuario
+   // TODO: Falta la modificación de los datos de una usuario
+
+   if ($accion == 'listartecnicos') {
+      $lista = $tec->listarTecnicos();
+      if ($lista !== false) {
+         echo json_encode(['exito' => true, 'tecnicos' => $lista]);
+      }
+      else {
+         echo json_encode(['exito' => false, 'error' => 'Error al listar técnicos']);
+      }
+      exit();
+   }
+
+   if ($accion == 'modificartecnico') {
+      $res = $tec->modificarTecnico($data);
+      if ($res) {
+         echo json_encode(['exito' => true]);
+      }
+      else {
+         echo json_encode(['exito' => false, 'error' => 'Error al modificar técnico']);
+      }
+      exit();
+   }
+
+   if ($accion == 'eliminartecnico') {
+      $res = $tec->eliminarTecnico($data['id_tecnico']);
+      if ($res) {
+         echo json_encode(['exito' => true]);
+      }
+      else {
+         echo json_encode(['exito' => false, 'error' => 'Error al eliminar técnico']);
+      }
+      exit();
+   }
+
 }

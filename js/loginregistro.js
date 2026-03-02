@@ -55,6 +55,7 @@ const userLogin = (event) => {
         // Store session data
         sessionStorage.setItem("isLoggedIn", "true");
         sessionStorage.setItem("userId", response['user.id_tecnico']);
+        sessionStorage.setItem("rol", response.rol);
 
         form_login.reset();
         window.location.href = "./index.html";

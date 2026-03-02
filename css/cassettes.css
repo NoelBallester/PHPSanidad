@@ -355,6 +355,7 @@ td {
 .form__header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 
@@ -362,7 +363,8 @@ td {
 
 .miform,
 .detallemuestra {
-    width: 550px;
+    width: 90%;
+    max-width: 550px;
     border: 2px solid #dee2e6;
     border-radius: 0.5rem;
     position: absolute;
@@ -374,7 +376,8 @@ td {
 }
 
 .detallemuestra {
-    width: 900px;
+    width: 90%;
+    max-width: 900px;
 }
 
 .mimodal {

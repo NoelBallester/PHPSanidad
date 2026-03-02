@@ -125,7 +125,8 @@ CREATE TABLE `tecnicos` (
   `apellidos` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `centro` varchar(255) DEFAULT NULL
+  `centro` varchar(255) DEFAULT NULL,
+  `rol` enum('admin','patologia','laboratorio') NOT NULL DEFAULT 'patologia'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

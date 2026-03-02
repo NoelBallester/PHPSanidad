@@ -50,7 +50,7 @@
                         <a class="nav-link nav__link active" href="./anatomia.html">Anatomía&nbsp;Patológica</a>
                     </li>
                     <li class="nav-item nav__item">
-                        <a class="nav-link nav__link" href="./gestion_muestras.html">Gestión&nbsp;Muestras</a>
+                        <a class="nav-link nav__link" href="./laboratorio.html">Laboratorio</a>
                     </li>
                     <li class="nav-item nav__item">
                         <a class="nav-link nav__link" href="#" onclick="logout(); return false;">Cerrar Sesión</a>
@@ -60,14 +60,36 @@
         </div>
     </nav>
 
-    <!-- Visor -->
-    <!--    <section class="visor">
-            <div class="visor__content">
-                <h3 class="visor__title">Integración de herramientas de Realidad Aumentada y Realidad Virtual en el
-                    laboratorio y sala de autopsias de Anatomía Patológica</h3>
+    <!-- Visor Hero -->
+    <section class="visor">
+        <div class="visor__content text-center">
+            <h1 class="visor__title mb-4">Anatomía <span style="color: var(--accent-color);">Patológica</span></h1>
+            <p class="visor__text mb-5">
+                Seleccione el área de gestión que desea acceder.
+            </p>
+            <div class="visor__actions d-flex justify-content-center flex-wrap gap-5 mt-5">
+                <a href="./citologias.html" class="visor__btn visor__btn--primary py-3 px-5">
+                    <i class="fa-solid fa-vial me-3"></i> Citologías
+                </a>
+                <a href="./cassettes.html" class="visor__btn visor__btn--outline py-3 px-5">
+                    <i class="fa-solid fa-boxes-stacked me-3"></i> Cassettes
+                </a>
             </div>
-        </section> -->
-    <section class="subject-container container">
+        </div>
+
+        <!-- Shape Divider Ondulado -->
+        <div class="custom-shape-divider-bottom-1688640158">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0C73.81,42.56,150.38,82.02,224.27,91.8,258.82,96.38,291.56,86.84,321.39,56.44Z"
+                    class="shape-fill"></path>
+            </svg>
+        </div>
+    </section>
+
+    <section class="subject-container container pt-5">
+        <!-- Contenido adicional si fuera necesario -->
     </section>
 
     </div>
@@ -83,10 +105,6 @@
                         </div>
                         <h2 class="footer__logo m-0">&nbsp;Sanidad</h2>
                     </div>
-                    <p class="footer__desc text-muted mb-4">
-                        Plataforma de visualización y gestión para anatomía patológica. Integración de herramientas de
-                        IA y Realidad Aumentada.
-                    </p>
                 </div>
 
                 <!-- Collaborative Centers -->

@@ -6,14 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<<<<<<< HEAD
-=======
     <script src="./js/auth.js"></script>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-
->>>>>>> fe9da5f834f29212b041cb704baae744fa7d66aa
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -42,16 +38,16 @@
     <a href="#"><img class="subir" src="./assets/images/prueba.png" alt="">
     </a>
 
-<<<<<<< HEAD
     <div class="container-fluid margin p-0">
         <!-- Navigation -->
         <nav class="nav navbar navbar-expand-lg shadow-sm sticky-top">
             <div class="container-fluid d-flex align-items-center justify-content-between px-lg-5">
                 <!-- Logo -->
-                <a class="header__logo d-flex align-items-center" href="./index.html">
-                    <i class="fa-solid fa-microscope me-2" style="color: var(--accent-color);"></i>
-                    <span style="font-weight: 800; letter-spacing: -0.5px;"><span
-                            style="font-weight: 300;">Sanidad</span></span>
+                <a class="navbar-brand nav__logo-container d-flex align-items-center" href="./index.html">
+                    <div class="logo-box me-2">
+                        <i class='bx bxs-flask-iv'></i>
+                    </div>
+                    <span class="nav__title">&nbsp;<strong class="fw-bold">Sanidad</strong></span>
                 </a>
 
                 <!-- Mobile Toggle -->
@@ -78,70 +74,34 @@
                         </li>
                     </ul>
                 </div>
-=======
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg nav shadow-sm sticky-top">
-        <div class="container container-fluid">
-            <!-- Logo -->
-            <a class="navbar-brand nav__logo-container d-flex align-items-center" href="./index.html">
-                <div class="logo-box me-2">
-                    <i class='bx bxs-flask-iv'></i>
+            </div>
+        </nav>
+
+
+        <!-- Visor Hero -->
+        <section class="visor">
+            <div class="visor__content text-center">
+                <h1 class="visor__title mb-4">Área de <span style="color: var(--accent-color);">Laboratorio</span></h1>
+                <p class="visor__text mb-5">
+                    En construcción...
+                </p>
+                <div class="visor__actions d-flex justify-content-center flex-wrap gap-5 mt-5">
+                    <a href="./anatomia.html" class="visor__btn visor__btn--primary py-3 px-5">
+                        <i class="fa-solid fa-arrow-right me-3"></i> Ir a Anatomía Patológica
+                    </a>
                 </div>
-                <span class="nav__title">&nbsp;<strong class="fw-bold">Sanidad</strong></span>
-            </a>
-            <!-- Mobile Toggle -->
-            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <i class='bx bx-menu-alt-right fs-1'></i>
-            </button>
-
-            <!-- Nav Links -->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav__list">
-                    <li class="nav-item nav__item">
-                        <a class="nav-link nav__link" href="./index.html">Inicio</a>
-                    </li>
-                    <li class="nav-item nav__item">
-                        <a class="nav-link nav__link" href="./anatomia.html">Anatomía&nbsp;Patológica</a>
-                    </li>
-                    <li class="nav-item nav__item">
-                        <a class="nav-link nav__link active" href="./laboratorio.html">Laboratorio</a>
-                    </li>
-                    <li class="nav-item nav__item">
-                        <a class="nav-link nav__link" href="#" onclick="logout(); return false;">Cerrar Sesión</a>
-                    </li>
-                </ul>
             </div>
-        </div>
-    </nav>
 
-
-    <!-- Visor Hero -->
-    <section class="visor">
-        <div class="visor__content text-center">
-            <h1 class="visor__title mb-4">Área de <span style="color: var(--accent-color);">Laboratorio</span></h1>
-            <p class="visor__text mb-5">
-                En construcción...
-            </p>
-            <div class="visor__actions d-flex justify-content-center flex-wrap gap-5 mt-5">
-                <a href="./anatomia.html" class="visor__btn visor__btn--primary py-3 px-5">
-                    <i class="fa-solid fa-arrow-right me-3"></i> Ir a Anatomía Patológica
-                </a>
->>>>>>> fe9da5f834f29212b041cb704baae744fa7d66aa
+            <!-- Shape Divider Ondulado -->
+            <div class="custom-shape-divider-bottom-1688640158">
+                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                    preserveAspectRatio="none">
+                    <path
+                        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0C73.81,42.56,150.38,82.02,224.27,91.8,258.82,96.38,291.56,86.84,321.39,56.44Z"
+                        class="shape-fill"></path>
+                </svg>
             </div>
-        </div>
-
-        <!-- Shape Divider Ondulado -->
-        <div class="custom-shape-divider-bottom-1688640158">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
-                preserveAspectRatio="none">
-                <path
-                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V0C73.81,42.56,150.38,82.02,224.27,91.8,258.82,96.38,291.56,86.84,321.39,56.44Z"
-                    class="shape-fill"></path>
-            </svg>
-        </div>
-    </section>
+        </section>
 
     </div>
     <!-- Footer -->

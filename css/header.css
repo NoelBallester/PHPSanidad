@@ -1,4 +1,14 @@
 /* Header Unificado (Nav) */
+.nav,
+.nav__link,
+.nav__title {
+  font-family: 'Outfit', sans-serif !important;
+}
+
+.nav__title {
+  font-weight: 800 !important;
+}
+
 .header__logo {
   font-size: 1.5rem;
   color: var(--title-color);
@@ -100,7 +110,7 @@
 
 .nav__link.active {
   color: var(--title-color);
-  font-weight: 600;
+  font-weight: 800 !important;
 }
 
 .header__icon--user {

@@ -72,11 +72,10 @@ const todosCassettes = document.getElementById("todosCassettes");
 
 // Nuevo Cassete
 const inputFecha = document.getElementById("inputFecha");
+const inputCassette = document.getElementById("inputCassette");
 const inputDescripcion = document.getElementById("inputDescripcion");
-const inputNumCassette = document.getElementById("inputNumCassette");
 const inputCaracteristicas = document.getElementById("inputCaracteristicas");
 const inputObservaciones = document.getElementById("inputObservaciones");
-const inputClinica = document.getElementById("inputClinica");
 const inputMicroscopia = document.getElementById("inputMicroscopia");
 const inputDiagnostico = document.getElementById("inputDiagnostico");
 const inputPatologo = document.getElementById("inputPatologo");
@@ -100,7 +99,6 @@ const inputCaracteristicasUpdate = document.getElementById(
 const inputObservacionesUpdate = document.getElementById(
   "inputObservacionesUpdate"
 );
-const inputClinicaUpdate = document.getElementById("inputClinicaUpdate");
 const inputMicroscopiaUpdate = document.getElementById("inputMicroscopiaUpdate");
 const inputDiagnosticoUpdate = document.getElementById("inputDiagnosticoUpdate");
 const inputPatologoUpdate = document.getElementById("inputPatologoUpdate");
@@ -233,18 +231,15 @@ const crearCassette = (event) => {
 
     body: JSON.stringify({
       accion: "crearCassette",
-
+      cassette: inputCassette.value,
       fecha: inputFecha.value,
       descripcion: inputDescripcion.value,
       caracteristicas: inputCaracteristicas.value,
       observaciones: inputObservaciones.value,
-      clinica: inputClinica.value,
       microscopia: inputMicroscopia.value,
       diagnostico: inputDiagnostico.value,
       patologo: inputPatologo.value,
-      // TODO: No lo guardo en el localStorage al acceder el usuario
       tecnicoIdTecnico: sessionStorage.getItem("user"),
-      /*   imagen : inputImagenes.files[0], */
       organo: inputSelect.value,
     }),
   }).then((response) => response.json());
@@ -572,12 +567,11 @@ const cargarCassetteUpdateModal = async (event) => {
     alertcassette.classList.remove("ocultar");
   } else {
     let cassette = await cargarCassette(cassetteId);
+    inputCassetteUpdate.value = cassette.cassette;
     inputDescripcionUpdate.value = cassette.descripcion;
-    inputCassetteUpdate.value = cassette.id_casette;
     inputFechaUpdate.value = cassette.fecha;
     inputCaracteristicasUpdate.value = cassette.caracteristicas;
     inputObservacionesUpdate.value = cassette.observaciones;
-    inputClinicaUpdate.value = cassette.informacion_clinica || "";
     inputMicroscopiaUpdate.value = cassette.descripcion_microscopica || "";
     inputDiagnosticoUpdate.value = cassette.diagnostico_final || "";
     inputPatologoUpdate.value = cassette.patologo_responsable || "";
@@ -596,13 +590,11 @@ const modificarCassetteUpdate = async (event) => {
       accion: "modificarCassette",
 
       cassetteId: cassetteId,
-
+      cassette: inputCassetteUpdate.value,
       fecha: inputFechaUpdate.value,
       descripcion: inputDescripcionUpdate.value,
-      cassette: inputCassetteUpdate.value,
       caracteristicas: inputCaracteristicasUpdate.value,
       observaciones: inputObservacionesUpdate.value,
-      clinica: inputClinicaUpdate.value,
       microscopia: inputMicroscopiaUpdate.value,
       diagnostico: inputDiagnosticoUpdate.value,
       patologo: inputPatologoUpdate.value,

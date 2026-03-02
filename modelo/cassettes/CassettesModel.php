@@ -33,40 +33,33 @@ class CassettesModel extends Basedatos
     public function crearCassette($data)
     {
         if ($this->conexion == null) {
-            return -1; // "ERROR BASE DE DATOS. SIN CONEXIÓN";
+            return -1;
         }
         try {
             $qr = "--c--" . substr(uniqid() . mt_rand(), 0, 12);
-            $temp_cassette = "temp_" . uniqid();
+            $manual_cassette = $data["cassette"];
 
             $sql = "insert into $this->table 
             (cassette, fecha, descripcion, caracteristicas, 
-            observaciones, qr_casette, organo, tecnicoIdTecnico, 
-            informacion_clinica, descripcion_microscopica, diagnostico_final, patologo_responsable) 
-            values (?,?,?,?,?,?,?,?,?,?,?,?)";
+            observaciones, descripcion_microscopica, diagnostico_final, patologo_responsable,
+            qr_casette, organo, tecnicoIdTecnico) 
+            values (?,?,?,?,?,?,?,?,?,?,?)";
             $sentencia = $this->conexion->prepare($sql);
 
-            // extraemos los parámetros de la variable post
-            $sentencia->bindParam(1, $temp_cassette);
+            $sentencia->bindParam(1, $manual_cassette);
             $sentencia->bindParam(2, $data["fecha"]);
             $sentencia->bindParam(3, $data["descripcion"]);
             $sentencia->bindParam(4, $data["caracteristicas"]);
             $sentencia->bindParam(5, $data["observaciones"]);
-            $sentencia->bindParam(6, $qr);
-            $sentencia->bindParam(7, $data["organo"]);
-            $sentencia->bindParam(8, $data["tecnicoIdTecnico"]);
-            $sentencia->bindParam(9, $data["clinica"]);
-            $sentencia->bindParam(10, $data["microscopia"]);
-            $sentencia->bindParam(11, $data["diagnostico"]);
-            $sentencia->bindParam(12, $data["patologo"]);
+            $sentencia->bindParam(6, $data["microscopia"]);
+            $sentencia->bindParam(7, $data["diagnostico"]);
+            $sentencia->bindParam(8, $data["patologo"]);
+            $sentencia->bindParam(9, $qr);
+            $sentencia->bindParam(10, $data["organo"]);
+            $sentencia->bindParam(11, $data["tecnicoIdTecnico"]);
 
             $sentencia->execute();
-            //devuelvo el id
             $id = $this->conexion->lastInsertId();
-
-            $sql2 = "UPDATE $this->table SET cassette = :id WHERE id_casette = :id";
-            $stmt2 = $this->conexion->prepare($sql2);
-            $stmt2->execute(['id' => $id]);
 
             return $id;
         }
@@ -209,8 +202,8 @@ class CassettesModel extends Basedatos
     {
         try {
             $sql = "update $this->table 
-                    set cassette=?, fecha=?, descripcion=?, caracteristicas=?, observaciones=?, organo=?, 
-                    informacion_clinica=?, descripcion_microscopica=?, diagnostico_final=?, patologo_responsable=?
+                    set cassette=?, fecha=?, descripcion=?, caracteristicas=?, observaciones=?,
+                    descripcion_microscopica=?, diagnostico_final=?, patologo_responsable=?, organo=?
                     where id_casette=?";
             $sentencia = $this->conexion->prepare($sql);
 
@@ -219,12 +212,11 @@ class CassettesModel extends Basedatos
             $sentencia->bindParam(3, $data["descripcion"]);
             $sentencia->bindParam(4, $data["caracteristicas"]);
             $sentencia->bindParam(5, $data["observaciones"]);
-            $sentencia->bindParam(6, $data["organo"]);
-            $sentencia->bindParam(7, $data["clinica"]);
-            $sentencia->bindParam(8, $data["microscopia"]);
-            $sentencia->bindParam(9, $data["diagnostico"]);
-            $sentencia->bindParam(10, $data["patologo"]);
-            $sentencia->bindParam(11, $data["cassetteId"]);
+            $sentencia->bindParam(6, $data["microscopia"]);
+            $sentencia->bindParam(7, $data["diagnostico"]);
+            $sentencia->bindParam(8, $data["patologo"]);
+            $sentencia->bindParam(9, $data["organo"]);
+            $sentencia->bindParam(10, $data["cassetteId"]);
             $sentencia->execute();
             if ($sentencia->rowCount() == 0)
                 return "Registro NO actualizado, o no existe o no hay cambios: " . $data["cassetteId"];

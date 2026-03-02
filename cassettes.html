@@ -365,7 +365,7 @@
                             <tr>
                                 <th scope="row">Fecha</th>
                                 <th scope="row">Descripción</th>
-                                <th scope="row">Tinción</th>
+                                <th scope="row">Resultados</th>
                                 <th> </th>
                             </tr>
                         </thead>
@@ -397,7 +397,8 @@
                             <input type="date" id="cassette__informe_fecha" class="form-control blue__color bg-light">
                         </div>
                         <div class="mb-3">
-                            <label for="cassette__informe_tincion" class="blue__color--negrita d-block">Tinción</label>
+                            <label for="cassette__informe_tincion"
+                                class="blue__color--negrita d-block">Resultados</label>
                             <select id="cassette__informe_tincion" class="form-select blue__color bg-light">
                                 <option selected disabled value="">Seleccionar Tinción</option>
                                 <option>Hematoxilina Eosina (HE)</option>
@@ -405,6 +406,12 @@
                                 <option>Gram</option>
                                 <option>Azul de Metileno</option>
                                 <option>Papanicolau</option>
+                                <option>Wright</option>
+                                <option>Zienhl-Neelsen</option>
+                                <option>Tricorómico</option>
+                                <option>Orceína</option>
+                                <option>P.A.S</option>
+                                <option>Otros</option>
                             </select>
                         </div>
                         <div class="mb-3">
@@ -414,7 +421,8 @@
                                 rows="3"></textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="cassette__informe_imagen" class="blue__color--negrita d-block">Imagen</label>
+                            <label for="cassette__informe_imagen"
+                                class="blue__color--negrita d-block">Formulario</label>
                             <input type="file" id="cassette__informe_imagen" accept=".jpg,.jpeg,.png,.gif"
                                 class="form-control blue__color bg-light">
                         </div>
@@ -461,6 +469,11 @@
                         <option>Gram</option>
                         <option>Azul de Metileno</option>
                         <option>Papanicolau</option>
+                        <option>Zienhl-Neelsen</option>
+                        <option>Tricorómico</option>
+                        <option>Orceína</option>
+                        <option>P.A.S</option>
+                        <option>Otros</option>
 
                     </select>
                 </div>
@@ -632,15 +645,14 @@
                 <hr class="m-0">
 
                 <div class="col-md-12 mt-4">
-                    <label for="inputDescripcion" class="form-label blue__color">Detalle Biopsia / Nombre
-                        Paciente</label>
-                    <input class="form-control blue__color" id="inputDescripcion" required>
+                    <label for="inputCassette" class="form-label blue__color">Número Cassette</label>
+                    <input class="form-control blue__color" id="inputCassette" required>
                 </div>
 
                 <div class="col-md-12 mt-3">
-                    <label for="inputClinica" class="form-label blue__color">Información Clínica /
-                        Antecedentes</label>
-                    <textarea class="form-control blue__color textarea__text" id="inputClinica"></textarea>
+                    <label for="inputDescripcion" class="form-label blue__color">Detalle Biopsia / Nombre
+                        Paciente</label>
+                    <input class="form-control blue__color" id="inputDescripcion" required>
                 </div>
 
                 <div class="row col-md-12">
@@ -747,12 +759,6 @@
                     <input type="text" class="form-control blue__color" id="inputPatologo">
                 </div>
 
-                <!-- <div class="col-md-12">
-          <label for="inputImagenes" class="form-label blue__color">Imagen</label>
-          <input type="file" accept=".jpg,.jpeg,.png,.gif" class="form-control blue__color" name="image"
-            id="inputImagenes">
-        </div> -->
-
                 <div class="col-12">
                     <button class="btn btn__modal blue__color" type="submit"> Crear Cassette</button>
                 </div>
@@ -774,20 +780,14 @@
                 <hr>
 
                 <div class="col-md-12 mt-0">
+                    <label for="inputCassetteUpdate" class="form-label blue__color">Número Cassette</label>
+                    <input class="form-control blue__color" id="inputCassetteUpdate" required>
+                </div>
+
+                <div class="col-md-12 mt-3">
                     <label for="inputDescripcionUpdate" class="form-label blue__color">Detalle Biopsia / Nombre
                         Paciente</label>
                     <input class="form-control blue__color" id="inputDescripcionUpdate" required>
-                </div>
-
-                <div class="col-md-12 mt-3">
-                    <label for="inputClinicaUpdate" class="form-label blue__color">Información Clínica /
-                        Antecedentes</label>
-                    <textarea class="form-control blue__color textarea__text" id="inputClinicaUpdate"></textarea>
-                </div>
-
-                <div class="col-md-12 mt-3">
-                    <label for="inputDescripcionUpdate" class="form-label blue__color">Número Cassette</label>
-                    <input class="form-control blue__color" id="inputCassetteUpdate" required>
                 </div>
 
                 <div class="row col-md-12 mt-3">
@@ -892,11 +892,6 @@
                     <label for="inputPatologoUpdate" class="form-label blue__color">Patólogo Responsable</label>
                     <input type="text" class="form-control blue__color" id="inputPatologoUpdate">
                 </div>
-
-                <!--  <div class="col-md-12 mt-3">
-          <label for="inputImagenesUpdate" class="form-label blue__color">Imagen</label>
-          <input type="file" accept=".jpg,.jpeg,.png,.gif" class="form-control blue__color" id="inputImagenesUpdate">
-        </div> -->
 
                 <div class="col-12">
                     <button class="btn btn__modal blue__color" type="submit"> Modificar Cassette</button>

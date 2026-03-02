@@ -41,18 +41,25 @@
 /* Menú */
 .nav {
   position: sticky;
-  top: 0px;
+  top: 0;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-  padding: 1rem 5%;
+  padding: 0.75rem 5%;
   z-index: 1000;
   border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .nav__list {
   display: flex;
+  margin: 0;
+  padding: 0;
+  gap: 2rem;
 }
 
 .nav__item {
@@ -61,14 +68,14 @@
 
 .nav__link {
   display: inline-block;
-  margin-right: 4rem !important;
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 500;
   text-transform: capitalize;
   color: var(--text-main);
   text-decoration: none;
   transition: color 0.3s ease;
   position: relative;
+  padding: 0.5rem 0;
 }
 
 .nav__link::after {

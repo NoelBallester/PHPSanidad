@@ -23,26 +23,25 @@
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg nav shadow-sm sticky-top">
-        <div class="container container-fluid">
+    <nav class="nav navbar navbar-expand-lg shadow-sm sticky-top">
+        <div class="container-fluid d-flex align-items-center justify-content-between px-lg-5">
             <!-- Logo -->
-            <a class="navbar-brand nav__logo-container d-flex align-items-center" href="./index.html">
-                <div class="logo-box me-2">
-                    <i class='bx bxs-flask-iv'></i>
-                </div>
-                <span class="nav__title">PHH&nbsp;<span class="fw-bold">Sanidad</span></span>
+            <a class="header__logo d-flex align-items-center" href="./index.html">
+                <i class="fa-solid fa-microscope me-2" style="color: var(--accent-color);"></i>
+                <span style="font-weight: 800; letter-spacing: -0.5px;"><span
+                        style="font-weight: 300;">Sanidad</span></span>
             </a>
 
             <!-- Mobile Toggle -->
-            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
+            <button class="navbar-toggler custom-toggler d-lg-none" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                 aria-label="Toggle navigation">
-                <i class='bx bx-menu-alt-right fs-1'></i>
+                <i class="fa-solid fa-bars header__icon"></i>
             </button>
 
             <!-- Nav Links -->
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav__list">
+                <ul class="navbar-nav ms-auto nav__list">
                     <li class="nav-item nav__item">
                         <a class="nav-link nav__link" href="./index.html">Inicio</a>
                     </li>
@@ -95,38 +94,20 @@
     </div>
     <!-- Footer -->
     <footer class="footer mt-5">
-        <div class="footer__container container py-5">
-            <div class="row g-4 justify-content-between">
-                <!-- Brand Info -->
-                <div class="col-lg-4">
-                    <div class="footer__brand d-flex align-items-center mb-4">
-                        <div class="logo-box me-3">
-                            <i class='bx bxs-flask-iv'></i>
-                        </div>
-                        <h2 class="footer__logo m-0">&nbsp;Sanidad</h2>
-                    </div>
-                </div>
-
-                <!-- Collaborative Centers -->
-                <div class="col-lg-3 col-md-6">
-                    <h3 class="footer__title fs-5 mb-4 border-bottom pb-2 d-inline-block">Centros Colaboradores</h3>
-                    <ul class="list-unstyled footer__links">
-                        <li class="mb-2">
-                            <a href="https://www.iesbohio.es/web/" target="_blank"
-                                class="column__link d-flex align-items-center">
-                                <i class='bx bx-chevron-right me-2'></i> IES El Bohío
-                            </a>
-                        </li>
-                        <li class="mb-2">
-                            <a href="https://www.iesryc.org/" target="_blank"
-                                class="column__link d-flex align-items-center">
-                                <i class='bx bx-chevron-right me-2'></i> IES Ramón y Cajal
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+        <div class="footer-container">
+            <div class="footer__box footer__menu text-center">
+                <h3 class="footer__title">Centros Colaboradores</h3>
+                <section class="links d-flex justify-content-center flex-wrap gap-4">
+                    <a href="https://www.iesbohio.es/web/" target="_blank" class="column__link">IES El Bohío</a>
+                    <a href="https://www.iesryc.org/" target="_blank" class="column__link">IES Ramón y Cajal</a>
+                </section>
             </div>
         </div>
+        <hr />
+        <p class="footer__footer">
+            Integración de herramientas de Realidad Aumentada y Realidad Virtual en el Laboratorio y Sala de Autopsias
+            de Anatomía Patológica
+        </p>
     </footer>
 
     <!-- Fin del Container -->

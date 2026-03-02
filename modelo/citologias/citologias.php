@@ -86,10 +86,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       exit();
    }
 
+   // Actualizar Informe Médico
+   if ($accion == "actualizarInformeMedico") {
+      $res = $citologia->actualizarInformeMedico($data);
+      echo json_encode($res);
+      exit();
+   }
+
 //    //  Cassettes por QR
 //    if ($accion == "cargarCassetteQR") {
 //       $res = $citologia->cargarCassetteQR($data["qr"]);
 //       echo json_encode($res);
 //       exit();
 //    }
- }
+}

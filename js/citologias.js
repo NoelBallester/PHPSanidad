@@ -50,6 +50,14 @@ const citologiaObservaciones = document.getElementById(
   "citologia__observaciones"
 );
 
+const citologiaInformeDescripcion = document.getElementById("citologia__informe_descripcion");
+const citologiaInformeFecha = document.getElementById("citologia__informe_fecha");
+const citologiaInformeTincion = document.getElementById("citologia__informe_tincion");
+const citologiaInformeObservaciones = document.getElementById("citologia__informe_observaciones");
+const citologiaInformeImagen = document.getElementById("citologia__informe_imagen");
+const btnGuardarInforme = document.getElementById("btnGuardarInforme");
+let currentCitologiaId = null;
+
 const citologiaImagen = document.getElementById("citologia__imagen");
 const eliminarCassetteModal = document.getElementById("eliminarCassetteModal");
 
@@ -91,6 +99,10 @@ const inputCaracteristicasUpdate = document.getElementById(
 const inputObservacionesUpdate = document.getElementById(
   "inputObservacionesUpdate"
 );
+const inputClinicaUpdate = document.getElementById("inputClinicaUpdate");
+const inputMicroscopiaUpdate = document.getElementById("inputMicroscopiaUpdate");
+const inputDiagnosticoUpdate = document.getElementById("inputDiagnosticoUpdate");
+const inputPatologoUpdate = document.getElementById("inputPatologoUpdate");
 const inputSelectUpdate = document.getElementById("inputSelectUpdate");
 
 // Crear una muestra
@@ -226,6 +238,10 @@ const crearCitologia = (event) => {
       descripcion: inputDescripcion.value,
       caracteristicas: inputCaracteristicas.value,
       observaciones: inputObservaciones.value,
+      clinica: inputClinica.value,
+      microscopia: inputMicroscopia.value,
+      diagnostico: inputDiagnostico.value,
+      patologo: inputPatologo.value,
       // TODO: No lo guardo en el localStorage al acceder el usuario
       tecnicoIdTecnico: sessionStorage.getItem("user"),
       organo: inputSelect.value,
@@ -502,6 +518,13 @@ const imprimirDetalleCitologia = (respuesta) => {
   citologiaCaracteristicas.textContent = respuesta.caracteristicas;
   citologiaObservaciones.textContent = respuesta.observaciones;
 
+  citologiaInformeDescripcion.value = respuesta.informe_descripcion || "";
+  citologiaInformeFecha.value = respuesta.informe_fecha || "";
+  citologiaInformeTincion.value = respuesta.informe_tincion || "";
+  citologiaInformeObservaciones.value = respuesta.informe_observaciones || "";
+  // citologiaInformeImagen logic would depend on base64 rendering
+  currentCitologiaId = respuesta.id_citologia;
+
   // Le paso la imagen al visor de imagenes
   // Si tiene o no imagen
   /*  console.log(respuesta)
@@ -558,6 +581,10 @@ const cargarCitologiaUpdateModal = async (event) => {
     inputFechaUpdate.value = citologia.fecha;
     inputCaracteristicasUpdate.value = citologia.caracteristicas;
     inputObservacionesUpdate.value = citologia.observaciones;
+    inputClinicaUpdate.value = citologia.informacion_clinica || "";
+    inputMicroscopiaUpdate.value = citologia.descripcion_microscopica || "";
+    inputDiagnosticoUpdate.value = citologia.diagnostico_final || "";
+    inputPatologoUpdate.value = citologia.patologo_responsable || "";
     inputSelectUpdate.value = citologia.organo;
   }
 };
@@ -580,6 +607,10 @@ const modificarCitologiaUpdate = async (event) => {
       tipo: inputTipoUpdate.value,
       caracteristicas: inputCaracteristicasUpdate.value,
       observaciones: inputObservacionesUpdate.value,
+      clinica: inputClinicaUpdate.value,
+      microscopia: inputMicroscopiaUpdate.value,
+      diagnostico: inputDiagnosticoUpdate.value,
+      patologo: inputPatologoUpdate.value,
       tecnicoIdTecnico: sessionStorage.getItem("user"),
       organo: inputSelectUpdate.value,
     }),
@@ -1267,3 +1298,74 @@ btn__imprimirqrmuestra.addEventListener("click", () => imprimirQR("muestra"));
 
 btnborrarmuestra.addEventListener("click", borrarMuestra);
 btnborrarimagenmuestra.addEventListener("click", borrarImagenMuestra);
+
+// Guardar solo el informe de resultados
+const guardarInformeMedico = async () => {
+  if (!currentCitologiaId) {
+    alert("Por favor, selecciona una citología primero.");
+    return;
+  }
+
+  const datosReporte = {
+    accion: "actualizarInformeMedico",
+    citologiaId: currentCitologiaId,
+    descripcion: citologiaInformeDescripcion.value,
+    fecha: citologiaInformeFecha.value,
+    tincion: citologiaInformeTincion.value,
+    observaciones: citologiaInformeObservaciones.value,
+    imagen: citologiaInformeImagen.files.length > 0 ? "" : "", // Basic fallback
+  };
+
+  if (citologiaInformeImagen.files.length > 0) {
+    const imgReader = new FileReader();
+    imgReader.readAsDataURL(citologiaInformeImagen.files[0]);
+    imgReader.onload = async function () {
+      datosReporte.imagen = imgReader.result.split(',')[1]; // Get base64
+      guardarDatosReporteCitologia(datosReporte);
+    };
+    return;
+  }
+  guardarDatosReporteCitologia(datosReporte);
+};
+
+const guardarDatosReporteCitologia = async (datosReporte) => {
+  try {
+    const res = await fetch("./modelo/citologias/citologias.php", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(datosReporte),
+    });
+
+    const data = await res.json();
+    alert(data); // "Informe actualizado correctamente"
+  } catch (error) {
+    console.error("Error al guardar el informe:", error);
+    alert("Error al guardar el informe de resultados.");
+  }
+};
+
+if (btnGuardarInforme) {
+  btnGuardarInforme.addEventListener("click", guardarInformeMedico);
+}
+
+// Toggle section views
+const sectionMuestras = document.getElementById("sectionMuestras");
+const sectionInforme = document.getElementById("sectionInforme");
+const btnToggleInforme = document.getElementById("btnToggleInforme");
+const btnToggleMuestras = document.getElementById("btnToggleMuestras");
+
+if (btnToggleInforme && sectionMuestras && sectionInforme) {
+  btnToggleInforme.addEventListener("click", () => {
+    sectionMuestras.classList.add("d-none");
+    sectionInforme.classList.remove("d-none");
+  });
+}
+
+if (btnToggleMuestras && sectionMuestras && sectionInforme) {
+  btnToggleMuestras.addEventListener("click", () => {
+    sectionInforme.classList.add("d-none");
+    sectionMuestras.classList.remove("d-none");
+  });
+}

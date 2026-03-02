@@ -230,6 +230,31 @@ class CitologiasModel extends Basedatos
         }
     }
 
+
+    // Actualizar solo el informe médico
+    public function actualizarInformeMedico($data)
+    {
+        try {
+            $sql = "UPDATE $this->table 
+                    SET informe_descripcion=?, informe_fecha=?, informe_tincion=?, informe_observaciones=?, informe_imagen=?
+                    WHERE id_citologia=?";
+            $sentencia = $this->conexion->prepare($sql);
+
+            $sentencia->bindParam(1, $data["descripcion"]);
+            $sentencia->bindParam(2, $data["fecha"]);
+            $sentencia->bindParam(3, $data["tincion"]);
+            $sentencia->bindParam(4, $data["observaciones"]);
+            $sentencia->bindParam(5, $data["imagen"], PDO::PARAM_LOB);
+            $sentencia->bindParam(6, $data["citologiaId"]);
+
+            $sentencia->execute();
+            return "Informe actualizado correctamente";
+        }
+        catch (PDOException $e) {
+            return "ERROR AL ACTUALIZAR INFORME: " . $e->getMessage();
+        }
+    }
+
 // // Cassettes por código QR
 // public function cargarCassetteQR($qr)
 // {

@@ -335,6 +335,21 @@ td {
   border-radius: 0.25rem;
 }
 
+.informe__scroll {
+  max-height: 350px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.informe__scroll::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.informe__scroll::-webkit-scrollbar-thumb {
+  background-color: #006dad4e;
+  border-radius: 0.25rem;
+}
+
 .form__header {
   display: flex;
   justify-content: space-between;

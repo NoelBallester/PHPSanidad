@@ -41,8 +41,9 @@ class CassettesModel extends Basedatos
 
             $sql = "insert into $this->table 
             (cassette, fecha, descripcion, caracteristicas, 
-            observaciones, qr_casette, organo, tecnicoIdTecnico) 
-            values (?,?,?,?,?,?,?,?)";
+            observaciones, qr_casette, organo, tecnicoIdTecnico, 
+            informacion_clinica, descripcion_microscopica, diagnostico_final, patologo_responsable) 
+            values (?,?,?,?,?,?,?,?,?,?,?,?)";
             $sentencia = $this->conexion->prepare($sql);
 
             // extraemos los parámetros de la variable post
@@ -54,6 +55,10 @@ class CassettesModel extends Basedatos
             $sentencia->bindParam(6, $qr);
             $sentencia->bindParam(7, $data["organo"]);
             $sentencia->bindParam(8, $data["tecnicoIdTecnico"]);
+            $sentencia->bindParam(9, $data["clinica"]);
+            $sentencia->bindParam(10, $data["microscopia"]);
+            $sentencia->bindParam(11, $data["diagnostico"]);
+            $sentencia->bindParam(12, $data["patologo"]);
 
             $sentencia->execute();
             //devuelvo el id
@@ -204,7 +209,8 @@ class CassettesModel extends Basedatos
     {
         try {
             $sql = "update $this->table 
-                    set cassette=?, fecha=?, descripcion=?, caracteristicas=?, observaciones=?, organo=?
+                    set cassette=?, fecha=?, descripcion=?, caracteristicas=?, observaciones=?, organo=?, 
+                    informacion_clinica=?, descripcion_microscopica=?, diagnostico_final=?, patologo_responsable=?
                     where id_casette=?";
             $sentencia = $this->conexion->prepare($sql);
 
@@ -214,7 +220,11 @@ class CassettesModel extends Basedatos
             $sentencia->bindParam(4, $data["caracteristicas"]);
             $sentencia->bindParam(5, $data["observaciones"]);
             $sentencia->bindParam(6, $data["organo"]);
-            $sentencia->bindParam(7, $data["cassetteId"]);
+            $sentencia->bindParam(7, $data["clinica"]);
+            $sentencia->bindParam(8, $data["microscopia"]);
+            $sentencia->bindParam(9, $data["diagnostico"]);
+            $sentencia->bindParam(10, $data["patologo"]);
+            $sentencia->bindParam(11, $data["cassetteId"]);
             $sentencia->execute();
             if ($sentencia->rowCount() == 0)
                 return "Registro NO actualizado, o no existe o no hay cambios: " . $data["cassetteId"];
@@ -223,6 +233,30 @@ class CassettesModel extends Basedatos
         }
         catch (PDOException $e) {
             return "ERROR AL ACTUALIZAR UN CASSETTE" . $e->getMessage();
+        }
+    }
+
+    // Actualizar solo el informe médico
+    public function actualizarInformeMedico($data)
+    {
+        try {
+            $sql = "UPDATE $this->table 
+                    SET informe_descripcion=?, informe_fecha=?, informe_tincion=?, informe_observaciones=?, informe_imagen=?
+                    WHERE id_casette=?";
+            $sentencia = $this->conexion->prepare($sql);
+
+            $sentencia->bindParam(1, $data["descripcion"]);
+            $sentencia->bindParam(2, $data["fecha"]);
+            $sentencia->bindParam(3, $data["tincion"]);
+            $sentencia->bindParam(4, $data["observaciones"]);
+            $sentencia->bindParam(5, $data["imagen"], PDO::PARAM_LOB);
+            $sentencia->bindParam(6, $data["cassetteId"]);
+
+            $sentencia->execute();
+            return "Informe actualizado correctamente";
+        }
+        catch (PDOException $e) {
+            return "ERROR AL ACTUALIZAR INFORME: " . $e->getMessage();
         }
     }
 

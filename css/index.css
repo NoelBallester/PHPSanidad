@@ -3,9 +3,11 @@
   --accent-color: #06B6D4;
   --accent-secondary: #10B981;
   --bg-light: #F0F9FF;
+  --bg-light-rgb: 240, 249, 255;
   --text-main: #0F172A;
   --text-muted: #475569;
   --card-bg: #FFFFFF;
+  --card-bg-rgb: 255, 255, 255;
 }
 
 body.dark-theme {
@@ -13,9 +15,11 @@ body.dark-theme {
   --accent-color: #22D3EE;
   --accent-secondary: #34D399;
   --bg-light: #0F172A;
+  --bg-light-rgb: 15, 23, 42;
   --text-main: #F8FAFC;
   --text-muted: #CBD5E1;
   --card-bg: #1E293B;
+  --card-bg-rgb: 30, 41, 59;
 }
 
 * {

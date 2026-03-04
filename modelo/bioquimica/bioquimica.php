@@ -3,7 +3,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
    require_once("../Basedatos.php");
    require_once("MuestrasModel.php");
    $muestra = new MuestrasModel();
-   error_reporting(E_ALL);
    $data = json_decode(file_get_contents("php://input"), true);
    $accion = $data["accion"];
 

@@ -3,7 +3,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
    require_once("../Basedatos.php");
    require_once("CitologiasModel.php");
    $citologia = new CitologiasModel();
-   error_reporting(E_ALL);
    $data = json_decode(file_get_contents("php://input"), true);
    $accion = $data["accion"];
 

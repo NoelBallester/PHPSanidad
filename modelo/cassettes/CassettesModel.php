@@ -107,6 +107,10 @@ class CassettesModel extends Basedatos
     // Cassettes por organo
     public function cassettesOrgano($organo)
     {
+        if ($organo === '*') {
+            return $this->cargarTodosCassettes();
+        }
+
         try {
             $sql = "SELECT * FROM $this->table where organo=:organo order by organo";
 

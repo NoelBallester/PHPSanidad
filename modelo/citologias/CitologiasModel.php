@@ -108,6 +108,10 @@ class CitologiasModel extends Basedatos
     // Citologías por organo
     public function citologiasOrgano($organo)
     {
+        if ($organo === '*') {
+            return $this->cargarTodasCitologias();
+        }
+
         try {
             $sql = "SELECT * FROM $this->table where organo=:organo order by organo";
 

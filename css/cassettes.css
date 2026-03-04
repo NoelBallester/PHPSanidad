@@ -306,7 +306,8 @@ td {
 }
 
 .cassette__num {
-    margin: 2px 0 0 -65px;
+    margin-left: 10px;
+    flex-grow: 1;
     text-align: left !important;
 }
 

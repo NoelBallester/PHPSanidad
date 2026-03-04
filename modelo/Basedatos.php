@@ -2,8 +2,8 @@
 
 abstract class Basedatos
 {
-    private $servername = "192.168.35.124:3306";
-    private $database = "sanidadPHP";
+    private $servername = "192.168.35.142:3306";
+    private $database = "sanitariaPHP";
     private $username = "sanidadphp";
     private $password = "1234";
     private $conexion;
@@ -20,10 +20,11 @@ abstract class Basedatos
                 "mysql:host=$host$port;dbname=$this->database;charset=utf8",
                 $this->username,
                 $this->password
-            );
+                );
             $this->conexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $this->conexion;
-        } catch (PDOException $e) {
+        }
+        catch (PDOException $e) {
             $this->mensajeerror = $e->getMessage();
             error_log("Fallo de conexión: " . $this->mensajeerror);
             return null;

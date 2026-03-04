@@ -3,7 +3,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    require_once('../Basedatos.php');
    require_once('TecnicosModel.php');
    $tec = new Tecnicos();
-   error_reporting(E_ALL);
    $resul = [];
    $data = json_decode(file_get_contents('php://input'), true);
    $accion = $data['accion'];
@@ -23,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
          }
          else
             if ($res == -4) {
-               $resul['error'] = "ERROR AL CONSULTAR EN LA BD.";
+               $resul['error'] = "ERROR AL CONSULTAR EN LA BD: " . $tec->getMensajeError();
             }
             else {
                $resul['error'] = "";

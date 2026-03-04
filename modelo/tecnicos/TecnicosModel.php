@@ -57,6 +57,31 @@ class Tecnicos extends Basedatos
         }
     }
 
+    private function verifyDjangoHash($password, $djangoHash)
+    {
+        // Django PBKDF2 hash format: pbkdf2_algorithm$iterations$salt$hash
+        $parts = explode('$', $djangoHash);
+        if (count($parts) !== 4 || strpos($parts[0], 'pbkdf2_') !== 0) {
+            return false;
+        }
+
+        $algo = str_replace('pbkdf2_', '', $parts[0]);
+        // Django uses SHA256 by default for PBKDF2
+        if ($algo !== 'sha256') {
+            return false; // Only supporting standard sha256 for now
+        }
+
+        $iterations = (int)$parts[1];
+        $salt = $parts[2];
+        $storedHash = base64_decode($parts[3]);
+
+        // Generate hash using PHP's hash_pbkdf2
+        // Note: Django's base64 encoding might not pad with '=', and hash_pbkdf2 output is raw binary if 5th param is true
+        $calcHash = hash_pbkdf2($algo, $password, $salt, $iterations, 32, true);
+
+        return hash_equals($storedHash, $calcHash);
+    }
+
     public function loginusuario($userId, $clave)
     {
         if ($this->conexion == null) {
@@ -72,7 +97,38 @@ class Tecnicos extends Basedatos
             {
                 $row = $statement->fetch();
 
-                if (password_verify($clave, $row['password'])) {
+                $hashedPassword = $row['password'];
+                $isCorrect = false;
+                $needsRehash = false;
+
+                if (strpos($hashedPassword, 'pbkdf2_') === 0) {
+                    // Try Django hash verification
+                    $isCorrect = $this->verifyDjangoHash($clave, $hashedPassword);
+                    if ($isCorrect) {
+                        $needsRehash = true; // Auto-migrate to PHP native
+                    }
+                }
+                else {
+                    // Standard PHP verify
+                    $isCorrect = password_verify($clave, $hashedPassword);
+                }
+
+                if ($isCorrect) {
+                    if ($needsRehash) {
+                        // Rehash and update DB
+                        $newHash = password_hash($clave, PASSWORD_DEFAULT);
+                        try {
+                            $updateSql = "UPDATE $this->table SET password = :newHash WHERE id_tecnico = :userId";
+                            $updStmt = $this->conexion->prepare($updateSql);
+                            $updStmt->bindParam(':newHash', $newHash, PDO::PARAM_STR);
+                            $updStmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+                            $updStmt->execute();
+                        }
+                        catch (PDOException $ex) {
+                            error_log("Failed to auto-migrate password hash for user $userId: " . $ex->getMessage());
+                        }
+                    }
+
                     // Retornamos también el rol para almacenarlo en frontend
                     return [
                         'id_tecnico' => $row['id_tecnico'],

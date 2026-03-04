@@ -1,7 +1,7 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
    require_once("../Basedatos.php");
-   require_once("MuestrasModel.php");
+   require_once("BioquimicaModel.php");
    $muestra = new MuestrasModel();
    $data = json_decode(file_get_contents("php://input"), true);
    $accion = $data["accion"];
@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
    // Muestras por tipo_muestra
    if ($accion == "bioquimicaTipo") {
       $tipo_muestra = $data["tipo_muestra"];
-      $res = $muestra->bioquimicaTipo($tipo_muestra);
+      $res = $muestra->bioquimicamuestrasOrgano($tipo_muestra);
       echo json_encode($res);
       exit();
    }
@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
    // Muestra por número
    if ($accion == "bioquimicaNumero") {
       $num_muestra = $data["num_muestra"];
-      $res = $muestra->bioquimicaNumero($num_muestra);
+      $res = $muestra->bioquimicamuestrasNumero($num_muestra);
       echo json_encode($res);
       exit();
    }
@@ -56,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
    // Muestras por fecha
    if ($accion == "bioquimicaFecha") {
       $fecha = $data["fecha"];
-      $res = $muestra->bioquimicaFecha($fecha);
+      $res = $muestra->bioquimicamuestrasFecha($fecha);
       echo json_encode($res);
       exit();
    }
@@ -65,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
    if ($accion == "bioquimicaRangoFechas") {
       $fechainicio = $data["fechainicio"];
       $fechafin = $data["fechafin"];
-      $res = $muestra->bioquimicaRangoFechas($fechainicio, $fechafin);
+      $res = $muestra->bioquimicamuestrasRangoFechas($fechainicio, $fechafin);
       echo json_encode($res);
       exit();
    }

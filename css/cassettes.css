@@ -368,12 +368,11 @@ td {
     max-width: 550px;
     border: 2px solid #dee2e6;
     border-radius: 0.5rem;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     background-color: #ffffff;
     padding: 1rem 0.5rem;
+    max-height: 90vh;
+    overflow-y: auto;
+    pointer-events: auto;
 }
 
 .detallemuestra {
@@ -383,43 +382,34 @@ td {
 
 .mimodal {
     background-color: rgba(1, 0, 4, 0.197);
-    position: relative;
+    position: fixed;
     width: 100%;
     height: 100vh;
-    position: absolute;
-    top: -1200px;
-    left: 50%;
+    top: 0;
+    left: 0;
     opacity: 0;
-    /* display: flex; */
-    /*flex-direction: column;
-  font-family: Raleway, Helvetica, sans-serif;
-  color: #646464;
-  font-size: 0.75rem;
-  padding-top: 2rem; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    visibility: hidden;
 }
 
 .showmodal {
     animation-name: showmodalanimation;
     animation-duration: 1s;
     animation-fill-mode: forwards;
+    pointer-events: auto !important;
+    visibility: visible !important;
+    z-index: 1000 !important;
 }
 
 @keyframes showmodalanimation {
     0% {
-        top: 0px;
-        left: 50%;
         opacity: 0;
-        transform: translate(-50%, -50%);
-    }
-
-    50% {
-        opacity: 1;
     }
 
     100% {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
         opacity: 1;
     }
 }
@@ -428,25 +418,16 @@ td {
     animation-name: hidemodalanimation;
     animation-duration: 1s;
     animation-fill-mode: forwards;
+    pointer-events: none !important;
 }
 
 @keyframes hidemodalanimation {
     0% {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
         opacity: 1;
     }
 
-    75% {
-        opacity: 0;
-    }
-
     100% {
-        top: -1000px;
-        left: 50%;
         opacity: 0;
-        transform: translate(-50%, -50%);
     }
 }
 

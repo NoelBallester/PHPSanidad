@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <button class="btn btn-sm btn-outline-primary border__color me-2" onclick="editarUsuario(${user.id_tecnico}, '${user.nombre}', '${user.apellidos}', '${user.centro}', '${user.rol}')" title="Editar Técnico">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </button>
-                    ${user.id_tecnico !== sessionStorage.getItem('userId') ? `
+                    ${user.id_tecnico !== sessionStorage.getItem('tecnico_id') ? `
                     <button class="btn btn-sm btn-outline-danger" onclick="borrarUsuario(${user.id_tecnico})" title="Eliminar Técnico">
                         <i class="fa-solid fa-trash-can"></i>
                     </button>

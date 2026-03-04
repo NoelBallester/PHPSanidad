@@ -43,6 +43,7 @@ const cassetteDescripcion = document.getElementById("cassette__descripcion");
 const cassetteOrgano = document.getElementById("cassette__organo");
 const cassetteCassette = document.getElementById("cassette__cassette");
 const cassetteFecha = document.getElementById("cassette__fecha");
+const cassetteTecnicoId = document.getElementById("cassette__tecnico_id");
 const cassetteCaracteristicas = document.getElementById(
   "cassette__caracteristicas"
 );
@@ -139,6 +140,7 @@ const btncerrardetalleMuestra = document.getElementById(
 // Modificar Muestra
 const modificarMuestra = document.getElementById("modificarMuestra");
 const modalmodificarMuestra = document.getElementById("modalmodificarMuestra");
+const modaldetalleMuestra = document.getElementById("modaldetalleMuestra");
 const btnformmodificarMuestra = document.getElementById(
   "btnformmodificarmuestra"
 );
@@ -239,7 +241,7 @@ const crearCassette = (event) => {
       microscopia: inputMicroscopia.value,
       diagnostico: inputDiagnostico.value,
       patologo: inputPatologo.value,
-      tecnicoIdTecnico: sessionStorage.getItem("user"),
+      tecnicoIdTecnico: sessionStorage.getItem("tecnico_id"),
       organo: inputSelect.value,
     }),
   }).then((response) => response.json());
@@ -496,6 +498,7 @@ const detalleCassette = async (event) => {
 
 // Muestra el detalle de un cassette
 const imprimirDataCassette = (respuesta) => {
+  if (cassetteTecnicoId) cassetteTecnicoId.textContent = respuesta.tecnicoIdTecnico || "Desconocido";
   cassetteDescripcion.textContent = respuesta.descripcion.substring(0, 50);
   cassetteOrgano.textContent = respuesta.organo;
   cassetteCassette.textContent = respuesta.cassette;
@@ -598,7 +601,7 @@ const modificarCassetteUpdate = async (event) => {
       microscopia: inputMicroscopiaUpdate.value,
       diagnostico: inputDiagnosticoUpdate.value,
       patologo: inputPatologoUpdate.value,
-      tecnicoIdTecnico: sessionStorage.getItem("user"),
+      tecnicoIdTecnico: sessionStorage.getItem("tecnico_id"),
       organo: inputSelectUpdate.value,
     }),
   })
@@ -1039,7 +1042,7 @@ const consultarMuestraQR = async (qr) => {
 
 // Cargamos el modal datos cassete modificar
 const cargarUserUpdateModal = async (event) => {
-  let userId = sessionStorage.getItem("user");
+  let userId = sessionStorage.getItem("tecnico_id");
   const response = await fetch(
     "http://localhost:3000/sanitaria/tecnicos/" + userId,
     {

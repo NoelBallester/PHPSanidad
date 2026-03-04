@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             else {
                $resul['error'] = "";
-               $resul['user.id_tecnico'] = $res['id_tecnico'];
+               $resul["tecnico_id"] = $res["id_tecnico"];
                $resul['rol'] = $res['rol'];
             }
 
@@ -91,6 +91,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
    }
 
    // TODO: Falta la modificación de los datos de una usuario
+
+   if ($accion == 'cargarTecnicoId') {
+      $id = $data['id_tecnico'] ?? $identificador;
+      $res = $tec->getTecnicoId($id);
+      if ($res) {
+         echo json_encode($res);
+      }
+      else {
+         echo json_encode(['error' => 'Técnico no encontrado']);
+      }
+      exit();
+   }
 
    if ($accion == 'listartecnicos') {
       $lista = $tec->listarTecnicos();

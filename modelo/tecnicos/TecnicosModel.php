@@ -166,6 +166,24 @@ class Tecnicos extends Basedatos
         }
     } // fin solicitacontrasena
 
+    public function getTecnicoId($userId)
+    {
+        if ($this->conexion == null) {
+            return false;
+        }
+        try {
+            $sql = "SELECT id_tecnico, nombre, apellidos, email, centro, rol FROM $this->table WHERE id_tecnico = :userId";
+            $statement = $this->conexion->prepare($sql);
+            $statement->bindParam(':userId', $userId, PDO::PARAM_INT);
+            $statement->execute();
+            return $statement->fetch(PDO::FETCH_ASSOC);
+        }
+        catch (PDOException $e) {
+            error_log("Error getTecnicoId: " . $e->getMessage());
+            return false;
+        }
+    }
+
     public function listarTecnicos()
     {
         if ($this->conexion == null) {

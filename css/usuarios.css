@@ -1,6 +1,6 @@
 /* Container styling for the list of users */
 .container__table {
-    background-color: var(--body-color);
+    background-color: var(--card-bg);
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-top: 2rem;
@@ -16,7 +16,7 @@
 }
 
 .table {
-    color: var(--text-color);
+    color: var(--text-main);
     vertical-align: middle;
 }
 
@@ -63,42 +63,76 @@
     color: #fff;
 }
 
-body.dark-mode .container__table {
-    background-color: var(--body-color);
-    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.05);
+/* Dark Theme Overrides */
+.dark-theme .container__table {
+    background-color: var(--card-bg);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-body.dark-mode .table {
-    color: var(--text-color);
+.dark-theme .table {
+    color: var(--text-main);
 }
 
-body.dark-mode .table th {
-    color: var(--title-color);
+.dark-theme .table td {
+    border-color: rgba(255, 255, 255, 0.05);
 }
 
-body.dark-mode .modal-content {
-    background-color: var(--body-color);
-    color: var(--text-color);
+.dark-theme .modal-content {
+    background-color: var(--card-bg);
+    color: var(--text-main);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-body.dark-mode .modal-header {
+.dark-theme .modal-header {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-body.dark-mode .modal-title.blue__color,
-body.dark-mode .form-label.blue__color {
+.dark-theme .modal-title.blue__color,
+.dark-theme .form-label.blue__color {
     color: var(--title-color) !important;
 }
 
-body.dark-mode .form-control,
-body.dark-mode .form-select {
-    background-color: #2a2a35;
-    border-color: #444;
-    color: #fff;
+.dark-theme .form-control,
+.dark-theme .form-select {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
 }
 
-body.dark-mode .form-control:focus,
-body.dark-mode .form-select:focus {
-    background-color: #333342;
-    color: #fff;
+.dark-theme .form-control:focus,
+.dark-theme .form-select:focus {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+}
+/* --- Global Table Fixes for Dark Mode --- */
+.dark-theme table.table,
+.dark-theme table[data-sortable].sortable-theme-finder {
+    background: transparent !important;
+    border: none !important;
+}
+
+.dark-theme table.table thead th,
+.dark-theme table[data-sortable].sortable-theme-finder thead th {
+    background: rgba(30, 41, 59, 0.9) !important;
+    background-image: none !important;
+    color: var(--primary, #818cf8) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.dark-theme table.table tbody tr,
+.dark-theme table[data-sortable].sortable-theme-finder tbody tr {
+    background: rgba(30, 41, 59, 0.5) !important;
+    color: var(--text-main) !important;
+}
+
+.dark-theme table.table tbody tr:nth-child(odd),
+.dark-theme table[data-sortable].sortable-theme-finder tbody tr:nth-child(odd),
+.dark-theme table[data-sortable].sortable-theme-finder tbody>tr:nth-child(odd)>td {
+    background-color: rgba(255, 255, 255, 0.03) !important;
+    color: var(--text-main) !important;
+}
+
+.dark-theme table.table tbody tr:hover,
+.dark-theme table[data-sortable].sortable-theme-finder tbody tr:hover {
+    background: rgba(99, 102, 241, 0.1) !important;
 }

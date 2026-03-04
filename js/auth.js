@@ -31,7 +31,7 @@
  */
 function logout() {
     sessionStorage.removeItem('isLoggedIn');
-    sessionStorage.removeItem('userId');
+    sessionStorage.removeItem('tecnico_id');
     sessionStorage.removeItem('method');
     sessionStorage.removeItem('rol');
     window.location.href = './registro.html';

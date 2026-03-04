@@ -1,11 +1,11 @@
-const inputCassete = document.getElementById("inputCassete");
+const inputCasseteMain = document.getElementById("inputCassete");
 const token = sessionStorage.getItem("token");
 
 const body = document.getElementById("body");
-const casettes = document.getElementById("casettes");
+const casettes = document.getElementById("tubos_lista");
 const muestras = document.getElementById("muestras");
-const organos = document.getElementById("organos");
-const numMuestra = document.getElementById("numMuestra");
+const organos = document.getElementById("tipo_tubos");
+const numMuestra = document.getElementById("numTubo");
 
 // Botón Modal modificar datos Usuario
 const btnformmodificarUser = document.getElementById("btnformmodificarUser");
@@ -24,36 +24,29 @@ const inputUpdatePass2User = document.getElementById("inputUpdatePass2User");
 const inputUpdateCentroUser = document.getElementById("inputUpdateCentroUser");
 
 const btnborrar = document.getElementById("btnborrar");
-const modalnuevoMuestra = document.getElementById("modalnuevoMuestra");
-const btnformnuevomuestra = document.getElementById("btnformnuevomuestra");
+const modalnuevoMuestra = document.getElementById("modalnuevaTubo");
+const btnformnuevomuestra = document.getElementById("btnformnuevotubo");
 const btnformmodificarmuestra = document.getElementById(
-  "btnformmodificarmuestra"
+  "btnformmodificartubo"
 );
 const btnformcerrarnuevoMuestra = document.getElementById(
-  "btnformcerrarnuevoMuestra"
+  "btnformcerrarnuevaTubo"
 );
-const btnformcerrarmodificarMuestra = document.getElementById(
-  "btnformcerrarmodificarMuestra"
+const btnformcerrarmodificarMuestraMain = document.getElementById(
+  "btnformcerrarmodificarTubo"
 );
 const btnmodificar = document.getElementById("btnmodificar");
-const nuevoMuestra = document.getElementById("nuevoMuestra");
-const nuevaMuestra = document.getElementById("nuevaMuestra");
+const nuevoMuestraForm = document.getElementById("nuevaTubo");
+const nuevaMuestraForm = document.getElementById("nuevaTubo");
 
-const muestraDescripcion = document.getElementById("muestra__descripcion");
-const muestraOrgano = document.getElementById("muestra__organo");
-const muestraMuestra = document.getElementById("muestra__muestra");
-const muestraFecha = document.getElementById("muestra__fecha");
-const muestraCaracteristicas = document.getElementById(
-  "muestra__caracteristicas"
-);
+const tuboTecnicoId = document.getElementById("tubo__tecnico_id");
+const muestraDescripcion = document.getElementById("tubo__descripcion");
+const muestraTincion = document.getElementById("tubo__tincion");
+const muestraMuestra = document.getElementById("tubo__id");
+const muestraFecha = document.getElementById("tubo__fecha");
 const muestraObservaciones = document.getElementById(
-  "muestra__observaciones"
+  "tubo__observaciones"
 );
-const muestraInformeDescripcion = document.getElementById("muestra__informe_descripcion");
-const muestraInformeFecha = document.getElementById("muestra__informe_fecha");
-const muestraInformeTincion = document.getElementById("muestra__informe_tincion");
-const muestraInformeObservaciones = document.getElementById("muestra__informe_observaciones");
-const muestraInformeImagen = document.getElementById("muestra__informe_imagen");
 
 const muestraImagen = document.getElementById("muestra__imagen");
 const eliminarMuestraModal = document.getElementById("eliminarMuestraModal");
@@ -68,7 +61,7 @@ const imgmuestra__qr = document.getElementById("imgmuestra__qr");
 const inputmuestra__qr = document.getElementById("inputmuestra__qr");
 
 // Todos los bioquimica
-const todosMuestras = document.getElementById("todosMuestras");
+const todosMuestras = document.getElementById("todosTubos");
 
 // Nuevo Cassete
 const inputFecha = document.getElementById("inputFecha");
@@ -83,28 +76,23 @@ const inputPatologo = document.getElementById("inputPatologo");
 const inputSelect = document.getElementById("inputSelect");
 const inputImagenes = document.getElementById("inputImagenes");
 
-// Modificar Cassete
-const modalupdateMuestra = document.getElementById("modalupdateMuestra");
-const modificarMuestra = document.getElementById("modificarMuestra");
-const btnmodificarmuestra = document.getElementById("btnmodificarmuestra");
-const inputFechaUpdate = document.getElementById("inputFechaUpdate");
-const inputImagenesUpdate = document.getElementById("inputImagenesUpdate");
+// Modificar Bioquímica
+const modalupdateMuestra = document.getElementById("modalmodificarTubo");
 
 const inputDescripcionUpdate = document.getElementById(
-  "inputDescripcionUpdate"
+  "inputmodificardescripcionTubo"
 );
-const inputMuestraUpdate = document.getElementById("inputMuestraUpdate");
+const inputTipoUpdate = document.getElementById("inputmodificartipoTubo");
+const inputFechaUpdate = document.getElementById("inputmodificarfechaTubo");
+const inputSelectUpdate = document.getElementById("selectTincionTubo_mod"); // Need to check this
+const inputCitologiaUpdate = document.getElementById("inputmodificarMuestraTubo");
 const inputCaracteristicasUpdate = document.getElementById(
-  "inputCaracteristicasUpdate"
+  "inputmodificarcaracteristicasTubo"
 );
 const inputObservacionesUpdate = document.getElementById(
-  "inputObservacionesUpdate"
+  "inputmodificarobservacionesTubo"
 );
-const inputClinicaUpdate = document.getElementById("inputClinicaUpdate");
-const inputMicroscopiaUpdate = document.getElementById("inputMicroscopiaUpdate");
-const inputDiagnosticoUpdate = document.getElementById("inputDiagnosticoUpdate");
-const inputPatologoUpdate = document.getElementById("inputPatologoUpdate");
-const inputSelectUpdate = document.getElementById("inputSelectUpdate");
+const modificarMuestraForm = document.getElementById("modificarTubo");
 
 // Crear una muestra
 const btnformnuevaMuestra = document.getElementById("btnformnuevaMuestra");
@@ -139,12 +127,13 @@ const btncerrardetalleMuestra = document.getElementById(
 );
 
 // Modificar Muestra
-const modificarMuestra = document.getElementById("modificarMuestra");
+const modMuestraElement = document.getElementById("modificarMuestra");
 const modalmodificarMuestra = document.getElementById("modalmodificarMuestra");
+const modaldetalleMuestra = document.getElementById("modaldetalleTubo");
 const btnformmodificarMuestra = document.getElementById(
   "btnformmodificarmuestra"
 );
-const btnformcerrarmodificarMuestra = document.getElementById(
+const btnformcerrarmodificarMuestraDetalle = document.getElementById(
   "btnformcerrarmodificarMuestra"
 );
 
@@ -173,8 +162,8 @@ const btnborrarimagenmuestra = document.getElementById(
 );
 
 const qrMuestraModal = document.getElementById("qrMuestraModal");
-const imgmuestra__qr = document.getElementById("imgmuestra__qr");
-const inputmuestra__qr = document.getElementById("inputmuestra__qr");
+const imgmuestra__qr_detalle = document.getElementById("imgmuestra__qr");
+const inputmuestra__qr_detalle = document.getElementById("inputmuestra__qr");
 const btn__imprimirqrmuestra = document.getElementById(
   "btn__imprimirqrmuestra"
 );
@@ -201,7 +190,7 @@ let muestraId = null;
 let muestraqr = null;
 
 // id muestra cassete
-let muestraId = null;
+let subMuestraId = null;
 
 // id imagene seleccionada
 let imageId = null;
@@ -242,9 +231,7 @@ const crearMuestra = (event) => {
       microscopia: inputMicroscopia.value,
       diagnostico: inputDiagnostico.value,
       patologo: inputPatologo.value,
-      // TODO: No lo guardo en el localStorage al acceder el usuario
-      tecnicoIdTecnico: sessionStorage.getItem("user"),
-      /*   imagen : inputImagenes.files[0], */
+      tecnicoIdTecnico: sessionStorage.getItem("tecnico_id"),
       organo: inputSelect.value,
     }),
   }).then((response) => response.json());
@@ -408,7 +395,7 @@ const consultaFechaFin = async () => {
 const imprimirCasettes = (respuesta, rebuildDropdown = true) => {
   casettes.innerHTML = "";
   if (rebuildDropdown) {
-    numMuestra.innerHTML = "<option disabled selected>Número Muestra</option>";
+    numMuestra.innerHTML = "<option disabled selected>Nº Tubo</option>";
   }
 
   let fragmento = document.createDocumentFragment();
@@ -417,7 +404,7 @@ const imprimirCasettes = (respuesta, rebuildDropdown = true) => {
     respuesta.map((casete) => {
       // Para cargar los números de muestra
       let option = document.createElement("OPTION");
-      option.textContent = casete.id_casette;
+      option.textContent = casete.muestra;
       fragmentselect.appendChild(option);
 
       // Para mostrar los bioquimica
@@ -426,28 +413,28 @@ const imprimirCasettes = (respuesta, rebuildDropdown = true) => {
 
       // Número de Muestra
       let nmuestra = document.createElement("td");
-      nmuestra.textContent = casete.id_casette;
+      nmuestra.textContent = casete.muestra;
 
       let fecha = document.createElement("td");
-      nuevafecha = casete.fecha;
+      let nuevafecha_val = casete.fecha;
 
       fecha.textContent =
-        nuevafecha.substring(8) +
+        nuevafecha_val.substring(8) +
         "-" +
-        nuevafecha.substring(5, 7) +
+        nuevafecha_val.substring(5, 7) +
         "-" +
-        nuevafecha.substring(0, 4);
+        nuevafecha_val.substring(0, 4);
       let descripcion = document.createElement("td");
       descripcion.textContent = casete.descripcion.substring(0, 50);
       descripcion.title = casete.descripcion;
 
       let organo = document.createElement("td");
-      organo.textContent = casete.organo;
+      organo.textContent = casete.tipo_muestra;
 
       let btndetalle = document.createElement("I");
       btndetalle.className =
         "d-inline-block muestra__icon fa-solid fa-file-invoice muestra__icon--infomuestra";
-      btndetalle.value = casete.id_casette;
+      btndetalle.dataset.id = casete.id_muestra;
       btndetalle.title = "Detalle Muestra";
 
       let btnCont = document.createElement("td");
@@ -483,36 +470,44 @@ const imprimirCasettes = (respuesta, rebuildDropdown = true) => {
 //Peticiones de Muestra y Muestras al seleccionar un Muestra y llama a
 // mostrar bioquimica y mostrar muestras
 const detalleMuestra = async (event) => {
-  if (event.target.classList.contains("fa-file-invoice")) {
+  const icon = event.target.closest("i.fa-file-invoice");
+  if (icon) {
     alertmuestra.classList.add("ocultar");
-    muestraId = event.target.value;
+    muestraId = icon.dataset.id;
 
     let respuesta = await cargarMuestra(muestraId);
     imprimirDataMuestra(respuesta);
 
     respuesta = await cargarMuestras(muestraId);
     imprimirMuestras(respuesta);
+
+    // Mostrar el panel de detalles
+    if (modaldetalleMuestra) {
+      modaldetalleMuestra.classList.add("showmodal");
+      modaldetalleMuestra.classList.remove("hidemodal");
+    }
   }
 
-  if (event.target.classList.contains("fa-trash-can")) {
-    console.log(event.target.data - value);
+  if (event.target.closest("i.fa-trash-can")) {
+    console.log("trash", event.target.closest("i.fa-trash-can").dataset.id);
   }
 };
 
 // Muestra el detalle de un muestra
 const imprimirDataMuestra = (respuesta) => {
-  muestraDescripcion.textContent = respuesta.descripcion.substring(0, 50);
+  if (tuboTecnicoId) tuboTecnicoId.textContent = respuesta.tecnicoIdTecnico || "Desconocido";
+  if (muestraDescripcion) muestraDescripcion.textContent = respuesta.descripcion.substring(0, 50);
   muestraOrgano.textContent = respuesta.organo;
   muestraMuestra.textContent = respuesta.muestra;
 
   // Formato Fecha
-  nuevafecha = respuesta.fecha;
+  let nuevafecha_val = respuesta.fecha;
   muestraFecha.textContent =
-    nuevafecha.substring(8) +
+    nuevafecha_val.substring(8) +
     "-" +
-    nuevafecha.substring(5, 7) +
+    nuevafecha_val.substring(5, 7) +
     "-" +
-    nuevafecha.substring(0, 4);
+    nuevafecha_val.substring(0, 4);
 
   muestraCaracteristicas.textContent = respuesta.caracteristicas;
   muestraObservaciones.textContent = respuesta.observaciones;
@@ -568,20 +563,22 @@ const imprimirQR = (elemento) => {
 // Cargamos el modal datos cassete modificar
 const cargarMuestraUpdateModal = async (event) => {
   if (!muestraId) {
-    event.preventDefault();
+    if (event) event.preventDefault();
     alertmuestra.classList.remove("ocultar");
   } else {
-    let muestra = await cargarMuestra(muestraId);
-    inputDescripcionUpdate.value = muestra.descripcion;
-    inputMuestraUpdate.value = muestra.id_casette;
-    inputFechaUpdate.value = muestra.fecha;
-    inputCaracteristicasUpdate.value = muestra.caracteristicas;
-    inputObservacionesUpdate.value = muestra.observaciones;
-    inputClinicaUpdate.value = muestra.informacion_clinica || "";
-    inputMicroscopiaUpdate.value = muestra.descripcion_microscopica || "";
-    inputDiagnosticoUpdate.value = muestra.diagnostico_final || "";
-    inputPatologoUpdate.value = muestra.patologo_responsable || "";
-    inputSelectUpdate.value = muestra.organo;
+    let muestraData = await cargarMuestra(muestraId);
+    inputDescripcionUpdate.value = muestraData.descripcion;
+    inputCitologiaUpdate.value = muestraData.muestra;
+    inputFechaUpdate.value = muestraData.fecha;
+    inputTipoUpdate.value = muestraData.tipo_muestra;
+    inputCaracteristicasUpdate.value = muestraData.caracteristicas;
+    inputObservacionesUpdate.value = muestraData.observaciones;
+    // Bioquímica specific fields
+    inputClinica.value = muestraData.informacion_clinica || "";
+    inputMicroscopia.value = muestraData.descripcion_microscopica || "";
+    inputDiagnostico.value = muestraData.diagnostico_final || "";
+    inputPatologo.value = muestraData.patologo_responsable || "";
+    // inputSelectUpdate.value = muestraData.tincion; // Bioquímica uses tincion?
   }
 };
 
@@ -597,17 +594,17 @@ const modificarMuestraUpdate = async (event) => {
 
       muestraId: muestraId,
 
+      muestra: inputCitologiaUpdate.value,
       fecha: inputFechaUpdate.value,
       descripcion: inputDescripcionUpdate.value,
-      muestra: inputMuestraUpdate.value,
       caracteristicas: inputCaracteristicasUpdate.value,
       observaciones: inputObservacionesUpdate.value,
-      clinica: inputClinicaUpdate.value,
-      microscopia: inputMicroscopiaUpdate.value,
-      diagnostico: inputDiagnosticoUpdate.value,
-      patologo: inputPatologoUpdate.value,
-      tecnicoIdTecnico: sessionStorage.getItem("user"),
-      organo: inputSelectUpdate.value,
+      tipo_muestra: inputTipoUpdate.value,
+      clinica: inputClinica.value,
+      microscopia: inputMicroscopia.value,
+      diagnostico: inputDiagnostico.value,
+      patologo: inputPatologo.value,
+      tecnicoIdTecnico: sessionStorage.getItem("tecnico_id"),
     }),
   })
     .then((response) => {
@@ -622,7 +619,7 @@ const modificarMuestraUpdate = async (event) => {
 // MUESTRAS
 
 // Carga Muestras de un Muestra
-const cargarMuestras = async (muestraId) => {
+const cargarMuestras = async (muestraId_val) => {
   return await fetch("modelo/muestras/muestras.php", {
     method: "POST",
     headers: {
@@ -630,13 +627,13 @@ const cargarMuestras = async (muestraId) => {
     },
     body: JSON.stringify({
       accion: "cargarMuestras",
-      muestraId: muestraId,
+      muestraId: muestraId_val,
     }),
   }).then((data) => data.json());
 };
 
-// Crear nueva muestra
-const crearMuestra = async (event) => {
+// Crear nueva muestra (detalle/imagen)
+const crearMuestraDetalle = async (event) => {
   event.preventDefault();
 
   // SI QUEREMOS GUARDAR UNA IMAGEN CON PDO NECESITAMOS UN FormData
@@ -651,10 +648,6 @@ const crearMuestra = async (event) => {
 
   await fetch("modelo/muestras/muestrasimagenes.php", {
     method: "POST",
-    // NO PONERLO, SI LO PONEMOS NO FUNCIONA LA INSERCIÓN!!!!
-    /*   headers: {
-      "Content-Type": "application/json",
-    }, */
     body: newMuestra,
   })
     .then(async () => {
@@ -677,9 +670,9 @@ const limpiarModalMuestra = () => {
 };
 
 // Cargamos el modal datos muestra a modificar
-const cargarMuestraUpdateModal = async (event) => {
+const cargarMuestraDetalleUpdateModal = async (event) => {
   if (!muestraId) {
-    event.preventDefault();
+    if (event) event.preventDefault();
     alertmuestra.classList.remove("ocultar");
   } else {
     const response = await fetch("modelo/muestras/muestras.php", {
@@ -693,16 +686,16 @@ const cargarMuestraUpdateModal = async (event) => {
       }),
     });
 
-    let muestra = await response.json();
-    inputmodificardescripcionMuestra.value = muestra.descripcion;
-    inputmodificarfechaMuestra.value = muestra.fecha;
-    selectmodificartincionMuestra.value = muestra.tincion;
-    inputmodificarobservacionesMuestra.value = muestra.observaciones;
+    let muestraData = await response.json();
+    inputmodificardescripcionMuestra.value = muestraData.descripcion;
+    inputmodificarfechaMuestra.value = muestraData.fecha;
+    selectmodificartincionMuestra.value = muestraData.tincion;
+    inputmodificarobservacionesMuestra.value = muestraData.observaciones;
   }
 };
 
 // Modificar muestra
-const modificarMuestraUpdate = async (event) => {
+const modificarMuestraDetalleUpdate = async (event) => {
   event.preventDefault();
 
   await fetch("modelo/muestras/muestras.php", {
@@ -724,21 +717,20 @@ const modificarMuestraUpdate = async (event) => {
     .then(async () => {
       // Actualizamos los datos del detalle de la muestra
       muestra__descripcion.textContent = inputmodificardescripcionMuestra.value;
-      nuevafecha = inputmodificarfechaMuestra.value;
+      let nuevafecha_val = inputmodificarfechaMuestra.value;
       muestra__fecha.textContent =
-        nuevafecha.substring(8) +
+        nuevafecha_val.substring(8) +
         "-" +
-        nuevafecha.substring(5, 7) +
+        nuevafecha_val.substring(5, 7) +
         "-" +
-        nuevafecha.substring(0, 4);
+        nuevafecha_val.substring(0, 4);
 
-      // muestra__fecha.textContent = inputmodificarfechaMuestra.value;
       muestra__observaciones.textContent =
         inputmodificarobservacionesMuestra.value;
       muestra__tincion.textContent = selectmodificartincionMuestra.value;
 
       // Mostramos las muestras para que se actulicen los cambios
-      respuesta = await cargarMuestras(muestraId);
+      let respuesta = await cargarMuestras(muestraId);
       imprimirMuestras(respuesta);
     })
 
@@ -763,16 +755,13 @@ const imprimirMuestras = (respuesta) => {
       descripcion.title = muestra.descripcion;
 
       let fecha = document.createElement("td");
-      nuevafecha = muestra.fecha;
+      let nuevafecha_val = muestra.fecha;
       fecha.textContent =
-        nuevafecha.substring(8) +
+        nuevafecha_val.substring(8) +
         "-" +
-        nuevafecha.substring(5, 7) +
+        nuevafecha_val.substring(5, 7) +
         "-" +
-        nuevafecha.substring(0, 4);
-
-      /*   let observaciones = document.createElement("td");
-      observaciones.textContent = muestra.observaciones; */
+        nuevafecha_val.substring(0, 4);
 
       let tincion = document.createElement("td");
       tincion.textContent = muestra.tincion;
@@ -781,13 +770,12 @@ const imprimirMuestras = (respuesta) => {
       let btndetalle = document.createElement("I");
       btndetalle.className =
         "d-inline-block muestra__icon fa-solid fa-file-invoice muestra__icon--infomuestra";
-      btndetalle.value = muestra.id_muestra;
+      btndetalle.dataset.id = muestra.id_muestra;
       btndetalle.title = "Detalle Muestra";
       btn.appendChild(btndetalle);
 
       tr.appendChild(fecha);
       tr.appendChild(descripcion);
-      /*  tr.appendChild(observaciones); */
       tr.appendChild(tincion);
       tr.appendChild(btn);
 
@@ -803,7 +791,7 @@ const imprimirMuestras = (respuesta) => {
 };
 
 // Obtenemos una muestra
-const cargarMuestra = async (muestraid) => {
+const cargarMuestraDetalle = async (muestraid) => {
   const response = await fetch("modelo/muestras/muestras.php", {
     method: "POST",
     headers: {
@@ -823,7 +811,6 @@ const obtenerImagenesMuestra = async (muestraid) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      // "Content-Type": "image/jpeg",
     },
     body: JSON.stringify({
       accion: "cargarImagenesMuestra",
@@ -839,24 +826,24 @@ const rellenarDatosMuestra = async (muestra) => {
   muestra__descripcion.textContent = muestra.descripcion.substring(0, 60);
   muestra__descripcion.title = muestra.descripcion;
 
-  nuevafecha = muestra.fecha;
+  let nuevafecha_val = muestra.fecha;
   muestra__fecha.textContent =
-    nuevafecha.substring(8) +
+    nuevafecha_val.substring(8) +
     "-" +
-    nuevafecha.substring(5, 7) +
+    nuevafecha_val.substring(5, 7) +
     "-" +
-    nuevafecha.substring(0, 4);
+    nuevafecha_val.substring(0, 4);
 
   muestra__observaciones.textContent = muestra.observaciones;
   muestra__tincion.textContent = muestra.tincion;
 };
 
-const mostrarImagenesMuestra = async (muestaId) => {
+const mostrarImagenesMuestra = async (muestaId_val) => {
   muestra__img.innerHTML = "";
   let imagenes = await obtenerImagenesMuestra(muestraId);
   // Imagen de sustitución si no hay imagenes para una muestra
   if (imagenes.length == 0) {
-    visor__img.src = "./assets/images/no_disponible.jpg";
+    if (typeof visor__img !== 'undefined') visor__img.src = "./assets/images/no_disponible.jpg";
   } else {
     imagenes.forEach((imagen, index) => {
       let newimg = document.createElement("IMG");
@@ -866,7 +853,7 @@ const mostrarImagenesMuestra = async (muestaId) => {
       newimg.classList.add("muestra__img");
 
       if (index == 0) {
-        visor__img.src = newimg.src;
+        if (typeof visor__img !== 'undefined') visor__img.src = newimg.src;
         imageId = newimg.id;
       }
 
@@ -877,24 +864,9 @@ const mostrarImagenesMuestra = async (muestaId) => {
       muestra__img.appendChild(newdiv);
     });
   }
-
-  // let newdiv = document.createElement("DIV");
-  // newdiv.classList.add(
-  //   "container__aniadir",
-  //   "d-flex",
-  //   "align-items-center",
-  //   "mt-1",
-  //   "mx-2",
-  //   "blue__color",
-  //   "fs-1"
-  // );
-  // newdiv.innerHTML = '<i class="fa-solid fa-circle-plus"></i>';
-  // newdiv.title = "Añadir imagen";
-
-  // muestra__img.appendChild(newdiv);
 };
 
-const borrarMuestra = async () => {
+const borrarMuestraDetalle = async () => {
   fetch("modelo/muestras/muestras.php", {
     method: "POST",
     headers: {
@@ -908,8 +880,8 @@ const borrarMuestra = async () => {
     .then(async () => {
       modaldetalleMuestra.classList.remove("showmodal");
       // Mostramos las muestras del muestra
-      let muestras = await cargarMuestras(muestraId);
-      imprimirMuestras(muestras);
+      let muestrasData = await cargarMuestras(muestraId);
+      imprimirMuestras(muestrasData);
     })
     .catch((error) => console.log(error));
 };
@@ -934,14 +906,14 @@ const borrarImagenMuestra = async () => {
 // Mostramos Detalle muestra seleccionada
 const detailMuestra = async (muestraid) => {
   // Cargamos la muestra
-  let muestra = await cargarMuestra(muestraid);
-  muestraId = muestra.id_muestra;
-  rellenarDatosMuestra(muestra);
+  let muestraData = await cargarMuestra(muestraid);
+  muestraId = muestraData.id_muestra;
+  rellenarDatosMuestra(muestraData);
 
   // generamos el codigo QR
   new QRious({
     element: imgmuestra__qr,
-    value: muestra.qr_muestra, // La URL o el texto
+    value: muestraData.qr_muestra, // La URL o el texto
     size: 70,
     backgroundAlpha: 0, // 0 para fondo transparente
     foreground: "#4ca0cc", // Color del QR
@@ -998,24 +970,24 @@ const consultarMuestraQR = async (qr) => {
       qr: qr,
     }),
   });
-  let muestra = await response.json();
+  let muestraData = await response.json();
 
   // Mostrar los datos del muestra
-  imprimirCasettes(muestra);
+  imprimirCasettes(muestraData);
   // Obtenemos un array, pq nos viene bien para la consulta de bioquimica que espera un array
   //Obtenemos el primero, aunque sólo nos devuelve uno, para la consulta de un muestra
-  muestra = muestra[0];
+  let primeraMuestra = muestraData[0];
 
   // Mostramos el detalle del muestra
-  imprimirDataMuestra(muestra);
+  imprimirDataMuestra(primeraMuestra);
 
   // Mostramos las muestras del muestra
-  muestraId = muestra.id_casette;
-  let muestras = await cargarMuestras(muestraId);
-  imprimirMuestras(muestras);
+  muestraId = primeraMuestra.id_casette;
+  let muestrasData = await cargarMuestras(muestraId);
+  imprimirMuestras(muestrasData);
 };
 
-const consultarMuestraQR = async (qr) => {
+const consultarMuestraDetalleQR = async (qr) => {
   // Obtengo la muestra para obtener el id del muestra
   let response = await fetch("modelo/muestras/muestras.php", {
     method: "POST",
@@ -1027,7 +999,8 @@ const consultarMuestraQR = async (qr) => {
       qr: qr,
     }),
   });
-  let muestra = await response.json();
+  let muestraDetalleArray = await response.json();
+  let muestraDetalle = muestraDetalleArray[0];
   // Obtengo el muestra de la muestra
   response = await fetch("modelo/bioquimica/bioquimica.php", {
     method: "POST",
@@ -1036,36 +1009,38 @@ const consultarMuestraQR = async (qr) => {
     },
     body: JSON.stringify({
       accion: "cargarMuestraId",
-      muestraId: muestra[0].muestraIdMuestra,
+      muestraId: muestraDetalle.muestraIdMuestra,
     }),
   });
   // Mostramos el cassete de la muestra
-  let muestra = await response.json();
-  consultarMuestraQR(muestra.qr_casette);
-  detailMuestra(muestra[0].id_muestra);
+  let muestraData = await response.json();
+  consultarMuestraQR(muestraData.qr_casette);
+  detailMuestra(muestraDetalle.id_muestra);
 };
 
 // Cargamos el modal datos cassete modificar
 const cargarUserUpdateModal = async (event) => {
-  let userId = sessionStorage.getItem("user");
+  let userId = sessionStorage.getItem("tecnico_id");
   const response = await fetch(
-    "http://localhost:3000/sanitaria/tecnicos/" + userId,
+    "modelo/tecnicos/tecnicos.php",
     {
-      method: "GET",
+      method: "POST",
       headers: {
-        token: sessionStorage.getItem("token"),
+        "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        accion: "cargarTecnicoId",
+        id_tecnico: userId,
+      }),
     }
   );
 
   let user = await response.json();
 
-  inputUpdateNombreUser.value = user.nombre;
+  inputUpdateNombreUser.value = user.name;
   inputUpdateApellidosUser.value = user.apellidos;
   inputUpdateCentroUser.value = user.centro;
   inputUpdateCorreoUser.value = user.email;
-  /*  inputUpdatePass1User.value = user.password;
-  inputUpdatePass2User.value = user.password; */
 };
 // Eventos
 
@@ -1143,7 +1118,7 @@ btnformcerrarnuevoMuestra.addEventListener("click", () => {
   }
 });
 
-nuevoMuestra.addEventListener("submit", crearMuestra);
+nuevoMuestraForm.addEventListener("submit", crearMuestra);
 
 // Modificar Muestra
 btnformmodificarmuestra.addEventListener("click", () => {
@@ -1158,14 +1133,14 @@ btnformmodificarmuestra.addEventListener("click", () => {
   }
 });
 
-btnformcerrarmodificarMuestra.addEventListener("click", () => {
+btnformcerrarmodificarMuestraMain.addEventListener("click", () => {
   if (!modalupdateMuestra.classList.contains("hidemodal")) {
     modalupdateMuestra.classList.add("hidemodal");
     modalupdateMuestra.classList.remove("showmodal");
   }
 });
 
-modificarMuestra.addEventListener("submit", modificarMuestraUpdate);
+modificarMuestraForm.addEventListener("submit", modificarMuestraUpdate);
 
 // Borrar Muestra
 eliminarMuestraModal.addEventListener("show.bs.modal", (event) => {
@@ -1179,13 +1154,15 @@ eliminarMuestraModal.addEventListener("show.bs.modal", (event) => {
 btnborrar.addEventListener("click", borrarMuestra);
 
 // mostrar modal imagen muestra
-imagenMuestraModal.addEventListener("show.bs.modal", (event) => {
-  // comprobamos si ha seleccionado un muestra
-  if (!muestraId) {
-    event.preventDefault();
-    alertmuestra.classList.remove("ocultar");
-  }
-});
+if (typeof imagenMuestraModal !== 'undefined') {
+  imagenMuestraModal.addEventListener("show.bs.modal", (event) => {
+    // comprobamos si ha seleccionado un muestra
+    if (!muestraId) {
+      event.preventDefault();
+      alertmuestra.classList.remove("ocultar");
+    }
+  });
+}
 
 // mostrar modal qr muestra
 qrMuestraModal.addEventListener("show.bs.modal", (event) => {
@@ -1193,13 +1170,13 @@ qrMuestraModal.addEventListener("show.bs.modal", (event) => {
   inputmuestra__qr.focus();
 });
 
-// mostrar modal qr muestra
+// mostrar modal qr muestra (second listener, consolidated)
 qrMuestraModal.addEventListener("show.bs.modal", (event) => {
   // comprobamos si ha seleccionado un muestra
   if (!muestraId) {
     event.preventDefault();
     alertmuestra.classList.remove("ocultar");
-    inputmuestra__qr.focus();
+    inputmuestra__qr_detalle.focus();
   }
 });
 
@@ -1230,14 +1207,14 @@ btncerrardetalleMuestra.addEventListener("click", () => {
   muestra__img.innerHTML = "";
 });
 
-nuevaMuestra.addEventListener("submit", crearMuestra);
+nuevaMuestraForm.addEventListener("submit", crearMuestraDetalle);
 
 // Modificar Muestra
 btnformmodificarMuestra.addEventListener("click", () => {
   if (!muestraId) {
     alertmuestra.classList.remove("ocultar");
   } else {
-    cargarMuestraUpdateModal();
+    cargarMuestraDetalleUpdateModal();
     if (!modalmodificarMuestra.classList.contains("showmodal")) {
       modalmodificarMuestra.classList.add("showmodal");
       modalmodificarMuestra.classList.remove("hidemodal");
@@ -1245,26 +1222,26 @@ btnformmodificarMuestra.addEventListener("click", () => {
   }
 });
 
-btnformcerrarmodificarMuestra.addEventListener("click", () => {
+btnformcerrarmodificarMuestraDetalle.addEventListener("click", () => {
   if (!modalmodificarMuestra.classList.contains("hidemodal")) {
     modalmodificarMuestra.classList.add("hidemodal");
     modalmodificarMuestra.classList.remove("showmodal");
   }
 });
 
-modificarMuestra.addEventListener("submit", modificarMuestraUpdate);
+// modMuestraElement.addEventListener("submit", modificarMuestraDetalleUpdate); // Fixed below
 
 // Consulta Detalle Muestras
 muestras.addEventListener("click", (event) => {
   if (event.target.nodeName == "I") {
-    detailMuestra(event.target.value);
+    detailMuestra(event.target.dataset.id);
   }
 });
 
 // Visualizamos la imagen seleccionada
 muestra__img.addEventListener("click", async (event) => {
   if (event.target.nodeName === "IMG") {
-    visor__img.src = event.target.src;
+    if (typeof visor__img !== 'undefined') visor__img.src = event.target.src;
     imageId = event.target.id;
   }
   if (event.target.nodeName === "I") aniadirImagenMuestra();
@@ -1274,10 +1251,9 @@ input__consultarqr.value = "";
 
 // Lectura codigo qr
 qrMuestraModal.addEventListener("keydown", (event) => {
-  // inputmuestra__qr.focus();
   if (event.key === "Enter") {
-    consultarMuestraQR(inputmuestra__qr.value);
-    inputmuestra__qr.value = "";
+    consultarMuestraDetalleQR(inputmuestra__qr_detalle.value);
+    inputmuestra__qr_detalle.value = "";
   } else {
     inputmuestra__qr.value += event.key;
   }
@@ -1296,7 +1272,7 @@ qrConsultaModal.addEventListener("keydown", (event) => {
       consultarMuestraQR(input__consultarqr.value);
     }
     if (tipo === "--m--") {
-      consultarMuestraQR(input__consultarqr.value);
+      consultarMuestraDetalleQR(input__consultarqr.value);
     }
     mimodal.hide();
     input__consultarqr.value = "";
@@ -1309,7 +1285,7 @@ btn__imprimrqr.addEventListener("click", () => imprimirQR("muestra"));
 
 btn__imprimirqrmuestra.addEventListener("click", () => imprimirQR("muestra"));
 
-btnborrarmuestra.addEventListener("click", borrarMuestra);
+btnborrarmuestra.addEventListener("click", borrarMuestraDetalle);
 btnborrarimagenmuestra.addEventListener("click", borrarImagenMuestra);
 
 // Guardar solo el informe de resultados

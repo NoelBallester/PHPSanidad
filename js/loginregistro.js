@@ -54,7 +54,7 @@ const userLogin = (event) => {
       } else {
         // Store session data
         sessionStorage.setItem("isLoggedIn", "true");
-        sessionStorage.setItem("userId", response['user.id_tecnico']);
+        sessionStorage.setItem("tecnico_id", response.tecnico_id);
         sessionStorage.setItem("rol", response.rol);
 
         form_login.reset();

@@ -43,6 +43,7 @@ const citologiaOrgano = document.getElementById("citologia__organo");
 const citologiaCitologia = document.getElementById("citologia__citologia");
 const citologiaTipo = document.getElementById("citologia__tipo");
 const citologiaFecha = document.getElementById("citologia__fecha");
+const citologiaTecnicoId = document.getElementById("citologia__tecnico_id");
 const citologiaCaracteristicas = document.getElementById(
   "citologia__caracteristicas"
 );
@@ -141,6 +142,7 @@ const btncerrardetalleMuestra = document.getElementById(
 // Modificar Muestra
 const modificarMuestra = document.getElementById("modificarMuestra");
 const modalmodificarMuestra = document.getElementById("modalmodificarMuestra");
+const modaldetalleMuestra = document.getElementById("modaldetalleMuestra");
 const btnformmodificarMuestra = document.getElementById(
   "btnformmodificarmuestra"
 );
@@ -242,7 +244,7 @@ const crearCitologia = (event) => {
       microscopia: inputMicroscopia.value,
       diagnostico: inputDiagnostico.value,
       patologo: inputPatologo.value,
-      tecnicoIdTecnico: sessionStorage.getItem("user"),
+      tecnicoIdTecnico: sessionStorage.getItem("tecnico_id"),
       organo: inputSelect.value,
     }),
   }).then((response) => response.json());
@@ -500,6 +502,7 @@ const detalleCitologia = async (event) => {
 
 // Muestra el detalle de una citología
 const imprimirDetalleCitologia = (respuesta) => {
+  if (citologiaTecnicoId) citologiaTecnicoId.textContent = respuesta.tecnicoIdTecnico || "Desconocido";
   citologiaDescripcion.textContent = respuesta.descripcion.substring(0, 50);
   citologiaOrgano.textContent = respuesta.organo;
   citologiaCitologia.textContent = respuesta.citologia;
@@ -606,7 +609,7 @@ const modificarCitologiaUpdate = async (event) => {
       microscopia: inputMicroscopiaUpdate.value,
       diagnostico: inputDiagnosticoUpdate.value,
       patologo: inputPatologoUpdate.value,
-      tecnicoIdTecnico: sessionStorage.getItem("user"),
+      tecnicoIdTecnico: sessionStorage.getItem("tecnico_id"),
       organo: inputSelectUpdate.value,
     }),
   })
@@ -1047,7 +1050,7 @@ const consultarMuestraQR = async (qr) => {
 
 // Cargamos el modal datos cassete modificar
 const cargarUserUpdateModal = async (event) => {
-  let userId = sessionStorage.getItem("user");
+  let userId = sessionStorage.getItem("tecnico_id");
   const response = await fetch(
     "http://localhost:3000/sanitaria/tecnicos/" + userId,
     {
